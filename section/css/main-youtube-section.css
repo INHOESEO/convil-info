@@ -1,0 +1,33 @@
+/* #mainYoutubeSectionInner .youtube-section-frame ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#mainYoutubeSectionInner .youtube-section-frame ul li iframe {
+    width: 100%;
+} */
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.video-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+}
+.video-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+.video-title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.video-date {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
