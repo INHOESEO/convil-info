@@ -1,5 +1,6 @@
 html,
 body {
+    position: relative;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -27,6 +28,7 @@ img {
 #container,
 #headerInner,
 #footerInner {
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
 }

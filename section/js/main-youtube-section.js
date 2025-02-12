@@ -1,6 +1,6 @@
 const API_KEY = 'AIzaSyD_YEZsA8TnFHQTXJCEbkSxRQvoWqaH5Bg';
-const CHANNEL_ID = 'UC17JmZCBw1AEfom5aMBbAsA';
-const MAX_RESULTS = 50;
+const CHANNEL_ID = 'UCuLL6K3wbBDThigSdJ0rnZQ';
+const MAX_RESULTS = 5;
 
 async function getChannelVideos(pageToken = '') {
     try {
@@ -53,7 +53,7 @@ async function loadVideos() {
     
     const videosContainer = document.getElementById('videos');
     if (!videosContainer) {
-        console.error('videos 컨테이너를 찾을 수 없습니다');
+        console.error('videos 컨테이너를 찾을 수 없습니다.');
         return;
     }
     
