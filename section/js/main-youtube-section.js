@@ -49,7 +49,7 @@ function createVideoElement(video) {
 }
 
 async function loadVideos() {
-    console.log('loadVideos 함수 실행됨'); // 디버깅용
+    console.log('loadVideos 함수 실행됨');
     
     const videosContainer = document.getElementById('videos');
     if (!videosContainer) {
@@ -60,21 +60,16 @@ async function loadVideos() {
     // 컨테이너를 비워서 중복 로드 방지
     videosContainer.innerHTML = '';
     
-    let pageToken = '';
+    // 한 번만 API 호출
+    const data = await getChannelVideos();
+    if (!data || !data.items) return;
     
-    while (true) {
-        const data = await getChannelVideos(pageToken);
-        if (!data || !data.items) break;
-        
-        data.items.forEach(video => {
-            if (video.id.videoId) {
-                videosContainer.appendChild(createVideoElement(video));
-            }
-        });
-        
-        if (!data.nextPageToken) break;
-        pageToken = data.nextPageToken;
-    }
+    // MAX_RESULTS 만큼만 표시
+    data.items.forEach(video => {
+        if (video.id.videoId) {
+            videosContainer.appendChild(createVideoElement(video));
+        }
+    });
 }
 
 // DOMContentLoaded 이벤트 리스너 제거 (import.js에서 처리)
