@@ -1,16 +1,22 @@
 console.log('main-banner-section.js loaded');
 
 document.addEventListener('layoutLoaded', function() {
+    console.log('Layout loaded, waiting for mainBannerSection');
+    
     const checkInterval = setInterval(() => {
         const slider = document.querySelector('#udf-slider');
+        console.log('Checking for slider...', slider);
+        
         if (slider) {
             clearInterval(checkInterval);
+            console.log('Slider found, initializing');
             initSlider(slider);
         }
     }, 100);
     
     setTimeout(() => {
         clearInterval(checkInterval);
+        console.error('Slider not found after timeout');
     }, 10000);
 });
 
