@@ -10,7 +10,7 @@
 #udf-slider .udf-slide-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 1/1; 
+    /* aspect-ratio: 1/1;  */
 }
 #udf-slider .udf-slide-wrapper .udf-slide-element img {
     width: 100%;
