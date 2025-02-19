@@ -1,0 +1,243 @@
+#mainBannerSectionInner {
+    padding-top: 63px;
+}
+#udf-slider {
+    position: relative;
+    height: 705px;
+    /* overflow: hidden; */
+    margin-bottom: 78px;
+}
+#udf-slider .udf-slide-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1; 
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element img {
+    width: 100%;
+    display: block;
+    will-change: transform;
+    transform: scale(1.02);
+    transition: transform 0.8s ease-in-out;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element.active img {
+    transform: scale(1);
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 100%; */
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 1;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element.active {
+    opacity: 1;
+    z-index: 2;
+}
+/* 슬라이드 텍스트 */
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 12.858%;
+    gap: 22px;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text .use-title {
+    font-size: 67px;
+    font-weight: 400;
+    letter-spacing: -2.01px;
+    line-height: normal;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text .use-keyword {
+    font-size: 62px;
+    font-weight: 900;
+    letter-spacing: -1.86px;
+    line-height: normal;
+    color: #0057ff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-bottom-text {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 12.306%;
+    right: 8.072%;
+    gap: 9px;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-bottom-text .use-sentence {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: normal;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element .slide-bottom-text .use-info {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
+}
+#udf-slider .udf-slide-wrapper .udf-slide-element.active .slide-top-text .use-title,
+#udf-slider .udf-slide-wrapper .udf-slide-element.active .slide-bottom-text .use-sentence {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out 0.4s, transform 0.5s ease-out 0.4s;
+}
+
+#udf-slider .udf-slide-wrapper .udf-slide-element.active .slide-top-text .use-keyword,
+#udf-slider .udf-slide-wrapper .udf-slide-element.active .slide-bottom-text .use-info {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s;
+}
+
+/* 슬라이드 도트 */
+#udf-slider .udf-slide-dot {
+
+    display: none !important;
+
+    position: absolute;
+    bottom: 5.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+#udf-slider .udf-slide-dot .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.50);
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+#udf-slider .udf-slide-dot .dot.active {
+    background-color: #fff;
+}
+
+/* 슬라이드 버튼 */
+#udf-slider .udf-slider-btn {
+
+    display: none !important;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    max-width: 1536px;
+    margin: 0 auto;
+    z-index: 3;
+}
+#udf-slider .udf-slider-btn .udf-sldier-prev,
+#udf-slider .udf-slider-btn .udf-sldier-next {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 69px;
+    height: 69px;
+}
+#udf-slider .udf-slider-btn .udf-sldier-prev svg { padding: 18px 20px 17px 15px; }
+#udf-slider .udf-slider-btn .udf-sldier-next svg { padding: 18px 15px 17px 20px; }
+#udf-slider .udf-slider-btn .udf-sldier-prev svg,
+#udf-slider .udf-slider-btn .udf-sldier-next svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: all 0.3s ease-in-out;
+}
+#udf-slider .udf-slider-btn .udf-sldier-prev:hover svg,
+#udf-slider .udf-slider-btn .udf-sldier-next:hover svg {
+    background: rgba(0, 0, 0, 1);
+    opacity: 1;
+}
+#udf-slider:hover .udf-slider-btn svg {
+    background: rgba(0, 0, 0, 0.20);
+    opacity: 1;
+}
+
+/* basic setting */
+#udf-slider .udf-slide-wrapper .udf-slide-element #slide-mobile-img {
+   display: none;
+}
+
+#udf-slider .fast-contact {
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    right: 0;
+    animation: vibration .1s infinite;
+    text-align: center;
+    margin-top: 20px;
+    border: 0;
+}
+
+#udf-slider .fast-contact-btn {
+    /* 버튼 스타일링 */
+    font-size: 22px;
+    font-weight: 600;
+    padding: 18px 108px;
+    background-color: #0057ff;
+    color: white;
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    animation: motion 0.7s linear 0s infinite alternate;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+
+#udf-slider .fast-contact-btn:hover {
+    background-color: #0000ff;
+    transform: scale(1.20);
+    transition: transform 0.3s ease-in-out;
+}
+
+@keyframes motion {
+	0% {margin-right: 0px;}
+	20% {margin-right: 10px;}
+	40% {margin-right: 0px;}
+	60% {margin-right: 10px;}
+	80% {margin-right: 0px;}
+	100% {margin-right: 0px;}
+}
+
+@media all and (max-width:1024px) {
+    #udf-slider .udf-slide-wrapper {
+        aspect-ratio: 5/10; 
+    }
+    #udf-slider .udf-slider-btn {
+      display: none !important;
+    }
+   #udf-slider .udf-slide-wrapper .udf-slide-element #slide-pc-img {
+        display: none;
+    }
+    #udf-slider .udf-slide-wrapper .udf-slide-element #slide-mobile-img {
+        display: block;
+    }
+}
+@media all and (max-width:768px) {
+    #udf-slider {
+        margin-bottom: 10px;
+    }
+}
+

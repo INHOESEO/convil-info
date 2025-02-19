@@ -13,6 +13,9 @@ ol,
 li,
 button,
 a,
+p,
+div,
+section
 link,
 iframe {
     list-style: none;

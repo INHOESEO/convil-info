@@ -15,49 +15,45 @@ async function loadHTML(elementId, path) {
         // HTML 파싱
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
+
+        // live-server 스크립트 제거
+        const cleanDoc = removeLiveServerScripts(doc);
         
-        // layout인 경우 head와 script 요소 처리
+        // CSS 링크 추가 (layout과 section 모두)
+        Array.from(cleanDoc.getElementsByTagName('link')).forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !document.querySelector(`link[href="${href}"]`)) {
+                const newLink = link.cloneNode(true);
+                document.head.appendChild(newLink);
+            }
+        });
+
+        // body 내용 삽입
         if (elementId === 'layout') {
-            // CSS 링크 추가
-            Array.from(doc.getElementsByTagName('link')).forEach(link => {
-                if (!document.querySelector(`link[href="${link.getAttribute('href')}"]`)) {
-                    document.head.appendChild(link.cloneNode(true));
-                }
-            });
-            
-            // 모든 스크립트 처리
-            Array.from(doc.getElementsByTagName('script')).forEach(script => {
-                const newScript = document.createElement('script');
-                
-                // src 속성이 있는 경우
-                if (script.src) {
-                    // 중복 로드 방지
-                    if (!document.querySelector(`script[src="${script.getAttribute('src')}"]`)) {
-                        newScript.src = script.src;
-                    } else {
-                        return; // 이미 존재하면 스킵
-                    }
-                } else {
-                    // 인라인 스크립트인 경우
-                    newScript.textContent = script.textContent;
-                }
-                
-                // 기타 속성 복사
-                Array.from(script.attributes).forEach(attr => {
-                    if (attr.name !== 'src') {
-                        newScript.setAttribute(attr.name, attr.value);
-                    }
-                });
-                
-                document.body.appendChild(newScript);
-            });
-            
-            // body 내용 삽입
-            element.innerHTML = doc.body.innerHTML;
+            element.innerHTML = cleanDoc.body.innerHTML;
         } else {
-            // layout이 아닌 경우는 내용만 삽입
-            element.innerHTML = doc.body.innerHTML;
+            const mainContent = cleanDoc.body.querySelector(`#${elementId}Inner`);
+            if (mainContent) {
+                element.innerHTML = mainContent.outerHTML;
+            }
         }
+
+        // 스크립트 처리
+        const scripts = Array.from(cleanDoc.getElementsByTagName('script')).filter(script => {
+            return !script.textContent.includes('live-server') && 
+                   !script.textContent.includes('WebSocket');
+        });
+
+        // 순차적으로 스크립트 로드
+        for (const script of scripts) {
+            await loadScript(script);
+        }
+
+        // layoutLoaded 이벤트 발생
+        if (elementId === 'layout') {
+            document.dispatchEvent(new CustomEvent('layoutLoaded'));
+        }
+
         // YouTube 섹션이 로드된 경우 스크립트도 다시 로드
         // if (elementId === 'mainYoutubeSection') {
         //     console.log('YouTube 섹션 로드됨');
@@ -84,23 +80,61 @@ async function loadHTML(elementId, path) {
         // }
     } catch (error) {
         console.error('HTML 로드 중 에러 발생:', error);
+        console.error('Error details:', error.stack);
     }
 }
 
+// 헬퍼 함수들
+function removeLiveServerScripts(doc) {
+    const scripts = doc.getElementsByTagName('script');
+    Array.from(scripts).forEach(script => {
+        if (script.textContent.includes('live-server') || 
+            script.textContent.includes('WebSocket')) {
+            script.remove();
+        }
+    });
+    return doc;
+}
+
+function loadScript(script) {
+    return new Promise((resolve, reject) => {
+        if (script.src) {
+            // 이미 로드된 스크립트는 스킵
+            if (document.querySelector(`script[src="${script.src}"]`)) {
+                resolve();
+                return;
+            }
+            const newScript = document.createElement('script');
+            newScript.src = script.src;
+            newScript.onload = resolve;
+            newScript.onerror = reject;
+            document.body.appendChild(newScript);
+        } else {
+            const newScript = document.createElement('script');
+            newScript.textContent = script.textContent;
+            document.body.appendChild(newScript);
+            resolve();
+        }
+    });
+}
+
+// HTML에서 live-server 스크립트 제거
+function cleanHTML(html) {
+    return html.replace(
+        /<script[\s\S]*?<\/script>/gi,
+        match => match.includes('live-server') ? '' : match
+    );
+}
 
 async function initLayout() {
     try {
-        // 순차적 로드
         await loadHTML('layout', './basic/layout.html');
         await loadHTML('header', './basic/header.html');
         await loadHTML('footer', './basic/footer.html');
         await loadHTML('mainBannerSection', './section/main/main-banner-section.html');
-
-        // 레이아웃 로드 완료 이벤트
-        document.dispatchEvent(new CustomEvent('layoutLoaded'));
     } catch (error) {
         console.error('Layout 초기화 중 에러 발생:', error);
     }
 }
-    
-document.addEventListener('DOMContentLoaded', initLayout)    
+
+document.addEventListener('DOMContentLoaded', initLayout);
