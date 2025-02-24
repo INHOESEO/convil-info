@@ -1,0 +1,23 @@
+{
+  "name": "convil-info",
+  "version": "1.0.0",
+  "description": "this is layer for basic web creation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INHOESEO/convil-info.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/INHOESEO/convil-info/issues"
+  },
+  "homepage": "https://github.com/INHOESEO/convil-info#readme",
+  "dependencies": {
+    "three": "^0.128.0"
+  }
+}

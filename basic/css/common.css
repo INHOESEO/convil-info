@@ -37,7 +37,29 @@ img {
     margin: 0 auto;
 }
 
-/* grid */
+/* 섹션 */
+.section-header { 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.section-header h2 { 
+    font-size: 67px; 
+    font-weight: 400;
+    letter-spacing: -2.01px;
+    margin: 0;
+}
+
+.section-header h3 { 
+    font-size: 50px; 
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    margin: 0;
+}
+
+/* 그리드 */
 .grid-row {
     width: 100%;
     display: flex;

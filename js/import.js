@@ -1,5 +1,6 @@
 async function loadHTML(elementId, path) {
     try {
+        console.log(`Loading HTML for ${elementId}`);
         const element = document.getElementById(elementId);
         if (!element) {
             console.error(`Element with id '${elementId}' not found`);
@@ -18,6 +19,10 @@ async function loadHTML(elementId, path) {
 
         // live-server 스크립트 제거
         const cleanDoc = removeLiveServerScripts(doc);
+
+        if (elementId === 'mainThreedSection') {
+            console.log('Threed section loaded, checking scripts...');
+        }
         
         // CSS 링크 추가 (layout과 section 모두)
         Array.from(cleanDoc.getElementsByTagName('link')).forEach(link => {
@@ -46,7 +51,13 @@ async function loadHTML(elementId, path) {
 
         // 순차적으로 스크립트 로드
         for (const script of scripts) {
-            await loadScript(script);
+            try {
+                console.log('Processing script:', script.src || 'inline script');
+                await loadScript(script);
+                console.log('Script loaded successfully');
+            } catch (error) {
+                console.error('Script load error:', error);
+            }
         }
 
         // layoutLoaded 이벤트 발생
@@ -79,8 +90,7 @@ async function loadHTML(elementId, path) {
         //     document.body.appendChild(script);
         // }
     } catch (error) {
-        console.error('HTML 로드 중 에러 발생:', error);
-        console.error('Error details:', error.stack);
+        console.error(`Error loading ${elementId}:`, error);
     }
 }
 
@@ -132,6 +142,8 @@ async function initLayout() {
         await loadHTML('header', './basic/header.html');
         await loadHTML('footer', './basic/footer.html');
         await loadHTML('mainBannerSection', './section/main/main-banner-section.html');
+        await loadHTML('mainWhyusSection', './section/main/main-whyus-section.html');
+        await loadHTML('mainThreedSection', './section/main/main-threed-section.html');
     } catch (error) {
         console.error('Layout 초기화 중 에러 발생:', error);
     }

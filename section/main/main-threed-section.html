@@ -1,0 +1,119 @@
+<div id="mainThreedSectionInner">
+    <div id="threedElement"></div>
+    <!-- Three.js 라이브러리 로드 -->
+    <script src="./resources/libs/three.js/three.min.r128.js"></script>
+    <script src="./resources/libs/three.js/ColladaLoader.r128.js"></script>
+    <script src="./resources/libs/three.js/OrbitControls.r128.js"></script>
+    
+    <script type="module">
+        
+        function initThreeScene() {
+            console.log('Initializing THREE scene');
+            const threedElement = document.getElementById('threedElement');
+            if (!threedElement) {
+                console.error('threedElement not found');
+                return;
+            }
+
+            threedElement.style.width = '100%';
+            threedElement.style.height = '500px';
+            threedElement.style.backgroundColor = '#ffffff';
+
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xffffff);
+
+            const camera = new THREE.PerspectiveCamera(
+                75,
+                threedElement.clientWidth / threedElement.clientHeight,
+                0.1,
+                1000
+            );
+            camera.position.set(0, 5, 10);
+
+            const renderer = new THREE.WebGLRenderer({ 
+                antialias: true 
+            });
+            renderer.setSize(threedElement.clientWidth, threedElement.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            threedElement.appendChild(renderer.domElement);
+
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = true;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 1.0;
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+
+            // axesHelper 제거
+
+        const loader = new THREE.ColladaLoader();
+
+        // 모델 재질의 기본값 설정
+        loader.load(
+            './source/threed/example3d.dae',
+            function(collada) {
+                console.log('Model loaded successfully');
+                const model = collada.scene;
+
+                // 모델의 재질 설정을 기본값으로 설정
+                model.traverse((child) => {
+                    if (child.material) {
+                        // 텍스처 없이 기본 재질의 색상만 사용
+                        child.material.needsUpdate = true;
+                        // 텍스처 맵 제거
+                        child.material.map = null;
+                    }
+                });
+
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3());
+                const center = box.getCenter(new THREE.Vector3());
+
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 20 / maxDim;
+                model.scale.multiplyScalar(scale);
+                model.position.sub(center.multiplyScalar(scale));
+                
+                scene.add(model);
+            },
+            function(xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function(error) {
+                console.error('Model load error:', error);
+            }
+        );
+
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            window.addEventListener('resize', function() {
+                const width = threedElement.clientWidth;
+                const height = threedElement.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            });
+
+            animate();
+        }
+
+        // DOM이 로드된 후 초기화 호출 추가
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initThreeScene);
+        } else {
+            initThreeScene();
+        }
+
+    </script>
+</div>
