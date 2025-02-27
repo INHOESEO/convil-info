@@ -53,43 +53,43 @@
 
             // axesHelper 제거
 
-        const loader = new THREE.ColladaLoader();
+            const loader = new THREE.ColladaLoader();
 
-        // 모델 재질의 기본값 설정
-        loader.load(
-            './source/threed/example3d.dae',
-            function(collada) {
-                console.log('Model loaded successfully');
-                const model = collada.scene;
+            // 모델 재질의 기본값 설정
+            loader.load(
+                './source/threed/example3d.dae',
+                function(collada) {
+                    console.log('Model loaded successfully');
+                    const model = collada.scene;
 
-                // 모델의 재질 설정을 기본값으로 설정
-                model.traverse((child) => {
-                    if (child.material) {
-                        // 텍스처 없이 기본 재질의 색상만 사용
-                        child.material.needsUpdate = true;
-                        // 텍스처 맵 제거
-                        child.material.map = null;
-                    }
-                });
+                    // 모델의 재질 설정을 기본값으로 설정
+                    model.traverse((child) => {
+                        if (child.material) {
+                            // 텍스처 없이 기본 재질의 색상만 사용
+                            child.material.needsUpdate = true;
+                            // 텍스처 맵 제거
+                            child.material.map = null;
+                        }
+                    });
 
-                const box = new THREE.Box3().setFromObject(model);
-                const size = box.getSize(new THREE.Vector3());
-                const center = box.getCenter(new THREE.Vector3());
+                    const box = new THREE.Box3().setFromObject(model);
+                    const size = box.getSize(new THREE.Vector3());
+                    const center = box.getCenter(new THREE.Vector3());
 
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 20 / maxDim;
-                model.scale.multiplyScalar(scale);
-                model.position.sub(center.multiplyScalar(scale));
-                
-                scene.add(model);
-            },
-            function(xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-            },
-            function(error) {
-                console.error('Model load error:', error);
-            }
-        );
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    const scale = 20 / maxDim;
+                    model.scale.multiplyScalar(scale);
+                    model.position.sub(center.multiplyScalar(scale));
+                    
+                    scene.add(model);
+                },
+                function(xhr) {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                },
+                function(error) {
+                    console.error('Model load error:', error);
+                }
+            );
 
             function animate() {
                 requestAnimationFrame(animate);
