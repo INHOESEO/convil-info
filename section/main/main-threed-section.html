@@ -1,40 +1,48 @@
 <div id="mainThreedSectionInner">
     <div id="threedElement"></div>
-    <!-- Three.js 라이브러리 로드 -->
+    
+    <!-- 기존에 사용하던 로컬 라이브러리 로드 -->
     <script src="./resources/libs/three.js/three.min.r128.js"></script>
     <script src="./resources/libs/three.js/ColladaLoader.r128.js"></script>
     <script src="./resources/libs/three.js/OrbitControls.r128.js"></script>
     
-    <script type="module">
-        
+    <script>
         function initThreeScene() {
-            console.log('Initializing THREE scene');
+            console.log('Initializing THREE scene with local libraries');
             const threedElement = document.getElementById('threedElement');
             if (!threedElement) {
                 console.error('threedElement not found');
                 return;
             }
 
+            // 3D Viewer와 유사한 설정
             threedElement.style.width = '100%';
             threedElement.style.height = '500px';
-            threedElement.style.backgroundColor = '#ffffff';
+            threedElement.style.backgroundColor = '#191919';
 
             const scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xffffff);
+            scene.background = new THREE.Color(0x191919);
 
             const camera = new THREE.PerspectiveCamera(
-                75,
+                45,
                 threedElement.clientWidth / threedElement.clientHeight,
                 0.1,
-                1000
+                2000
             );
             camera.position.set(0, 5, 10);
 
+            const pixelRatio = window.devicePixelRatio || 1;
             const renderer = new THREE.WebGLRenderer({ 
-                antialias: true 
+                antialias: true,
+                alpha: true
             });
             renderer.setSize(threedElement.clientWidth, threedElement.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(pixelRatio);
+            
+            // 중요: 색상 인코딩 설정
+            if (renderer.outputEncoding !== undefined) {
+                renderer.outputEncoding = THREE.sRGBEncoding;
+            }
             threedElement.appendChild(renderer.domElement);
 
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -44,34 +52,57 @@
             controls.autoRotate = true;
             controls.autoRotateSpeed = 1.0;
 
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            // 조명 개선
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
             scene.add(ambientLight);
 
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(5, 5, 5);
-            scene.add(directionalLight);
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(1, 1, 1).normalize();
+            scene.add(directionalLight1);
 
-            // axesHelper 제거
+            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+            directionalLight2.position.set(-1, 0.5, -1).normalize();
+            scene.add(directionalLight2);
 
+            // ColladaLoader를 사용하여 모델 로드
             const loader = new THREE.ColladaLoader();
-
-            // 모델 재질의 기본값 설정
+            
+            console.log('THREE.js is loaded, ColladaLoader:', loader);
+            
             loader.load(
                 './source/threed/example3d.dae',
                 function(collada) {
                     console.log('Model loaded successfully');
                     const model = collada.scene;
-
-                    // 모델의 재질 설정을 기본값으로 설정
+                    
+                    // 중요: 재질 보존 - 이전 코드에서 color가 제거되던 부분 수정
                     model.traverse((child) => {
-                        if (child.material) {
-                            // 텍스처 없이 기본 재질의 색상만 사용
-                            child.material.needsUpdate = true;
-                            // 텍스처 맵 제거
-                            child.material.map = null;
+                        if (child.isMesh) {
+                            console.log('Mesh found:', child.name);
+                            
+                            if (child.material) {
+                                console.log('Material type:', child.material.type);
+                                
+                                // 중요: map = null 코드 제거
+                                // 대신 재질 업데이트와 양면 렌더링 추가
+                                child.material.needsUpdate = true;
+                                child.material.side = THREE.DoubleSide;
+                                
+                                // 재질이 MeshPhongMaterial인 경우 추가 설정
+                                if (child.material.type === 'MeshPhongMaterial') {
+                                    child.material.shininess = 30;
+                                    child.material.specular = new THREE.Color(0x555555);
+                                }
+                                
+                                // 기존 색상 확인
+                                if (child.material.color) {
+                                    console.log('Material color:', child.material.color.getHexString());
+                                }
+                            }
                         }
                     });
 
+                    // 모델 크기 및 위치 조정
                     const box = new THREE.Box3().setFromObject(model);
                     const size = box.getSize(new THREE.Vector3());
                     const center = box.getCenter(new THREE.Vector3());
@@ -82,6 +113,7 @@
                     model.position.sub(center.multiplyScalar(scale));
                     
                     scene.add(model);
+                    camera.lookAt(model.position);
                 },
                 function(xhr) {
                     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
@@ -91,12 +123,14 @@
                 }
             );
 
+            // 애니메이션 루프
             function animate() {
                 requestAnimationFrame(animate);
                 controls.update();
                 renderer.render(scene, camera);
             }
 
+            // 반응형 처리
             window.addEventListener('resize', function() {
                 const width = threedElement.clientWidth;
                 const height = threedElement.clientHeight;
@@ -108,12 +142,11 @@
             animate();
         }
 
-        // DOM이 로드된 후 초기화 호출 추가
+        // 페이지 로드 시 초기화
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initThreeScene);
         } else {
             initThreeScene();
         }
-
     </script>
 </div>
