@@ -3,7 +3,6 @@ async function loadHTML(elementId, path) {
         console.log(`Loading HTML for ${elementId}`);
         const element = document.getElementById(elementId);
         if (!element) {
-            console.error(`Element with id '${elementId}' not found`);
             return;
         }
 
@@ -114,13 +113,26 @@ function loadScript(script) {
                 resolve();
                 return;
             }
+            
             const newScript = document.createElement('script');
             newScript.src = script.src;
+            
+            // 모듈 스크립트 처리
+            if (script.type === 'module') {
+                newScript.type = 'module';
+            }
+            
             newScript.onload = resolve;
             newScript.onerror = reject;
             document.body.appendChild(newScript);
         } else {
             const newScript = document.createElement('script');
+            
+            // 인라인 모듈 스크립트 처리
+            if (script.type === 'module') {
+                newScript.type = 'module';
+            }
+            
             newScript.textContent = script.textContent;
             document.body.appendChild(newScript);
             resolve();

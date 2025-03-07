@@ -1,152 +1,214 @@
-<div id="mainThreedSectionInner">
-    <div id="threedElement"></div>
-    
-    <!-- 기존에 사용하던 로컬 라이브러리 로드 -->
-    <script src="./resources/libs/three.js/three.min.r128.js"></script>
-    <script src="./resources/libs/three.js/ColladaLoader.r128.js"></script>
-    <script src="./resources/libs/three.js/OrbitControls.r128.js"></script>
-    
-    <script>
-        function initThreeScene() {
-            console.log('Initializing THREE scene with local libraries');
-            const threedElement = document.getElementById('threedElement');
-            if (!threedElement) {
-                console.error('threedElement not found');
-                return;
-            }
+<link rel='stylesheet' type='text/css' media='screen' href='./section/css/main-threed-section.css'>
 
-            // 3D Viewer와 유사한 설정
-            threedElement.style.width = '100%';
-            threedElement.style.height = '500px';
-            threedElement.style.backgroundColor = '#191919';
 
-            const scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x191919);
+<section id="mainThreedSection">
+    <div id="mainThreedSectionInner">
+        <div id="threedElement"></div>
+        <div class="controls">
+            <button id="zoom-in">확대</button>
+            <button id="zoom-out">축소</button>
+            <button id="reset-camera">리셋</button>
+        </div>
+        <div id="debug-info">로딩 중...</div>
+    </div>
+</section>
 
-            const camera = new THREE.PerspectiveCamera(
-                45,
-                threedElement.clientWidth / threedElement.clientHeight,
-                0.1,
-                2000
-            );
-            camera.position.set(0, 5, 10);
+<script type="module">
+    const threedElement = document.getElementById('threedElement');
 
-            const pixelRatio = window.devicePixelRatio || 1;
-            const renderer = new THREE.WebGLRenderer({ 
-                antialias: true,
-                alpha: true
-            });
-            renderer.setSize(threedElement.clientWidth, threedElement.clientHeight);
-            renderer.setPixelRatio(pixelRatio);
-            
-            // 중요: 색상 인코딩 설정
-            if (renderer.outputEncoding !== undefined) {
-                renderer.outputEncoding = THREE.sRGBEncoding;
-            }
-            threedElement.appendChild(renderer.domElement);
+    if (threedElement.clientHeight === 0) {
+        console.warn('경고: threedElement의 높이가 0입니다. 강제로 높이를 설정합니다.');
+        threedElement.style.width = '100%';
+        threedElement.style.height = '500px';
+        threedElement.style.objectFit = 'cover';
 
-            const controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.enableZoom = true;
-            controls.autoRotate = true;
-            controls.autoRotateSpeed = 1.0;
+        // 강제 업데이트 후 크기 다시 확인
+        setTimeout(() => {
+            console.log('업데이트된 threedElement 크기:', threedElement.clientWidth, 'x', threedElement.clientHeight);
 
-            // 조명 개선
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
-
-            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight1.position.set(1, 1, 1).normalize();
-            scene.add(directionalLight1);
-
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight2.position.set(-1, 0.5, -1).normalize();
-            scene.add(directionalLight2);
-
-            // ColladaLoader를 사용하여 모델 로드
-            const loader = new THREE.ColladaLoader();
-            
-            console.log('THREE.js is loaded, ColladaLoader:', loader);
-            
-            loader.load(
-                './source/threed/example3d.dae',
-                function(collada) {
-                    console.log('Model loaded successfully');
-                    const model = collada.scene;
-                    
-                    // 중요: 재질 보존 - 이전 코드에서 color가 제거되던 부분 수정
-                    model.traverse((child) => {
-                        if (child.isMesh) {
-                            console.log('Mesh found:', child.name);
-                            
-                            if (child.material) {
-                                console.log('Material type:', child.material.type);
-                                
-                                // 중요: map = null 코드 제거
-                                // 대신 재질 업데이트와 양면 렌더링 추가
-                                child.material.needsUpdate = true;
-                                child.material.side = THREE.DoubleSide;
-                                
-                                // 재질이 MeshPhongMaterial인 경우 추가 설정
-                                if (child.material.type === 'MeshPhongMaterial') {
-                                    child.material.shininess = 30;
-                                    child.material.specular = new THREE.Color(0x555555);
-                                }
-                                
-                                // 기존 색상 확인
-                                if (child.material.color) {
-                                    console.log('Material color:', child.material.color.getHexString());
-                                }
-                            }
-                        }
-                    });
-
-                    // 모델 크기 및 위치 조정
-                    const box = new THREE.Box3().setFromObject(model);
-                    const size = box.getSize(new THREE.Vector3());
-                    const center = box.getCenter(new THREE.Vector3());
-
-                    const maxDim = Math.max(size.x, size.y, size.z);
-                    const scale = 20 / maxDim;
-                    model.scale.multiplyScalar(scale);
-                    model.position.sub(center.multiplyScalar(scale));
-                    
-                    scene.add(model);
-                    camera.lookAt(model.position);
-                },
-                function(xhr) {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-                },
-                function(error) {
-                    console.error('Model load error:', error);
-                }
-            );
-
-            // 애니메이션 루프
-            function animate() {
-                requestAnimationFrame(animate);
-                controls.update();
-                renderer.render(scene, camera);
-            }
-
-            // 반응형 처리
-            window.addEventListener('resize', function() {
-                const width = threedElement.clientWidth;
-                const height = threedElement.clientHeight;
-                camera.aspect = width / height;
+            // 필요한 경우 렌더러 크기도 업데이트
+            if (renderer) {
+                renderer.setSize(threedElement.clientWidth, threedElement.clientHeight);
+                camera.aspect = threedElement.clientWidth / threedElement.clientHeight;
                 camera.updateProjectionMatrix();
-                renderer.setSize(width, height);
-            });
+            }
+        }, 100);
+    }
 
-            animate();
-        }
+    import * as THREE from 'https://cdn.skypack.dev/three@0.136.0';
+    import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
+    import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/DRACOLoader.js';
 
-        // 페이지 로드 시 초기화
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initThreeScene);
-        } else {
-            initThreeScene();
+
+    // 디버그 정보 표시 함수
+    const debugInfo = document.getElementById('debug-info');
+    function updateDebug(message) {
+        if (debugInfo) {
+            debugInfo.innerHTML = message;
         }
-    </script>
-</div>
+    }
+
+    // Scene setup
+    const container = document.getElementById('threedElement');
+    if (!container) {
+        updateDebug('오류: threedElement를 찾을 수 없습니다.');
+        throw new Error('Container element not found');
+    }
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#efefef'); // 배경색 설정 제거
+
+
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 2000);
+    camera.position.set(20, 20, 20);
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // alpha: true 추가
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.setClearColor(0x000000, 0); // 배경을 투명하게 설정
+    container.appendChild(renderer.domElement);
+
+    // Controls setup
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+    scene.add(ambientLight);
+
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0);
+    directionalLight1.position.set(5, 10, 5);
+    directionalLight1.castShadow = true;
+    scene.add(directionalLight1);
+
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight2.position.set(-5, 5, -5);
+    scene.add(directionalLight2);
+
+    // Grid helper
+    // const gridHelper = new THREE.GridHelper(10, 10, 0x888888, 0x444444);
+    // scene.add(gridHelper);
+
+    // 축 헬퍼 추가
+    // const axesHelper = new THREE.AxesHelper(5);
+    //scene.add(axesHelper);
+
+    // 바닥 추가
+    const floorGeometry = new THREE.PlaneGeometry(20, 20);
+    const floorMaterial = new THREE.MeshLambertMaterial({ color: 0xcccccc });
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    // GLTF 모델 로딩
+    function loadModel() {
+        updateDebug('모델 로딩 중...');
+
+        // DRACOLoader 초기화
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+        dracoLoader.setDecoderConfig({ type: 'js' }); // 'wasm' 대신 'js' 사용 (호환성 높음)
+
+        // GLTFLoader에 DRACOLoader 설정
+        const loader = new GLTFLoader();
+        loader.setDRACOLoader(dracoLoader);
+
+        // 이하 코드는 동일
+        loader.load(
+            '../../source/threed/compressed-example3d.gltf',
+            function (gltf) {
+                updateDebug('모델 로드 성공! 처리 중...');
+
+                const model = gltf.scene;
+
+                // 모델 크기 조정
+                model.scale.set(0.1, 0.1, 0.1);
+
+                // 모델 회전
+                model.rotation.x = -Math.PI / 2;
+
+                // 회전 후 바운딩 박스 다시 계산
+                const box = new THREE.Box3().setFromObject(model);
+
+                // 위치 조정
+                const center = box.getCenter(new THREE.Vector3());
+                model.position.x = -center.x;
+                model.position.z = -center.z;
+                model.position.y = -box.min.y;
+
+                // 모델에 그림자 적용 및 재질 조정
+                model.traverse(function (node) {
+                    if (node.isMesh) {
+                        node.castShadow = true;
+                        node.receiveShadow = true;
+
+                        if (node.material) {
+                            node.material.metalness = 0.3;
+                            node.material.roughness = 0.4;
+                        }
+                    }
+                });
+
+                // 모델을 씬에 추가
+                scene.add(model);
+
+                // 카메라 위치 설정
+                camera.position.set(20, 20, 20);
+                camera.lookAt(0, 0, 0);
+                controls.update();
+
+                updateDebug('모델 표시 완료');
+            },
+            function (xhr) {
+                if (xhr.total > 0) {
+                    const percent = Math.round(xhr.loaded / xhr.total * 100);
+                    updateDebug(`모델 로딩 중: ${percent}%`);
+                } else {
+                    updateDebug('모델 로딩 중...');
+                }
+            },
+            function (error) {
+                updateDebug(`모델 로드 실패: ${error.message}`);
+            }
+        );
+    }
+
+    // 초기 모델 로드
+    loadModel();
+
+    // Handle window resize
+    window.addEventListener('resize', function () {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    // Controls for zooming and resetting
+    document.getElementById('zoom-in').addEventListener('click', function () {
+        camera.position.multiplyScalar(0.8);
+        controls.update();
+    });
+
+    document.getElementById('zoom-out').addEventListener('click', function () {
+        camera.position.multiplyScalar(1.2);
+        controls.update();
+    });
+
+    document.getElementById('reset-camera').addEventListener('click', function () {
+        controls.reset();
+    });
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+</script>

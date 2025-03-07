@@ -1,0 +1,14 @@
+#mainThreedSection {
+    width: 100%;
+    height: 500px; /* 명시적 높이 설정 */
+    position: relative;
+}
+#mainThreedSectionInner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#threedElement {
+    width: 50%;
+    height: 100%;
+}

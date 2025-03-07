@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/INHOESEO/convil-info#readme",
   "dependencies": {
-    "three": "^0.128.0"
+    "three": "^0.174.0"
   }
 }
