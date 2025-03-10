@@ -1,4 +1,3 @@
-
 document.addEventListener('layoutLoaded', function() {
     
     const checkInterval = setInterval(() => {

@@ -1,7 +1,7 @@
 <link rel='stylesheet' type='text/css' media='screen' href='../section/css/counsel-form-section.css'>
 
 <div id="counselFormSectionInner">
-    
+
     <div class="section-header">
         <h2>빠른 견적 상담</h2>
         <p>안녕하세요, 컨빌디자인을 찾아주셔서 진심으로 감사드립니다.<br>
@@ -13,7 +13,7 @@
             <li>
                 <h3>1. 의뢰하실 서비스를 골라주세요. *</h3>
                 <div class="form-question1">
-                    <button class="form-question1-value fq1v-1">
+                    <button type="button" class="form-question1-value fq1v-1">
                         <div>
                             <div>
                                 <h3>인테리어</h3>
@@ -29,7 +29,7 @@
                         <img src="../source/img/counsel/fq1v-1.png">
                         <p class="fq1v-select-btn">선택하기</p>
                     </button>
-                    <button class="form-question1-value fq1v-1">
+                    <button type="button" class="form-question1-value fq1v-1">
                         <div>
                             <div>
                                 <h3>브랜딩</h3>
@@ -37,15 +37,19 @@
                             </div>
                             <ul>
                                 <li><img src="../source/svg/counsel-form-question1-graybar.svg">BI/CI/캐릭터</li>
-                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">오프라인 광고디자인<span>메뉴/포스터/배너 등</span></li>
-                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">온라인 광고디자인<span>SNS/온라인배너/썸네일 등</span></li>
-                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">홈페이지<span>랜딩페이지/자사몰/온라인메뉴판</span></li>
+                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">오프라인
+                                    광고디자인<span>메뉴/포스터/배너 등</span></li>
+                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">온라인
+                                    광고디자인<span>SNS/온라인배너/썸네일 등</span></li>
+                                <li><img
+                                        src="../source/svg/counsel-form-question1-graybar.svg">홈페이지<span>랜딩페이지/자사몰/온라인메뉴판</span>
+                                </li>
                             </ul>
                         </div>
                         <img src="../source/img/counsel/fq1v-2.png">
                         <p class="fq1v-select-btn">선택하기</p>
                     </button>
-                    <button class="form-question1-value fq1v-2">
+                    <button type="button" class="form-question1-value fq1v-2">
                         <div>
                             <div>
                                 <h3>컨빌 패키지</h3>
@@ -57,7 +61,8 @@
                                 <li><img src="../source/svg/counsel-form-question1-graybar.svg">마감재리스트</li>
                                 <li><img src="../source/svg/counsel-form-question1-graybar.svg">BI/CI/캐릭터</li>
                                 <li><img src="../source/svg/counsel-form-question1-graybar.svg">온/오프라인/모바일 전용 광고디자인</li>
-                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">홈페이지 랜딩페이지/자사몰/온라인메뉴판</li>
+                                <li><img src="../source/svg/counsel-form-question1-graybar.svg">홈페이지 랜딩페이지/자사몰/온라인메뉴판
+                                </li>
                             </ul>
                         </div>
                         <img src="../source/img/counsel/fq1v-3.png">
@@ -89,13 +94,14 @@
                             <div class="form-question2-element fq2e-3">
                                 <p>의뢰주신 공간의 평수*</p>
                                 <ul>
-                                    <li><input class="form-question2-element3-value fq2e3v-1" type="text" name="sqft" value="평" /><span>*평수를 모르실 경우 '모름'이라고 적어주세요</span></li>
+                                    <li><input class="form-question2-element3-value fq2e3v-1" type="text" name="sqft" /><span>*평수를 모르실 경우 '모름'이라고 적어주세요</span></li>
                                 </ul>
                             </div>
                             <div class="form-question2-element fq2e-4">
                                 <p>현장사진이 있다면 여기에 업로드 해주세요.</p>
                                 <ul>
-                                    <li><input class="form-question2-element4-value fq2e4v-1" type="file" name="placeImg" accept="image/jpg, image/png, .pdf, .doc, .docx, .hwp, .ai, .ppt, .pptx" value="여기에 JPG, PNG, DOC,DOCX,PPT,PPTX, AI 또는 PDF 파일을 첨부해주세요. (파일 용량 최대 10MB)" /></li>
+                                    <li><input class="form-question2-element4-value fq2e4v-1" type="file" name="placeImg" accept="image/jpg, image/png, .pdf, .doc, .docx, .hwp, .ai, .ppt, .pptx" />
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -104,37 +110,44 @@
                         <h3>브랜딩</h3>
                         <div>
                             <div class="form-question2-element fq2e-5">
+                                <p>아이덴티티</p>
                                 <ul>
-                                    <li><button class="form-question2-element5-value fq2e5v-1">BI/CI</button></li>
-                                    <li><button class="form-question2-element5-value fq2e5v-2">캐릭터</button></li>
-                                    <li><button class="form-question2-element5-value fq2e5v-3">명함</button></li>
-                                    <li><button class="form-question2-element5-value fq2e5v-4">로고+캐릭터+브랜드가이드</button></li>
+                                    <li><button type="button" class="form-question2-element5-value fq2e5v-1">BI/CI</button></li>
+                                    <li><button type="button" class="form-question2-element5-value fq2e5v-2">캐릭터</button></li>
+                                    <li><button type="button" class="form-question2-element5-value fq2e5v-3">명함</button></li>
+                                    <li><button type="button" class="form-question2-element5-value fq2e5v-4">로고+캐릭터+브랜드가이드</button>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="form-question2-element fq2e-6">
+                                <p>오프라인 광고디자인</p>
                                 <ul>
-                                    <li><button class="form-question2-element6-value fq2e6v-1">메뉴판/포스터</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-2">X배너</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-3">명오픈/이벤트 현수막</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-4">직원 단체티/앞치마</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-5">리플렛/브로슈어</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-6">전단지</button></li>
-                                    <li><button class="form-question2-element6-value fq2e6v-7">시트지 디자인</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-1">메뉴판/포스터</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-2">X배너</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-3">명오픈/이벤트 현수막</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-4">직원 단체티/앞치마</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-5">리플렛/브로슈어</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-6">전단지</button></li>
+                                    <li><button type="button" class="form-question2-element6-value fq2e6v-7">시트지 디자인</button></li>
                                 </ul>
                             </div>
                             <div class="form-question2-element fq2e-7">
+                                <p>온라인 광고디자인</p>
                                 <ul>
-                                    <li><button class="form-question2-element7-value fq2e7v-1">SNS 홍보 이미지</button></li>
-                                    <li><button class="form-question2-element7-value fq2e7v-2">온라인 광고 배너</button></li>
-                                    <li><button class="form-question2-element7-value fq2e7v-3">홍보용 GIF</button></li>
+                                    <li><button type="button" class="form-question2-element7-value fq2e7v-1">SNS 홍보 이미지</button></li>
+                                    <li><button type="button" class="form-question2-element7-value fq2e7v-2">온라인 광고 배너</button></li>
+                                    <li><button type="button" class="form-question2-element7-value fq2e7v-3">홍보용 GIF</button></li>
                                 </ul>
                             </div>
                             <div class="form-question2-element fq2e-8">
+                                <p>홈페이지<span>*다국어 번역 가능</span></p>
                                 <ul>
-                                    <li><button class="form-question2-element8-value fq2e8v-1">QR코드 온라인 메뉴판</button></li>
-                                    <li><button class="form-question2-element8-value fq2e8v-2">랜딩페이지(소개홈페이지)</button></li>
-                                    <li><button class="form-question2-element8-value fq2e8v-3">자사몰/쇼핑몰</button></li>
-                                    <li><button class="form-question2-element8-value fq2e8v-4">B2B 전용 폐쇄몰</button></li>
+                                    <li><button type="button" class="form-question2-element8-value fq2e8v-1">QR코드 온라인 메뉴판</button>
+                                    </li>
+                                    <li><button type="button" class="form-question2-element8-value fq2e8v-2">랜딩페이지(소개홈페이지)</button>
+                                    </li>
+                                    <li><button type="button" class="form-question2-element8-value fq2e8v-3">자사몰/쇼핑몰</button></li>
+                                    <li><button type="button" class="form-question2-element8-value fq2e8v-4">B2B 전용 폐쇄몰</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -142,14 +155,125 @@
                 </div>
             </li>
             <li>
-                <h3>3. </h3>
+                <h3>3. 문의자 정보*</h3>
                 <div class="form-question3">
-                    <input type="button" name="gender" value="M">a
-                    <input type="button" name="gender" value="M">b
-                    <input type="button" name="gender" value="M">c  
+                    <div>
+                        <div class="form-question3-element fq3e-1">
+                            <p>이름*</p>
+                            <ul>
+                                <li><input class="form-question3-element1-value fq3e1v-1" type="text" name="name"placeholder="이름을 알려주세요"></li>
+                            </ul>
+                        </div>
+                        <div class="form-question3-element fq3e-2">
+                            <p>연락처*</p>
+                            <ul>
+                                <li>
+                                    <label>전화번호*</label>
+                                    <div>
+                                        <input class="form-question3-element2-value fq3e2v-1" type="text" name="numberbox1"placeholder="010"><span> - </span>
+                                        <input class="form-question3-element2-value fq3e2v-1" type="text" name="numberbox2"placeholder="1234"><span> - </span>
+                                        <input class="form-question3-element2-value fq3e2v-1" type="text" name="numberbox3"placeholder="5678">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>이메일*</label>
+                                    <div>
+                                        <input class="form-question3-element2-value fq3e2v-2" type="text" name="emailbox1"><span> @ </span>
+                                        <input class="form-question3-element2-value fq3e2v-2" type="text" name="emailbox2">
+                                        <select class="form-question3-element2-value fq3e2v-2">
+                                            <option value="self">직접입력</option>
+                                            <option value="naver">naver.com</option>
+                                            <option value="gmail">gmail.com</option>
+                                            <option value="hanmail">hanmail.net</option>
+                                            <option value="daum">daum.net</option>
+                                            <option value="kakao">kakao.com</option>
+                                            <option value="msn">msn.com</option>
+                                            <option value="korea">korea.kr</option>
+                                            <option value="cyworld">cyworld.com</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-question3-element fq3e-3">
+                            <p>서비스 정보*</p>
+                            <ul>
+                                <li>
+                                    <label>서비스 지역*</label>
+                                    <select class="form-question3-element3-value fq3e3v-1">
+                                        <option value="" disabled selected>전체</option>
+                                        <option value="seoul">서울</option>
+                                        <option value="gyeongi">경기</option>
+                                        <option value="incheon">인천</option>
+                                        <option value="gangwon">강원</option>
+                                        <option value="sejong">세종</option>
+                                        <option value="daejeon">대전</option>
+                                        <option value="chungnam">충남</option>
+                                        <option value="chungbuk">충북</option>
+                                        <option value="gyungbuk">경북</option>
+                                        <option value="daegu">대구</option>
+                                        <option value="ulsan">울산</option>
+                                        <option value="gyungnam">경남</option>
+                                        <option value="busan">부산</option>
+                                        <option value="jeonbuk">전북</option>
+                                        <option value="gwangju">광주</option>
+                                        <option value="jeonnam">전남</option>
+                                        <option value="jeju">제주</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <label>서비스 업종*</label>
+                                    <div>
+                                        <input class="form-question3-element3-value fq3e2v-2" type="text" name="servicebox">
+                                        <select class="form-question3-element3-value fq3e3v-2">
+                                            <option value="self">직접입력</option>
+                                            <option value="restfood">외식업(음식점)</option>
+                                            <option value="restcafe">외식업(카페)</option>
+                                            <option value="Accommodation">숙박업</option>
+                                            <option value="beauty">뷰티/패션</option>
+                                            <option value="hospital">병원/의료업</option>
+                                            <option value="academy">학원</option>
+                                            <option value="house">주거(아파트/주택)</option>
+                                            <option value="retail">도/소매업</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-question3-element fq3e-4">
+                            <p>완성되어야하는 희망 마감기한*</p>
+                            <ul>
+                                <li><img src="../source/svg/counsel-form-question3-calendar.svg"><input class="form-question3-element4-value fq3e4v-1" type="date"></li>
+                            </ul>
+                        </div>
+                        <div class="form-question3-element fq3e-5">
+                            <p>유입경로*</p>
+                            <ul>
+                                <li>
+                                    <select class="form-question3-element5-value fq3e5v-1">
+                                        <option value="" disabled selected>전체</option>
+                                        <option value="sns">SNS</option>
+                                        <option value="youtube">유튜브</option>
+                                        <option value="cafe">카페</option>
+                                        <option value="blog">블로그</option>
+                                        <option value="acquaintance">지인</option>
+                                        <option value="add">광고</option>
+                                        <option value="etc">기타</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </li>
+            <li>
+                <div class="personal-agree"><input type="checkbox" value="개인정보 처리방침 동의"><label>개인정보 처리방침 및 이용약관에 동의합니다(필수)</label></div>
+                <div class="marketing-agree"><input type="checkbox" value="마케팅 정보 수신 동의"><label>마케팅 정보 수신에 동의합니다(선택)</label></div>
+            </li>
         </ul>
+
+        <input type="submit" class="counsel-form-submit" value="제출">
+
     </form>
 
-</div> 
+</div>
