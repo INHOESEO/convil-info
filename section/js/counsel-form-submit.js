@@ -222,7 +222,7 @@ function validateForm() {
   // 2. 인테리어 옵션 검사
   const interiorOptions = document.querySelectorAll('.form-question2-element1-value.active');
   if (interiorOptions.length === 0) {
-    showError('.form-question2-element.fq2e-1', '인테리어 옵션을 최소 1개 선택해주세요.');
+    showError('.form-question2-element.fq2e-1', '인테리어 옵션을 최소 1개 이상 선택해주세요.');
     isValid = false;
   }
 
@@ -265,24 +265,26 @@ function validateForm() {
   }
 
   // 8. 서비스 지역 검사
-  const serviceAreaSelect = document.querySelector('.form-question3-element3-value.fq3e3v-1');
+  const serviceAreaSelect = document.querySelectorAll('.form-question3-element3-value fq3e3v-1');
   if (!serviceAreaSelect.value) {
-    showError('.fq3e-3 ul li:first-child', '서비스 지역을 선택해주세요.');
-    isValid = false;
+      showError('.fq3e-3 ul li:first-child', '서비스 지역을 선택해주세요.');
+      isValid = false;
   }
 
   // 9. 서비스 업종 검사
   const serviceTypeSelect = document.querySelector('.form-question3-element3-value.fq3e3v-2');
   const serviceTypeInput = document.querySelector('input[name="servicebox"]');
-  
+
   // 직접 입력일 경우에만 입력값 검사
-  if (serviceTypeSelect.value === 'self' && !serviceTypeInput.value.trim()) {
-    showError('.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
-    isValid = false;
+  if (serviceTypeSelect.value === '직접입력') {
+      if (!serviceTypeInput.value.trim()) {
+          showError('.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
+          isValid = false;
+      }
   } else if (!serviceTypeSelect.value) {
-    // 아무것도 선택하지 않은 경우
-    showError('.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
-    isValid = false;
+      // 아무것도 선택하지 않은 경우
+      showError('.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
+      isValid = false;
   }
 
   // 10. 희망 마감기한 검사
@@ -299,7 +301,7 @@ function validateForm() {
   if (!channelSelect.value) {
     showError('.form-question3-element.fq3e-5', '유입경로를 선택해주세요.');
     isValid = false;
-  } else if (channelSelect.value === 'etc' && !etcInput.value.trim()) {
+  } else if (channelSelect.value === '기타' && !etcInput.value.trim()) {
     // 기타를 선택했을 때만 기타 입력란 검사
     showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
     isValid = false;

@@ -15,7 +15,6 @@
     });
 
     setupMutationObserver();
-    setupFormSubmit();
 
     // 스타일 적용 함수
     function applyCustomStyles() {
@@ -238,7 +237,6 @@
         setupEtcField();
         setupServiceField();
         setupFormButtons();
-        setupFormSubmit()
     }
 
     // 단위 텍스트 인풋 필드 설정
@@ -492,19 +490,19 @@
         if (!emailSelect || !emailbox2) return;
 
         // 초기 로드 시 처리
-        if (emailSelect.value === 'self') {
+        if (emailSelect.value === '직접입력') {
             emailbox2.style.display = 'inline-block';
             emailbox2.removeAttribute('readonly');
         } else {
             emailbox2.style.display = 'none';
             emailbox2.setAttribute('readonly', 'readonly');
-            if (emailSelect.value && emailSelect.value !== 'self') {
+            if (emailSelect.value && emailSelect.value !== '직접입력') {
                 emailbox2.value = emailSelect.options[emailSelect.selectedIndex].text;
             }
         }
 
         emailSelect.addEventListener('change', function () {
-            if (this.value === 'self') {
+            if (this.value === '직접입력') {
                 emailbox2.style.display = 'inline-block';
                 emailbox2.value = '';
                 emailbox2.removeAttribute('readonly');
@@ -533,7 +531,7 @@
             serviceInput.style.display = 'none';
             serviceInput.setAttribute('readonly', 'readonly');
 
-            if (serviceSelect.value && serviceSelect.value !== 'self') {
+            if (serviceSelect.value && serviceSelect.value !== '직접입력') {
                 serviceInput.value = serviceSelect.options[serviceSelect.selectedIndex].text;
             }
         }
@@ -673,161 +671,6 @@
         });
     }
 
-    // 폼 제출 시 유효성 검사
-    function setupFormSubmit() {
-        const form = document.querySelector('.counsel-form');
-        if (!form) return;
-
-        // 기존 이벤트 리스너 제거
-        form.removeEventListener('submit', handleSubmit);
-
-        // 제출 핸들러 함수 분리
-        function handleSubmit(e) {
-            // 오류 메시지 초기화
-            clearErrorMessages();
-
-            let isValid = true;
-
-            // 1. 서비스 선택 검사
-            const serviceSelected = document.querySelector('.form-question1-value.active');
-            if (!serviceSelected) {
-                showError('.counsel-form ul li:first-child', '서비스를 선택해주세요.');
-                isValid = false;
-            }
-
-            // 2. 인테리어 옵션 검사
-            const interiorOptions = document.querySelectorAll('.form-question2-element1-value.active');
-            if (interiorOptions.length === 0) {
-                showError('.form-question2-element.fq2e-1', '인테리어 옵션을 최소 1개 선택해주세요.');
-                isValid = false;
-            }
-
-            // 3. 도면 보유 여부 검사
-            const planButton = document.querySelector('.form-question2-element2-value.active');
-            if (!planButton) {
-                showError('.form-question2-element.fq2e-2', '도면 보유 여부를 선택해주세요.');
-                isValid = false;
-            }
-
-            // 4. 평수 입력 검사
-            const sqftInput = document.querySelector('.form-question2-element3-value');
-            const sqftValue = sqftInput.value.trim();
-            if (sqftValue === '') {
-                showError('.form-question2-element.fq2e-3', '평수를 입력해주세요.');
-                isValid = false;
-            }
-
-            // 5. 이름 입력 검사
-            const nameInput = document.querySelector('.form-question3-element1-value');
-            if (!nameInput.value.trim()) {
-                showError('.form-question3-element.fq3e-1', '이름을 입력해주세요.');
-                isValid = false;
-            }
-
-            // 6. 연락처 검사
-            const phoneInputs = document.querySelectorAll('.form-question3-element2-value.fq3e2v-1');
-            const phoneValues = Array.from(phoneInputs).map(input => input.value.trim());
-            if (phoneValues.some(value => value === '')) {
-                showError('.fq3e-2 ul li:first-child', '전화번호를 모두 입력해주세요.');
-                isValid = false;
-            }
-
-            // 7. 이메일 검사
-            const emailInputs = document.querySelectorAll('.form-question3-element2-value.fq3e2v-2');
-            const emailValues = Array.from(emailInputs).map(input => input.value.trim());
-            if (emailValues.some(value => value === '')) {
-                showError('.fq3e-2 ul li:last-child', '이메일을 모두 입력해주세요.');
-                isValid = false;
-            }
-
-            // 8. 서비스 지역 검사
-            const serviceAreaSelect = document.querySelector('.form-question3-element3-value.fq3e3v-1');
-            if (!serviceAreaSelect.value) {
-                showError('.fq3e-3 ul li:first-child', '서비스 지역을 선택해주세요.');
-                isValid = false;
-            }
-
-            // 9. 서비스 업종 검사 - 수정된 부분
-            const serviceTypeSelect = document.querySelector('.form-question3-element3-value.fq3e3v-2');
-            const serviceTypeInput = document.querySelector('input[name="servicebox"]');
-
-            // 직접 입력일 경우에만 입력값 검사
-            if (serviceTypeSelect.value === 'self' && !serviceTypeInput.value.trim()) {
-                showError('.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
-                isValid = false;
-            } else if (!serviceTypeSelect.value) {
-                // 아무것도 선택하지 않은 경우
-                showError('.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
-                isValid = false;
-            }
-
-            // 10. 희망 마감기한 검사
-            const deadlineInput = document.querySelector('.form-question3-element4-value');
-            if (!deadlineInput.value) {
-                showError('.form-question3-element.fq3e-4', '희망 마감기한을 선택해주세요.');
-                isValid = false;
-            }
-
-            // 11. 유입경로 검사 - 수정된 부분
-            const channelSelect = document.querySelector('.form-question3-element5-value');
-            const etcInput = document.querySelector('.etc-input');
-
-            if (!channelSelect.value) {
-                showError('.form-question3-element.fq3e-5', '유입경로를 선택해주세요.');
-                isValid = false;
-            } else if (channelSelect.value === '기타' && !etcInput.value.trim()) {
-                // 기타를 선택했을 때만 기타 입력란 검사
-                showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
-                isValid = false;
-            }
-
-            // 12. 개인정보 처리방침 동의 검사
-            const personalSelect = document.querySelector('.personal-agree input');
-            if (!personalSelect.checked) {
-                showError('.personal-agree', '개인정보 처리방침 및 이용약관에 동의해주세요.');
-                isValid = false;
-            }
-
-            // 제출 방지 또는 허용
-            if (!isValid) {
-                e.preventDefault();
-                // 첫 번째 오류 메시지 위치로 스크롤
-                const firstError = document.querySelector('.error-message.show');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-
-            return isValid;
-        }
-
-        // 오류 메시지 표시 함수
-        function showError(selector, message) {
-            const container = document.querySelector(selector);
-            if (!container) return;
-
-            // 기존 오류 메시지 제거
-            let existingError = container.querySelector('.error-message');
-            if (!existingError) {
-                existingError = document.createElement('div');
-                existingError.className = 'error-message';
-                container.appendChild(existingError);
-            }
-
-            existingError.textContent = message;
-            existingError.classList.add('show');
-        }
-
-        // 모든 오류 메시지 초기화
-        function clearErrorMessages() {
-            const errorMessages = document.querySelectorAll('.error-message');
-            errorMessages.forEach(msg => msg.classList.remove('show'));
-        }
-
-        // 이벤트 리스너 추가 (한 번만)
-        form.addEventListener('submit', handleSubmit);
-    }
-
     // DOM 변경 감시
     function setupMutationObserver() {
         const targetNode = document.body;
@@ -858,4 +701,3 @@
 // form-question3-element fq3e-4 : 필수
 // form-question3-element fq3e-5 : 필수
 // personal-agree : 필수
-
