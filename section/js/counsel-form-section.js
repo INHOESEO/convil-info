@@ -775,7 +775,7 @@
             if (!channelSelect.value) {
                 showError('.form-question3-element.fq3e-5', '유입경로를 선택해주세요.');
                 isValid = false;
-            } else if (channelSelect.value === 'etc' && !etcInput.value.trim()) {
+            } else if (channelSelect.value === '기타' && !etcInput.value.trim()) {
                 // 기타를 선택했을 때만 기타 입력란 검사
                 showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
                 isValid = false;
