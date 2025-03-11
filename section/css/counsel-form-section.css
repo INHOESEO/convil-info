@@ -9,7 +9,8 @@ body { background: #f7f7f7; }
 
 #counselFormSectionInner .counsel-form { padding-top: 130px; }
 #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 125px; }
-#counselFormSectionInner .counsel-form > ul > li:last-child { margin-bottom: 0; }
+#counselFormSectionInner .counsel-form > ul > li:nth-child(3) { margin-bottom: 48px; }
+#counselFormSectionInner .counsel-form > ul > li:last-child { margin-bottom: 88px; }
 #counselFormSectionInner .counsel-form > ul > li > h3 { text-align: center; font-size: 30px; font-weight: 700; letter-spacing: -1.05px; margin-bottom: 34px; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
@@ -98,4 +99,204 @@ body { background: #f7f7f7; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
 
-#counselFormSectionInner .counsel-form > ul > li:last-child { display: flex; flex-direction: column; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 65px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { margin-bottom: 19px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 18px; font-weight: 600; letter-spacing: -0.54px; margin-left: 10px; }
+
+#counselSubmit { max-width: 204px; margin: 0 auto; }
+#counselSubmit .counsel-form-submit { max-width: 204px; margin: 0 auto; background: #000; width: 100%; border-radius: 10px; border: 0; font-size: 34px; font-weight: 700; color: #fff; padding: 9px 0;}
+
+@media all and (max-width: 970px) {
+    /* 태블릿 및 중간 크기 화면용 스타일 */
+    .counsel-wr { padding-top: 100px; }
+    
+    #counselFormSectionInner { max-width: 90%; }
+    
+    #counselFormSectionInner .counsel-form { padding-top: 80px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 80px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 26px; margin-bottom: 30px; }
+    
+    /* 서비스 선택 카드를 가로 스크롤로 변경 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 { 
+        flex-direction: row; 
+        gap: 16px; 
+        overflow-x: auto;
+        padding-bottom: 15px; /* 스크롤바 여유공간 */
+        -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+        scrollbar-width: thin; /* Firefox 스크롤바 */
+        padding: 20px;
+    }
+    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { 
+        max-width: 300px; /* 카드 최소 너비 설정 */
+        width: 80%; /* 화면 너비의 80% */
+        flex: 0 0 auto; /* 크기 고정, 줄어들지 않음 */
+        height: auto; 
+        min-height: 400px;
+    }
+    
+    /* 스크롤바 커스텀 스타일 (Chrome, Safari, Edge) */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1::-webkit-scrollbar-thumb {
+        background: #a9a9a9;
+        border-radius: 10px;
+    }
+    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1::-webkit-scrollbar-thumb:hover {
+        background: #0057ff;
+    }
+    
+    /* 브랜딩 옵션 그리드 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li { flex-direction: column; align-items: flex-start; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul {
+        grid-template-columns: repeat(2, 48%);
+        gap: 15px;
+    }
+    
+    /* 인테리어 옵션 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul {
+        flex-wrap: wrap;
+    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li {
+        width: 48%;
+        margin-bottom: 15px;
+    }
+    
+    /* 문의자 정보 입력란 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 90%; } 
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { flex-direction: column; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li { width: 100%; margin-bottom: 20px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li:last-child { margin-bottom: 0; }
+}
+
+@media all and (max-width: 768px) {
+    /* 모바일 태블릿 화면용 스타일 */
+    .counsel-wr { padding-top: 80px; }
+    
+    #counselFormSectionInner .section-header h2 { font-size: 24px; }
+    #counselFormSectionInner .section-header p { font-size: 14px; }
+    
+    #counselFormSectionInner .counsel-form { padding-top: 60px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 60px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 22px; margin-bottom: 25px; }
+    
+    /* 서비스 선택 카드 사이즈 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value {
+        max-width: 260px;
+        width: 85%;
+    }
+    
+    /* 서비스 선택 카드 내부 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 24px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 18px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 25px 20px 15px; }
+    
+    /* 폼 요소 패딩 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 40px 0 50px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 40px 0 50px; }
+    
+    /* 브랜딩 카테고리 여백 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category { max-width: 90%; margin-bottom: 50px; }
+    
+    /* 브랜딩 옵션 그리드를 1열로 변경 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul {
+        grid-template-columns: 100%;
+    }
+    
+    /* 연락처 입력란 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 {
+        width: 100%;
+    }
+    
+    /* 서비스 정보 입력란 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 450px) {
+    /* 모바일 화면용 스타일 */
+    .counsel-wr { padding-top: 60px; }
+    
+    #counselFormSectionInner .section-header { padding: 0 15px; }
+    #counselFormSectionInner .section-header h2 { font-size: 20px; }
+    #counselFormSectionInner .section-header p { font-size: 12px; line-height: 1.6; }
+    
+    #counselFormSectionInner .counsel-form { padding-top: 40px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 40px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 18px; margin-bottom: 20px; }
+    
+    /* 서비스 선택 카드 컴팩트하게 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { 
+        min-width: 240px;
+        width: 90%;
+        min-height: 350px;
+    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 20px; margin-bottom: 8px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 14px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 13px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 16px; max-width: 200px; }
+    
+    /* 가로 스크롤 인디케이터 표시 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, rgba(0,87,255,0.5) 0%, rgba(0,87,255,0) 100%);
+        margin-top: 15px;
+        border-radius: 2px;
+    }
+    
+    /* 인테리어 옵션을 1열로 변경 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li {
+        width: 100%;
+    }
+    
+    /* 도면 보유 여부 버튼 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button {
+        width: 120px;
+    }
+    
+    /* 문의자 정보 섹션 패딩 및 여백 조정 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 30px 15px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 100%; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element { margin-bottom: 40px; }
+    
+    /* 개인정보 처리방침 동의 영역 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 15px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 14px; }
+    
+    /* 제출 버튼 */
+    #counselSubmit .counsel-form-submit { font-size: 28px; max-width: 180px; }
+    
+    /* 파일 업로드 UI 조정 */
+    .custom-file-upload .upload-text { font-size: 12px; padding: 0 15px; }
+    .file-name { max-width: 60%; }
+}

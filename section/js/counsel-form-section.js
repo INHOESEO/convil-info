@@ -216,6 +216,7 @@
                 color: #ff3333;
                 font-size: 12px;
                 margin-top: 15px;
+                margin-left: 10px;
                 display: none;
             }
             
@@ -232,6 +233,7 @@
         setupUnitInput();
         setupFileUpload();
         setupFormQuestion3Styles();
+        setupPhoneInputs();
         setupEmailField();
         setupEtcField();
         setupServiceField();
@@ -421,6 +423,64 @@
         });
     }
 
+    // setupPhoneInputs 함수 추가
+    function setupPhoneInputs() {
+        const phoneInputs = document.querySelectorAll('.form-question3-element2-value.fq3e2v-1');
+        if (phoneInputs.length !== 3) return;
+
+        // 첫 번째 입력란 (지역번호)
+        phoneInputs[0].addEventListener('input', function () {
+            // 숫자만 입력받기
+            this.value = this.value.replace(/[^0-9]/g, '');
+
+            // 3자리 입력 시 다음 입력란으로 포커스 이동
+            if (this.value.length >= 3) {
+                this.value = this.value.substring(0, 3); // 3자리로 제한
+                phoneInputs[1].focus();
+            }
+        });
+
+        // 두 번째 입력란 (중간 번호)
+        phoneInputs[1].addEventListener('input', function () {
+            // 숫자만 입력받기
+            this.value = this.value.replace(/[^0-9]/g, '');
+
+            // 4자리 입력 시 다음 입력란으로 포커스 이동
+            if (this.value.length >= 4) {
+                this.value = this.value.substring(0, 4); // 4자리로 제한
+                phoneInputs[2].focus();
+            }
+
+            // 값이 없는 상태에서 백스페이스를 누르면 이전 입력란으로 포커스 이동
+            if (this.value.length === 0 && event.inputType === 'deleteContentBackward') {
+                phoneInputs[0].focus();
+                phoneInputs[0].setSelectionRange(phoneInputs[0].value.length, phoneInputs[0].value.length);
+            }
+        });
+
+        // 세 번째 입력란 (마지막 번호)
+        phoneInputs[2].addEventListener('input', function () {
+            // 숫자만 입력받기
+            this.value = this.value.replace(/[^0-9]/g, '');
+
+            // 4자리로 제한
+            if (this.value.length > 4) {
+                this.value = this.value.substring(0, 4);
+            }
+
+            // 값이 없는 상태에서 백스페이스를 누르면 이전 입력란으로 포커스 이동
+            if (this.value.length === 0 && event.inputType === 'deleteContentBackward') {
+                phoneInputs[1].focus();
+                phoneInputs[1].setSelectionRange(phoneInputs[1].value.length, phoneInputs[1].value.length);
+            }
+        });
+
+        // 최대 길이 속성 설정
+        phoneInputs[0].setAttribute('maxlength', '3');
+        phoneInputs[1].setAttribute('maxlength', '4');
+        phoneInputs[2].setAttribute('maxlength', '4');
+    }
+
     // 이메일 입력 필드 설정
     function setupEmailField() {
         // 이메일 선택 셀렉트 요소
@@ -466,7 +526,7 @@
 
         if (!serviceSelect || !serviceInput) return;
 
-        if (serviceSelect.value === 'self') {
+        if (serviceSelect.value === '직접입력') {
             serviceInput.style.display = 'inline-block';
             serviceInput.removeAttribute('readonly');
         } else {
@@ -479,7 +539,7 @@
         }
 
         serviceSelect.addEventListener('change', function () {
-            if (this.value === 'self') {
+            if (this.value === '직접입력') {
                 serviceInput.style.display = 'inline-block';
                 serviceInput.value = '';
                 serviceInput.removeAttribute('readonly');
@@ -513,14 +573,14 @@
             selectContainer.appendChild(etcInput);
         }
 
-        if (etcSelect.value === 'etc') {
+        if (etcSelect.value === '기타') {
             etcInput.style.display = 'inline-block';
         } else {
             etcInput.style.display = 'none';
         }
 
         etcSelect.addEventListener('change', function () {
-            if (this.value === 'etc') {
+            if (this.value === '기타') {
                 etcInput.style.display = 'inline-block';
                 etcInput.focus();
             } else {
@@ -652,7 +712,7 @@
             // 4. 평수 입력 검사
             const sqftInput = document.querySelector('.form-question2-element3-value');
             const sqftValue = sqftInput.value.trim();
-            if (sqftValue === '' || sqftValue === '모름') {
+            if (sqftValue === '') {
                 showError('.form-question2-element.fq2e-3', '평수를 입력해주세요.');
                 isValid = false;
             }
@@ -687,10 +747,17 @@
                 isValid = false;
             }
 
-            // 9. 서비스 업종 검사
+            // 9. 서비스 업종 검사 - 수정된 부분
+            const serviceTypeSelect = document.querySelector('.form-question3-element3-value.fq3e3v-2');
             const serviceTypeInput = document.querySelector('input[name="servicebox"]');
-            if (!serviceTypeInput.value.trim()) {
+
+            // 직접 입력일 경우에만 입력값 검사
+            if (serviceTypeSelect.value === 'self' && !serviceTypeInput.value.trim()) {
                 showError('.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
+                isValid = false;
+            } else if (!serviceTypeSelect.value) {
+                // 아무것도 선택하지 않은 경우
+                showError('.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
                 isValid = false;
             }
 
@@ -701,16 +768,22 @@
                 isValid = false;
             }
 
-            // 11. 유입경로 검사
+            // 11. 유입경로 검사 - 수정된 부분
             const channelSelect = document.querySelector('.form-question3-element5-value');
+            const etcInput = document.querySelector('.etc-input');
+
             if (!channelSelect.value) {
                 showError('.form-question3-element.fq3e-5', '유입경로를 선택해주세요.');
+                isValid = false;
+            } else if (channelSelect.value === 'etc' && !etcInput.value.trim()) {
+                // 기타를 선택했을 때만 기타 입력란 검사
+                showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
                 isValid = false;
             }
 
             // 12. 개인정보 처리방침 동의 검사
             const personalSelect = document.querySelector('.personal-agree input');
-            if (!personalSelect.value) {
+            if (!personalSelect.checked) {
                 showError('.personal-agree', '개인정보 처리방침 및 이용약관에 동의해주세요.');
                 isValid = false;
             }
@@ -784,4 +857,5 @@
 // form-question3-element fq3e-3 : 필수
 // form-question3-element fq3e-4 : 필수
 // form-question3-element fq3e-5 : 필수
+// personal-agree : 필수
 

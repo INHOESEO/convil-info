@@ -75,8 +75,10 @@
     }
 }
 @media (max-width: 1024px) {
-    #header { 
+    #header {
         height: 80px;
+    }
+    #headerInner { 
         max-width: 95%;
         margin: 0 auto;
     }
