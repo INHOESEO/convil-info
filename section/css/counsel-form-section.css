@@ -89,7 +89,7 @@ body { background: #f7f7f7; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > select { width: 120px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div { display: flex; gap: 10px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div:first-child { display: flex; gap: 10px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; line-height: 1; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
 
@@ -121,14 +121,23 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { width: 38.7%; object-fit: cover; border-radius: 20px 0 0 20px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { left: inherit; font-size: 12px; width: 90px; height: 30px; border-radius: 25px; padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;}
 
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { flex-wrap: wrap; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li { width: 48%; margin-bottom: 15px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button.active { outline: 1px solid #0057ff; }
+    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button.active { outline: 1px solid #0057ff; }
+
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li { flex-direction: column; align-items: flex-start; }
+
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul { grid-template-columns: repeat(2, 48%); gap: 15px; }
-    
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { flex-wrap: wrap; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li { width: 48%; margin-bottom: 15px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul { grid-template-columns: repeat(2, 48%); gap: 8px 11px; margin-top: 11px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul > li > button.active,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button.active,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button.active,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button.active { outline: 1px solid #0057ff; }
     
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 90%; } 
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { flex-direction: column; }
@@ -153,19 +162,35 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 15px 10px }
     
     /* 폼 요소 패딩 조정 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 40px 0 50px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 30px 0 50px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 40px 0 50px; }
     
-    /* 브랜딩 카테고리 여백 조정 */
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category { max-width: 90%; margin-bottom: 50px; }
-    
-    /* 브랜딩 옵션 그리드를 1열로 변경 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul {
-        grid-template-columns: 100%;
-    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p { font-size: 12px; margin-bottom: 0; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { justify-content: space-between; gap: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 12px; padding: 0; }
+    .form-question2 button.active .check-icon-button { width: 11px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 { display: flex; align-items: center; justify-content: space-between; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button { display: flex; align-items: center; justify-content: center; width: 70px; height: 24px; font-size: 12px; padding: 0; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 { display: flex; align-items: center; justify-content: space-between; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li { gap: 8px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > .unit-input-wrapper > input { width: 139px; height: 20px; font-size: 12px; padding: 0 5px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > .unit-input-wrapper > span { font-size: 12px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > span { font-size: 8px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul { margin-top: 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload { padding: 14px 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload .upload-icon { margin-bottom: 7px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload .upload-text { font-size: 9px; padding: 0 25px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 12px; padding: 0; }
+
     
     /* 연락처 입력란 조정 */
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div {
@@ -200,39 +225,45 @@ body { background: #f7f7f7; }
     
     #counselFormSectionInner .counsel-form { padding-top: 40px; }
     #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 40px; }
-    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 18px; margin-bottom: 20px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 14px; margin-bottom: 20px; }
     
     /* 서비스 선택 카드 컴팩트하게 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { 
-        max-height: 143px;
-    }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 13px; margin-bottom: 8px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { height: 143px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { border-radius: 10px 0 0 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div { padding: 15px 10px 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul { padding: 0 10px 13px;}
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 13px; margin-bottom: 3px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 10px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 8px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 8px; margin-bottom: 0; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 5px; margin-top: 3px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 9px; width: 45px; height: 21px; border-radius: 20px; margin-right: 12px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > img { margin-right: 5px; width: 1%; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 9px; width: auto; height: 21px; border-radius: 20px; margin-right: 12px; bottom: 15px; padding: 0 7px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active { border-radius: 10px; outline: 2px solid #0057ff; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active .fq1v-select-btn .check-icon-select { display: none !important; }
     
-    /* 가로 스크롤 인디케이터 표시 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, rgba(0,87,255,0.5) 0%, rgba(0,87,255,0) 100%);
-        margin-top: 15px;
-        border-radius: 2px;
-    }
-    
-    /* 인테리어 옵션을 1열로 변경 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li {
-        width: 100%;
-    }
-    
-    /* 도면 보유 여부 버튼 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button {
-        width: 120px;
-    }
-    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 24px 0 50px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category h3 { font-size: 13px; font-weight: 800; padding-bottom: 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div { padding-top: 16px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p { font-size: 10px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button { height: 22px; font-size: 10px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button { width: 62px; height: 22px; font-size: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > .unit-input-wrapper > input { width: 120px; height: 18px; font-size: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > .unit-input-wrapper > span { font-size: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > span { font-size: 7px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload { padding: 10px 0 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload .upload-icon { margin-bottom: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-4 > ul > li > .custom-file-upload .upload-text { font-size: 7px; padding: 0 27px; }
+    .file-name { max-width: 60%; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button  { height: 22px; font-size: 10px; }
+
     /* 문의자 정보 섹션 패딩 및 여백 조정 */
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 30px 15px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 100%; }
@@ -245,7 +276,24 @@ body { background: #f7f7f7; }
     /* 제출 버튼 */
     #counselSubmit .counsel-form-submit { font-size: 28px; max-width: 180px; }
     
-    /* 파일 업로드 UI 조정 */
-    .custom-file-upload .upload-text { font-size: 12px; padding: 0 15px; }
-    .file-name { max-width: 60%; }
+
+}
+
+
+.form-selection-guide {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* 선택된 서비스 강조 스타일 */
+.form-question1-value.active {
+    border: 2px solid #0057ff !important;
+}
+
+/* 초기 상태에서 폼 카테고리 숨김 설정 */
+.form-question2-category-interior,
+.form-question2-category-branding {
+    display: none;
 }

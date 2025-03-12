@@ -181,7 +181,7 @@
                 display: inline-block;
             }
             
-            .etc-input {
+            .etc-input, .service-input {
                 width: 173px;
                 font-size: 14px;
                 font-weight: 600;
@@ -234,9 +234,10 @@
         setupFormQuestion3Styles();
         setupPhoneInputs();
         setupEmailField();
+        setupServiceTypeField();
         setupEtcField();
-        setupServiceField();
         setupFormButtons();
+        setupFormSectionsVisibility();
     }
 
     // 단위 텍스트 인풋 필드 설정
@@ -427,7 +428,7 @@
         if (phoneInputs.length !== 3) return;
 
         // 첫 번째 입력란 (지역번호)
-        phoneInputs[0].addEventListener('input', function () {
+        phoneInputs[0].addEventListener('input', function (event) {
             // 숫자만 입력받기
             this.value = this.value.replace(/[^0-9]/g, '');
 
@@ -439,7 +440,7 @@
         });
 
         // 두 번째 입력란 (중간 번호)
-        phoneInputs[1].addEventListener('input', function () {
+        phoneInputs[1].addEventListener('input', function (event) {
             // 숫자만 입력받기
             this.value = this.value.replace(/[^0-9]/g, '');
 
@@ -457,7 +458,7 @@
         });
 
         // 세 번째 입력란 (마지막 번호)
-        phoneInputs[2].addEventListener('input', function () {
+        phoneInputs[2].addEventListener('input', function (event) {
             // 숫자만 입력받기
             this.value = this.value.replace(/[^0-9]/g, '');
 
@@ -517,37 +518,58 @@
         });
     }
 
-    // 서비스 업종 필드 설정
-    function setupServiceField() {
-        const serviceSelect = document.querySelector('.form-question3-element3-value.fq3e3v-2');
-        const serviceInput = document.querySelector('input[name="servicebox"]');
+    // 서비스 업종 설정 함수
+    function setupServiceTypeField() {
+        const serviceTypeSelect = document.querySelector('select.form-question3-element3-value.fq3e3v-2');
 
-        if (!serviceSelect || !serviceInput) return;
+        if (!serviceTypeSelect) return;
 
-        if (serviceSelect.value === '직접입력') {
-            serviceInput.style.display = 'inline-block';
-            serviceInput.removeAttribute('readonly');
+        const serviceTypeParent = serviceTypeSelect.closest('div');
+        let serviceTypeInput = serviceTypeParent.querySelector('input[name="servicebox"]');
+
+        // 입력 필드가 없으면 생성
+        if (!serviceTypeInput) {
+            serviceTypeInput = document.createElement('input');
+            serviceTypeInput.type = 'text';
+            serviceTypeInput.className = 'service-input form-question3-element3-value fq3e3v-2';
+            serviceTypeInput.name = 'servicebox';
+            serviceTypeInput.placeholder = '서비스 업종을 입력하세요';
+            serviceTypeInput.style.display = 'none';
+            serviceTypeParent.appendChild(serviceTypeInput);
+        }
+
+        // 초기 상태 설정
+        if (serviceTypeSelect.value === '직접입력') {
+            serviceTypeInput.style.display = 'inline-block';
         } else {
-            serviceInput.style.display = 'none';
-            serviceInput.setAttribute('readonly', 'readonly');
-
-            if (serviceSelect.value && serviceSelect.value !== '직접입력') {
-                serviceInput.value = serviceSelect.options[serviceSelect.selectedIndex].text;
+            serviceTypeInput.style.display = 'none';
+            // 선택된 옵션 텍스트를 입력 필드에 설정
+            if (serviceTypeSelect.value) {
+                serviceTypeInput.value = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].text;
             }
         }
 
-        serviceSelect.addEventListener('change', function () {
+        // 변경 이벤트 설정
+        serviceTypeSelect.addEventListener('change', function () {
             if (this.value === '직접입력') {
-                serviceInput.style.display = 'inline-block';
-                serviceInput.value = '';
-                serviceInput.removeAttribute('readonly');
-                serviceInput.focus();
+                serviceTypeInput.style.display = 'inline-block';
+                serviceTypeInput.value = '';
+                serviceTypeInput.focus();
             } else {
-                serviceInput.style.display = 'none';
-                serviceInput.setAttribute('readonly', 'readonly');
+                serviceTypeInput.style.display = 'none';
+                serviceTypeInput.value = this.options[this.selectedIndex].text;
+            }
+        });
 
-                if (this.value) {
-                    serviceInput.value = this.options[this.selectedIndex].text;
+        // 입력 필드 이벤트
+        serviceTypeInput.addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                const errorContainer = this.closest('li');
+                if (errorContainer) {
+                    const errorMsg = errorContainer.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.classList.remove('show');
+                    }
                 }
             }
         });
@@ -583,9 +605,32 @@
                 etcInput.focus();
             } else {
                 etcInput.style.display = 'none';
+
+                // 오류 메시지 숨기기 (있을 경우)
+                const errorContainer = this.closest('li');
+                if (errorContainer) {
+                    const errorMsg = errorContainer.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.classList.remove('show');
+                    }
+                }
+            }
+        });
+
+        // 입력 필드의 변경 이벤트
+        etcInput.addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                const errorContainer = this.closest('li');
+                if (errorContainer) {
+                    const errorMsg = errorContainer.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.classList.remove('show');
+                    }
+                }
             }
         });
     }
+
 
     // 버튼 설정 함수
     function setupFormButtons() {
@@ -671,6 +716,121 @@
         });
     }
 
+    // 서비스 선택에 따른 폼 섹션 표시 관리 함수
+    function setupFormSectionsVisibility() {
+        // 필요한 요소들
+        const serviceButtons = document.querySelectorAll('.form-question1-value');
+        const question2Section = document.querySelector('.form-question2');
+        const question3Section = document.querySelector('.form-question3');
+        const question4Section = document.querySelector('.form-question4');
+        const interiorCategory = document.querySelector('.form-question2-category-interior');
+        const brandingCategory = document.querySelector('.form-question2-category-branding');
+
+        if (!serviceButtons.length || !question2Section || !question3Section || !question4Section || !interiorCategory || !brandingCategory) {
+            console.log('필요한 폼 섹션 요소를 찾을 수 없습니다');
+            return;
+        }
+
+        // form-question2 위치에 안내 메시지 추가
+        let guideContainer2 = document.querySelector('.form-guide-container-2');
+        if (!guideContainer2) {
+            guideContainer2 = document.createElement('div');
+            guideContainer2.className = 'form-guide-container-2';
+
+            const guideMessage2 = document.createElement('p');
+            guideMessage2.className = 'form-selection-guide';
+            guideMessage2.textContent = '의뢰하실 서비스를 먼저 골라주세요.';
+            guideMessage2.style.textAlign = 'center';
+            guideMessage2.style.padding = '40px 0';
+            guideMessage2.style.fontSize = '16px';
+            guideMessage2.style.color = '#666';
+
+            guideContainer2.appendChild(guideMessage2);
+            question2Section.parentNode.insertBefore(guideContainer2, question2Section);
+        }
+
+        // form-question3 위치에 안내 메시지 추가
+        let guideContainer3 = document.querySelector('.form-guide-container-3');
+        if (!guideContainer3) {
+            guideContainer3 = document.createElement('div');
+            guideContainer3.className = 'form-guide-container-3';
+
+            const guideMessage3 = document.createElement('p');
+            guideMessage3.className = 'form-selection-guide';
+            guideMessage3.textContent = '의뢰하실 서비스를 먼저 골라주세요.';
+            guideMessage3.style.textAlign = 'center';
+            guideMessage3.style.padding = '40px 0';
+            guideMessage3.style.fontSize = '16px';
+            guideMessage3.style.color = '#666';
+
+            guideContainer3.appendChild(guideMessage3);
+            question3Section.parentNode.insertBefore(guideContainer3, question3Section);
+        }
+
+        // 초기 상태 설정
+        // 이미 선택된 서비스가 있는지 확인
+        const activeButton = document.querySelector('.form-question1-value.active');
+
+        if (activeButton) {
+            // 이미 선택된 서비스가 있으면 폼 섹션 표시
+            guideContainer2.style.display = 'none';
+            guideContainer3.style.display = 'none';
+            question2Section.style.display = 'block';
+            question3Section.style.display = 'block';
+            question4Section.style.display = 'block';
+
+            // 선택된 서비스에 따라 카테고리 표시
+            const serviceType = activeButton.getAttribute('value');
+            if (serviceType === '인테리어') {
+                interiorCategory.style.display = 'block';
+                brandingCategory.style.display = 'none';
+            } else if (serviceType === '브랜딩') {
+                interiorCategory.style.display = 'none';
+                brandingCategory.style.display = 'block';
+            } else if (serviceType === '컨빌 패키지') {
+                interiorCategory.style.display = 'block';
+                brandingCategory.style.display = 'block';
+            }
+        } else {
+            // 선택된 서비스가 없으면 폼 섹션 숨김
+            guideContainer2.style.display = 'block';
+            guideContainer3.style.display = 'block';
+            question2Section.style.display = 'none';
+            question3Section.style.display = 'none';
+            question4Section.style.display = 'none';
+        }
+
+        // 서비스 버튼 클릭 이벤트 설정
+        serviceButtons.forEach(button => {
+            if (button.getAttribute('data-sections-setup')) return; // 이미 설정된 경우 스킵
+
+            button.addEventListener('click', function () {
+                // 폼 섹션 표시
+                guideContainer2.style.display = 'none';
+                guideContainer3.style.display = 'none';
+                question2Section.style.display = 'block';
+                question3Section.style.display = 'block';
+                question4Section.style.display = 'block';
+
+                // 선택된 서비스에 따라 카테고리 표시
+                const serviceType = this.getAttribute('value');
+                console.log('선택된 서비스:', serviceType);
+
+                if (serviceType === '인테리어') {
+                    interiorCategory.style.display = 'block';
+                    brandingCategory.style.display = 'none';
+                } else if (serviceType === '브랜딩') {
+                    interiorCategory.style.display = 'none';
+                    brandingCategory.style.display = 'block';
+                } else if (serviceType === '컨빌 패키지') {
+                    interiorCategory.style.display = 'block';
+                    brandingCategory.style.display = 'block';
+                }
+            });
+
+            button.setAttribute('data-sections-setup', 'true');
+        });
+    }
     // DOM 변경 감시
     function setupMutationObserver() {
         const targetNode = document.body;
@@ -684,6 +844,7 @@
 
         return observer;
     }
+
 })();
 
 // form-question1 : 필수

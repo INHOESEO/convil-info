@@ -71,11 +71,22 @@ function collectAndSubmitData() {
   const emailBox2 = document.querySelector('input[name="emailbox2"]').value.trim();
   
   // 서비스 지역
-  const serviceAreaSelect = document.querySelector('.form-question3-element3-value.fq3e3v-1');
-  const serviceArea = serviceAreaSelect.options[serviceAreaSelect.selectedIndex].text;
+  const serviceAreaSelect = document.querySelector('select.form-question3-element3-value.fq3e3v-1');
+  const serviceArea = serviceAreaSelect ? 
+    serviceAreaSelect.options[serviceAreaSelect.selectedIndex].text : "";
   
   // 서비스 업종
-  const serviceTypeInput = document.querySelector('input[name="servicebox"]').value.trim();
+  const serviceTypeSelect = document.querySelector('select.form-question3-element3-value.fq3e3v-2');
+  let serviceBusinessType = "";
+  
+  if (serviceTypeSelect) {
+    if (serviceTypeSelect.value === '직접입력') {
+      const serviceTypeInput = document.querySelector('input[name="servicebox"]');
+      serviceBusinessType = serviceTypeInput ? serviceTypeInput.value.trim() : "";
+    } else {
+      serviceBusinessType = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].text;
+    }
+  }
   
   // 희망 마감기한
   const deadlineInput = document.querySelector('.form-question3-element4-value');
@@ -83,11 +94,16 @@ function collectAndSubmitData() {
   
   // 유입경로
   const channelSelect = document.querySelector('.form-question3-element5-value');
-  const sourceChannel = channelSelect.options[channelSelect.selectedIndex].text;
+  let sourceChannel = "";
   
-  // 기타 유입경로
-  const etcInput = document.querySelector('.etc-input');
-  const etcDetail = etcInput && etcInput.style.display !== 'none' ? etcInput.value.trim() : "";
+  if (channelSelect) {
+    if (channelSelect.value === '기타') {
+      const etcInput = document.querySelector('.etc-input');
+      sourceChannel = etcInput && etcInput.style.display !== 'none' ? etcInput.value.trim() : "";
+    } else {
+      sourceChannel = channelSelect.options[channelSelect.selectedIndex].text;
+    }
+  }
   
   // 브랜딩 옵션들 (아이덴티티, 오프라인 광고, 온라인 광고, 홈페이지)
   const identityOptions = Array.from(document.querySelectorAll('.form-question2-element5-value.active'))
@@ -126,7 +142,7 @@ function collectAndSubmitData() {
     phone: `${phoneBox1}-${phoneBox2}-${phoneBox3}`,
     email: `${emailBox1}@${emailBox2}`,
     serviceArea,
-    serviceTypeInput,
+    serviceBusinessType,
     deadline,
     sourceChannel
   });
@@ -148,11 +164,11 @@ function collectAndSubmitData() {
     numberbox3: phoneBox3,
     emailbox1: emailBox1,
     emailbox2: emailBox2,
-    serviceArea: serviceAreaSelect.value,
-    servicebox: serviceTypeInput,
+    serviceArea: serviceAreaSelect ? serviceAreaSelect.value : "",
+    servicebox: serviceBusinessType,
     deadline,
-    sourceChannel: channelSelect.value,
-    etcDetail,
+    sourceChannel: channelSelect ? channelSelect.value : "",
+    etcDetail: channelSelect && channelSelect.value === '기타' ? sourceChannel : "",
     privacyAgreed,
     marketingAgreed
   };
@@ -205,11 +221,11 @@ function collectAndSubmitData() {
   });
 }
 
-// 유효성 검사 함수 
+// 유효성 검사 함수 수정
 function validateForm() {
   // 오류 메시지 초기화
   clearErrorMessages();
-
+  
   let isValid = true;
 
   // 1. 서비스 선택 검사
@@ -217,30 +233,46 @@ function validateForm() {
   if (!serviceSelected) {
     showError('.counsel-form ul li:first-child', '서비스를 선택해주세요.');
     isValid = false;
+    return isValid; // 서비스가 선택되지 않았으면 여기서 종료
   }
 
-  // 2. 인테리어 옵션 검사
-  const interiorOptions = document.querySelectorAll('.form-question2-element1-value.active');
-  if (interiorOptions.length === 0) {
-    showError('.form-question2-element.fq2e-1', '인테리어 옵션을 최소 1개 이상 선택해주세요.');
-    isValid = false;
+  // 선택된 서비스 유형 확인
+  const selectedServiceType = serviceSelected.getAttribute('value');
+  const isInteriorVisible = document.querySelector('.form-question2-category-interior').style.display !== 'none';
+  const isBrandingVisible = document.querySelector('.form-question2-category-branding').style.display !== 'none';
+
+  // 인테리어 관련 검사 (인테리어 또는 컨빌 패키지 선택 시)
+  if (isInteriorVisible) {
+    // 2. 인테리어 옵션 검사
+    const interiorOptions = document.querySelectorAll('.form-question2-element1-value.active');
+    if (interiorOptions.length === 0) {
+      showError('.form-question2-element.fq2e-1', '인테리어 옵션을 최소 1개 이상 선택해주세요.');
+      isValid = false;
+    }
+
+    // 3. 도면 보유 여부 검사
+    const planButton = document.querySelector('.form-question2-element2-value.active');
+    if (!planButton) {
+      showError('.form-question2-element.fq2e-2', '도면 보유 여부를 선택해주세요.');
+      isValid = false;
+    }
+
+    // 4. 평수 입력 검사
+    const sqftInput = document.querySelector('.form-question2-element3-value');
+    const sqftValue = sqftInput.value.trim();
+    if (sqftValue === '') {
+      showError('.form-question2-element.fq2e-3', '평수를 입력해주세요.');
+      isValid = false;
+    }
   }
 
-  // 3. 도면 보유 여부 검사
-  const planButton = document.querySelector('.form-question2-element2-value.active');
-  if (!planButton) {
-    showError('.form-question2-element.fq2e-2', '도면 보유 여부를 선택해주세요.');
-    isValid = false;
+  // 브랜딩 관련 검사 (브랜딩 또는 컨빌 패키지 선택 시)
+  if (isBrandingVisible) {
+    // 브랜딩 옵션들은 선택사항이므로 유효성 검사는 필요 없음
+    // 필요하다면 여기에 브랜딩 관련 유효성 검사 추가
   }
 
-  // 4. 평수 입력 검사
-  const sqftInput = document.querySelector('.form-question2-element3-value');
-  const sqftValue = sqftInput.value.trim();
-  if (sqftValue === '') {
-    showError('.form-question2-element.fq2e-3', '평수를 입력해주세요.');
-    isValid = false;
-  }
-
+  // 공통 검사 항목들 (이름, 연락처, 이메일 등)
   // 5. 이름 입력 검사
   const nameInput = document.querySelector('.form-question3-element1-value');
   if (!nameInput.value.trim()) {
@@ -265,28 +297,26 @@ function validateForm() {
   }
 
   // 8. 서비스 지역 검사
-  const serviceAreaSelect = document.querySelectorAll('.form-question3-element3-value fq3e3v-1');
-  if (!serviceAreaSelect.value) {
-      showError('.fq3e-3 ul li:first-child', '서비스 지역을 선택해주세요.');
-      isValid = false;
+  const serviceAreaSelect = document.querySelector('select.form-question3-element3-value.fq3e3v-1');
+  if (!serviceAreaSelect || !serviceAreaSelect.value) {
+    showError('.form-question3-element.fq3e-3 ul li:first-child', '서비스 지역을 선택해주세요.');
+    isValid = false;
   }
 
   // 9. 서비스 업종 검사
-  const serviceTypeSelect = document.querySelector('.form-question3-element3-value.fq3e3v-2');
+  const serviceTypeSelect = document.querySelector('select.form-question3-element3-value.fq3e3v-2');
   const serviceTypeInput = document.querySelector('input[name="servicebox"]');
 
-  // 직접 입력일 경우에만 입력값 검사
-  if (serviceTypeSelect.value === '직접입력') {
-      if (!serviceTypeInput.value.trim()) {
-          showError('.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
-          isValid = false;
-      }
-  } else if (!serviceTypeSelect.value) {
-      // 아무것도 선택하지 않은 경우
-      showError('.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
+  if (!serviceTypeSelect || !serviceTypeSelect.value) {
+    showError('.form-question3-element.fq3e-3 ul li:last-child', '서비스 업종을 선택해주세요.');
+    isValid = false;
+  } else if (serviceTypeSelect.value === '직접입력') {
+    if (!serviceTypeInput || !serviceTypeInput.value.trim()) {
+      showError('.form-question3-element.fq3e-3 ul li:last-child', '서비스 업종을 입력해주세요.');
       isValid = false;
+    }
   }
-
+  
   // 10. 희망 마감기한 검사
   const deadlineInput = document.querySelector('.form-question3-element4-value');
   if (!deadlineInput.value) {
@@ -296,15 +326,15 @@ function validateForm() {
 
   // 11. 유입경로 검사
   const channelSelect = document.querySelector('.form-question3-element5-value');
-  const etcInput = document.querySelector('.etc-input');
-  
-  if (!channelSelect.value) {
+  if (!channelSelect || !channelSelect.value) {
     showError('.form-question3-element.fq3e-5', '유입경로를 선택해주세요.');
     isValid = false;
-  } else if (channelSelect.value === '기타' && !etcInput.value.trim()) {
-    // 기타를 선택했을 때만 기타 입력란 검사
-    showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
-    isValid = false;
+  } else if (channelSelect.value === '기타') {
+    const etcInput = document.querySelector('.etc-input');
+    if (!etcInput || !etcInput.value.trim()) {
+      showError('.form-question3-element.fq3e-5', '기타 유입경로를 입력해주세요.');
+      isValid = false;
+    }
   }
 
   // 12. 개인정보 처리방침 동의 검사
@@ -314,19 +344,16 @@ function validateForm() {
     isValid = false;
   }
 
-  // 유효성 검사 결과
+  // 오류 발견 시 첫 번째 오류 메시지로 스크롤
   if (!isValid) {
-    // 첫 번째 오류 메시지 위치로 스크롤
     const firstError = document.querySelector('.error-message.show');
     if (firstError) {
       firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
-  
-  console.log('유효성 검사 결과:', isValid ? '통과' : '실패');
+
   return isValid;
 }
-
 // 오류 메시지 표시 함수
 function showError(selector, message) {
   const container = document.querySelector(selector);
