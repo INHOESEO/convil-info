@@ -13,6 +13,56 @@ body { background: #f7f7f7; }
 #counselFormSectionInner .counsel-form > ul > li:last-child { margin-bottom: 88px; }
 #counselFormSectionInner .counsel-form > ul > li > h3 { text-align: center; font-size: 30px; font-weight: 700; letter-spacing: -1.05px; margin-bottom: 34px; }
 
+.form-selection-guide { background-color: #fff; border-radius: 10px; border: 1px solid #D9D9D9; text-align: center; font-size: 23px; color: #b9b9b9; font-weight: 800; letter-spacing: -0.7px; padding: 120px 0; }
+.form-question2-category-interior,
+.form-question2-category-branding { display: none; }
+
+.error-message { color: #ff3333; font-size: 12px; margin-top: 15px; margin-left: 10px; display: none;}
+.error-message.show { display: inline-block; }
+
+@media all and (max-width: 970px) {
+    .counsel-wr { padding-top: 100px; }
+    
+    #counselFormSectionInner { max-width: 91%; }
+        
+    #counselFormSectionInner .counsel-form { padding-top: 80px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 80px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 26px; margin-bottom: 30px; }
+
+    .form-selection-guide { font-size: 18px; padding: 80px 0; }
+
+    .error-message { font-size: 10px; margin-left: 0; position: absolute; bottom: -15px;}
+    .form-question2-category-branding .error-message { bottom: 20px; padding: 0; }
+    .form-question3 .error-message { right: 0; }
+
+}
+@media all and (max-width: 768px) {
+    .counsel-wr { padding-top: 50px; }
+    
+    #counselFormSectionInner .section-header h2 { font-size: 24px; }
+    #counselFormSectionInner .section-header p { font-size: 14px; }
+    
+    #counselFormSectionInner .counsel-form { padding-top: 60px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 60px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 22px; margin-bottom: 25px; }
+
+    .form-selection-guide { font-size: 10px; padding: 36px 0; }
+
+    .error-message { font-size: 8px; margin-left: 0;}
+}
+@media all and (max-width: 450px) {
+    .counsel-wr { padding-top: 30px; }
+    
+    #counselFormSectionInner .section-header { padding: 0; }
+    #counselFormSectionInner .section-header h2 { font-size: 17px; }
+    #counselFormSectionInner .section-header p { font-size: 12px; line-height: 1.75; }
+    
+    #counselFormSectionInner .counsel-form { padding-top: 40px; }
+    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 40px; }
+    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 14px; margin-bottom: 20px; }
+}
+
+
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { display: flex; flex-direction: column; justify-content: space-between; position: relative; width: 33.33%; height: 499px; border-radius: 20px; border: 1px solid #D9D9D9; background: #FFF; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value:hover { transform: scale(1.05); z-index: 1; transition: transform .3s;  }
@@ -29,25 +79,70 @@ body { background: #f7f7f7; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active { outline: 4px solid #0057ff; border: 0; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active .fq1v-select-btn { background: #0057ff; }
 
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 { border-radius: 20px; border: 1px solid #D9D9D9; background: #fff; padding: 69px 0 83px; }
+@media all and (max-width: 970px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 { flex-direction: column; gap: 15px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { justify-content: flex-end; flex-direction: row-reverse; width: 100%; flex: 0 0 auto; height: auto; height: 240px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { width: 38.7%; object-fit: cover; border-radius: 10px 0 0 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { left: inherit; font-size: 13px; height: 30px; border-radius: 30px; margin-right: 20px; padding: 0; padding: 0 20px; display: flex; align-items: center; justify-content: center;}
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div { padding: 25px 20px 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul { padding: 0 20px 25px;}
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 17px; margin-bottom: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 14px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 12px; margin-bottom: 2px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 8px; margin-top: 4px; }
+}
+@media all and (max-width: 768px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { height: 190px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { border-radius: 10px 0 0 10px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div { padding: 20px 15px 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul { padding: 0 15px 20px;}
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 15px; margin-bottom: 5px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 12px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 10px; margin-bottom: 1px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 6px; margin-top: 3px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active { border-radius: 10px; outline: 1px solid #0057ff; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 11px; width: auto; height: 25px; border-radius: 25px; margin-right: 15px; bottom: 20px; padding: 0 12px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active .fq1v-select-btn .check-icon-select { display: none !important; }
+}
+@media all and (max-width: 450px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { height: 143px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { border-radius: 10px 0 0 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div { padding: 15px 10px 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul { padding: 0 10px 13px;}
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 13px; margin-bottom: 3px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 8px; margin-bottom: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 5px; margin-top: 3px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > img { margin-right: 5px; width: 1%; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 9px; ∂height: 21px; border-radius: 20px; margin-right: 12px; bottom: 15px; padding: 0 7px; }
+}
+
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 { position: relative; border-radius: 20px; border: 1px solid #D9D9D9; background: #fff; padding: 69px 0 83px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category { max-width: 806px; margin: 0 auto; margin-bottom: 78px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category:last-child { margin-bottom: 0; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.7px; color: #0057ff; padding-bottom: 18px; border-bottom: 2px solid #e3e3e3; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div { padding-top: 25px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element { margin-bottom: 42px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element { position: relative; margin-bottom: 42px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p { font-size: 14px; font-weight: 600; letter-spacing: -0.44px; margin-bottom: 14px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p > span { font-size: 11px; font-weight: 500; line-height: 1.43; letter-spacing: -0.32px; margin-left: 7px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element:last-child { margin-bottom: 0; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { display: flex; width: 100%; gap: 13px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li { display: flex; flex-direction: column; align-items: center; width: 25%; gap: 15px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li  > button { width: 100%; border: 2px solid #e3e3e3; border-radius: 34px; color: #797979; font-size: 14px; font-weight: 500; letter-spacing: -0.44px; background: #fff; padding: 7px 0 6px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li  > button.active { outline: 2px solid #0057ff; color: #0057ff; border: 2px solid #fff }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li { position: relative; display: flex; flex-direction: column; align-items: center; width: 25%; gap: 15px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button { width: 100%; border: 2px solid #e3e3e3; border-radius: 34px; color: #797979; font-size: 14px; font-weight: 500; letter-spacing: -0.44px; background: #fff; padding: 7px 0 6px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button.active { outline: 2px solid #0057ff; color: #0057ff; border: 2px solid #fff }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > img { width: 100%; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul { display: flex; gap: 9px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li  > button { width: 145px; border: 2px solid #e3e3e3; border-radius: 34px; color: #797979; font-size: 14px; font-weight: 500; letter-spacing: -0.44px; background: #fff; padding: 7px 0 6px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li  > button.active { outline: 2px solid #0057ff; color: #0057ff; border: 0; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button { width: 145px; border: 2px solid #e3e3e3; border-radius: 34px; color: #797979; font-size: 14px; font-weight: 500; letter-spacing: -0.44px; background: #fff; padding: 7px 0 6px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button.active { outline: 2px solid #0057ff; color: #0057ff; border: 0; }
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li { display: flex; align-items: center; gap: 15px; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-3 > ul > li > input { width: 144px; color: #797979; border: 2px solid #e3e3e3; border-radius: 34px; padding: 7px 16px 7px; font-size: 14px; font-weight: 500; letter-spacing: -0.44px; }
@@ -72,55 +167,10 @@ body { background: #f7f7f7; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button.active,
 #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button.active { outline: 2px solid #0057ff; color: #0057ff; border: 2px solid #fff }
 
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 { background: #fff; border-radius: 20px; border: 1px solid #D9D9D9; padding: 95px 0 112px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 806px; margin: 0 auto; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element { margin-bottom: 75px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element:last-child { margin-bottom: 0; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > p { font-size: 14px; font-weight: 600; letter-spacing: -0.44px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid #e3e3e3; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { display: flex; width: 100%; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li { width: 50%; display: flex; flex-direction: column; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li > label { color: #797979; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; margin-bottom: 8px; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li > input { width: 100%; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 20px 6px; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1 { width: 89px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 0 6px; text-align: center; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 { width: 120px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 0 6px; text-align: center; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > span { font-size: 14px; font-weight: 600; letter-spacing: -0.44px; color: #b9b9b9; margin: 0 6px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > select { width: 120px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div:first-child { display: flex; gap: 10px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; line-height: 1; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li > input { width: 149px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; line-height: 1; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
-
-#counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 65px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { margin-bottom: 19px; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 18px; font-weight: 600; letter-spacing: -0.54px; margin-left: 10px; }
-
-#counselSubmit { max-width: 204px; margin: 0 auto; }
-#counselSubmit .counsel-form-submit { max-width: 204px; margin: 0 auto; background: #000; width: 100%; border-radius: 10px; border: 0; font-size: 34px; font-weight: 700; color: #fff; padding: 9px 0;}
-
 @media all and (max-width: 970px) {
-    /* 태블릿 및 중간 크기 화면용 스타일 */
-    .counsel-wr { padding-top: 100px; }
-    
-    #counselFormSectionInner { max-width: 91%; }
-    
-    #counselFormSectionInner .counsel-form { padding-top: 80px; }
-    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 80px; }
-    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 26px; margin-bottom: 30px; }
-    
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 { flex-direction: column; gap: 16px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { justify-content: flex-end; flex-direction: row-reverse; width: 100%; flex: 0 0 auto; height: auto; max-height: 400px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { width: 38.7%; object-fit: cover; border-radius: 20px 0 0 20px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { left: inherit; font-size: 12px; width: 90px; height: 30px; border-radius: 25px; padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;}
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 35px 0 50px; }
 
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category { max-width: 90%; margin-bottom: 50px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { flex-wrap: wrap; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li { width: 48%; margin-bottom: 15px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button.active { outline: 1px solid #0057ff; }
@@ -138,39 +188,17 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button.active,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button.active,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button.active { outline: 1px solid #0057ff; }
-    
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 90%; } 
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { flex-direction: column; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li { width: 100%; margin-bottom: 20px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li:last-child { margin-bottom: 0; }
 }
-
 @media all and (max-width: 768px) {
-    /* 모바일 태블릿 화면용 스타일 */
-    .counsel-wr { padding-top: 50px; }
-    
-    #counselFormSectionInner .section-header h2 { font-size: 24px; }
-    #counselFormSectionInner .section-header p { font-size: 14px; }
-    
-    #counselFormSectionInner .counsel-form { padding-top: 60px; }
-    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 60px; }
-    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 22px; margin-bottom: 25px; }
-    
-    /* 서비스 선택 카드 내부 조정 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 24px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 18px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 15px 10px }
-    
-    /* 폼 요소 패딩 조정 */
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 30px 0 50px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 40px 0 50px; }
     
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category { max-width: 90%; margin-bottom: 50px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p { font-size: 12px; margin-bottom: 0; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p > span { font-size: 8px; }
 
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul { justify-content: space-between; gap: 0; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 12px; padding: 0; }
-    .form-question2 button.active .check-icon-button { width: 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 button.active .check-icon-button { width: 11px; }
 
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 { display: flex; align-items: center; justify-content: space-between; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-2 > ul > li > button { display: flex; align-items: center; justify-content: center; width: 70px; height: 24px; font-size: 12px; padding: 0; }
@@ -189,63 +217,14 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-5 > ul > li > button,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 12px; padding: 0; }
-
-    
-    /* 연락처 입력란 조정 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 {
-        width: 100%;
-    }
-    
-    /* 서비스 정보 입력란 조정 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div {
-        flex-direction: column;
-        gap: 10px;
-    }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select,
-    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select {
-        width: 100%;
-    }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button { display: flex; align-items: center; justify-content: center; height: 24px; font-size: 12px; padding: 0; line-height: 1; }
 }
-
 @media all and (max-width: 450px) {
-    /* 모바일 화면용 스타일 */
-    .counsel-wr { padding-top: 30px; }
-    
-    #counselFormSectionInner .section-header { padding: 0; }
-    #counselFormSectionInner .section-header h2 { font-size: 17px; }
-    #counselFormSectionInner .section-header p { font-size: 12px; line-height: 1.75; }
-    
-    #counselFormSectionInner .counsel-form { padding-top: 40px; }
-    #counselFormSectionInner .counsel-form > ul > li { margin-bottom: 40px; }
-    #counselFormSectionInner .counsel-form > ul > li > h3 { font-size: 14px; margin-bottom: 20px; }
-    
-    /* 서비스 선택 카드 컴팩트하게 */
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { height: 143px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > img { border-radius: 10px 0 0 10px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { padding: 0; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div { padding: 15px 10px 0; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul { padding: 0 10px 13px;}
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 13px; margin-bottom: 3px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 10px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 8px; margin-bottom: 0; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 5px; margin-top: 3px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > img { margin-right: 5px; width: 1%; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value .fq1v-select-btn { font-size: 9px; width: auto; height: 21px; border-radius: 20px; margin-right: 12px; bottom: 15px; padding: 0 7px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active { border-radius: 10px; outline: 2px solid #0057ff; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value.active .fq1v-select-btn .check-icon-select { display: none !important; }
-    
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 { padding: 24px 0 50px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category h3 { font-size: 13px; font-weight: 800; padding-bottom: 11px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div { padding-top: 16px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p { font-size: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .form-question2-element > p > span { font-size: 7px; }
 
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-1 > ul > li > button { height: 22px; font-size: 10px; }
 
@@ -263,37 +242,131 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-6 > ul > li > button,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-7 > ul > li > button,
     #counselFormSectionInner .counsel-form > ul > li > .form-question2 .form-question2-category > div > .fq2e-8 > ul > li > button  { height: 22px; font-size: 10px; }
+}
 
-    /* 문의자 정보 섹션 패딩 및 여백 조정 */
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 { position: relative; background: #fff; border-radius: 20px; border: 1px solid #D9D9D9; padding: 95px 0 112px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 806px; margin: 0 auto; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element { position: relative; margin-bottom: 75px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element:last-child { margin-bottom: 0; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > p { font-size: 14px; font-weight: 600; letter-spacing: -0.44px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid #e3e3e3; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { display: flex; width: 100%; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li { position: relative; width: 50%; display: flex; flex-direction: column; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li > label { color: #797979; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; margin-bottom: 8px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 input:focus,
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 select:focus,
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 input.has-value,
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 select.has-value { border: 2px solid #0057ff !important; color: #0057ff !important; outline: none; }
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li  { position: relative; width: 50% !important; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li > input { width: 100%; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 20px 6px; }
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div { gap: 5px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1 { width: 89px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 0 6px; text-align: center; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 { width: 120px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 7px 0 6px; text-align: center; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > span { font-size: 14px; font-weight: 600; letter-spacing: -0.44px; color: #b9b9b9; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > select { width: 120px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div:first-child { display: flex; gap: 10px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; line-height: 1; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li > input { width: 149px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; line-height: 1; }
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li > select { width: 173px; font-size: 14px; font-weight: 600; letter-spacing: -0.44px; border-radius: 10px; border: 2px solid #E3E3E3; padding: 6px 0 5px; text-align: center; }
+
+@media all and (max-width: 970px) {    
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 90%; } 
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul { flex-direction: column; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li { flex-direction: row; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li:last-child { margin-bottom: 0; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul { align-items: flex-end; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li > input { text-align: center; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li { justify-content: flex-end; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li { justify-content: flex-end; }
+    .etc-input { text-align: center; }
+}
+
+@media all and (max-width: 768px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 40px 0 50px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > p { font-size: 12px; margin-bottom: 13px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li > label { font-size: 11px; margin-bottom: 0; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li > input { height: 20px; padding: 0 15px; font-size: 12px; border-radius: 7px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div { display: flex; align-items: center; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 { width: 75px; height: 20px; padding: 0; font-size: 12px; border-radius: 7px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > select { width: 75px; height: 24px; padding: 0; font-size: 12px; border-radius: 7px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div { flex-direction: column; gap: 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select { width: 120px; height: 24px; padding: 0; font-size: 12px; border-radius: 7px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input { width: 120px; height: 20px; padding: 0; font-size: 12px; border-radius: 7px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li > input { width: 116px; height: 20px; padding: 0; font-size: 12px; border-radius: 7px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li > select { width: 120px; height: 24px; padding: 0; font-size: 12px; border-radius: 7px; }
+}
+
+@media all and (max-width: 450px) {
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 { padding: 30px 15px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div { max-width: 100%; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element { margin-bottom: 40px; }
-    
-    /* 개인정보 처리방침 동의 영역 */
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > p { font-size: 10px; margin-bottom: 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .form-question3-element > ul > li > label { font-size: 9px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-1 > ul > li > input { height: 18px; padding: 0 10px; font-size: 10px; border-radius: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div { display: flex; align-items: center; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-1,
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > input.fq3e2v-2 { width: 59px; height: 18px; padding: 0; font-size: 10px; border-radius: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-2 > ul > li > div > select { width: 59px; height: 22px; padding: 0; font-size: 10px; border-radius: 6px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > select { width: 110px; height: 22px; padding: 0; font-size: 10px; border-radius: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > select { width: 110px; height: 22px; padding: 0; font-size: 10px; border-radius: 6px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-3 > ul > li > div > input { width: 110px; height: 18px; padding: 0; font-size: 10px; border-radius: 6px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-4 > ul > li > input { width: 106px; height: 18px; padding: 0; font-size: 10px; border-radius: 6px; }
+
+    #counselFormSectionInner .counsel-form > ul > li > .form-question3 > div > .fq3e-5 > ul > li > select { width: 110px; height: 22px; padding: 0; font-size: 10px; border-radius: 6px; }
+
+    .etc-input { width: 106px; height: 18px; padding: 0; font-size: 10px; border-radius: 6px; }
+}
+
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 65px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { position: relative; margin-bottom: 19px; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 18px; font-weight: 600; letter-spacing: -0.54px; margin-left: 10px; }
+
+@media all and (max-width: 970px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { display: flex; align-items: center; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > .marketing-agree { display: flex; align-items: center; }
+}
+@media all and (max-width: 768px) {
     #counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 15px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 14px; }
-    
-    /* 제출 버튼 */
-    #counselSubmit .counsel-form-submit { font-size: 28px; max-width: 180px; }
-    
-
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 12px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { margin-bottom: 24px; }
+}
+@media all and (max-width: 450px) {
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 { padding: 0 10px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > div > label { font-size: 11px; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question4 > .personal-agree { margin-bottom: 20px; }
 }
 
+#counselSubmit { max-width: 204px; margin: 0 auto; }
+#counselSubmit .counsel-form-submit { margin: 0 auto; background: #000; width: 100%; border-radius: 10px; border: 0; font-size: 34px; font-weight: 700; color: #fff; padding: 9px 0;}
 
-.form-selection-guide {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin: 20px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+@media all and (max-width: 970px) {
+    #counselSubmit { max-width: 130px; margin: 0 auto; }
+    #counselSubmit .counsel-form-submit { font-size: 18px; border-radius: 8px; padding: 9px 0; }
 }
-
-/* 선택된 서비스 강조 스타일 */
-.form-question1-value.active {
-    border: 2px solid #0057ff !important;
+@media all and (max-width: 768px) {
+    #counselSubmit { max-width: 110px; margin: 0 auto; }
+    #counselSubmit .counsel-form-submit { font-size: 16px; border-radius: 6px; padding: 7px 0; }
 }
-
-/* 초기 상태에서 폼 카테고리 숨김 설정 */
-.form-question2-category-interior,
-.form-question2-category-branding {
-    display: none;
+@media all and (max-width: 450px) {
+    #counselSubmit { max-width: 90px; margin: 0 auto; }
+    #counselSubmit .counsel-form-submit { font-size: 14px; border-radius: 4px; padding: 5px 0; }
 }

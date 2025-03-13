@@ -164,15 +164,6 @@
                 letter-spacing: -0.44px;
             }
             
-            #counselFormSectionInner .counsel-form > ul > li > .form-question3 input:focus,
-            #counselFormSectionInner .counsel-form > ul > li > .form-question3 select:focus,
-            #counselFormSectionInner .counsel-form > ul > li > .form-question3 input.has-value,
-            #counselFormSectionInner .counsel-form > ul > li > .form-question3 select.has-value {
-                border: 2px solid #0057ff !important;
-                color: #0057ff !important;
-                outline: none;
-            }
-            
             #counselFormSectionInner .counsel-form > ul > li > .form-question3 input[name="emailbox2"] {
                 display: none;
             }
@@ -208,18 +199,6 @@
             }
             
             .form-question2 button.active .check-icon-button {
-                display: inline-block;
-            }
-            
-            .error-message {
-                color: #ff3333;
-                font-size: 12px;
-                margin-top: 15px;
-                margin-left: 10px;
-                display: none;
-            }
-            
-            .error-message.show {
                 display: inline-block;
             }
         `;
@@ -740,10 +719,6 @@
             const guideMessage2 = document.createElement('p');
             guideMessage2.className = 'form-selection-guide';
             guideMessage2.textContent = '의뢰하실 서비스를 먼저 골라주세요.';
-            guideMessage2.style.textAlign = 'center';
-            guideMessage2.style.padding = '40px 0';
-            guideMessage2.style.fontSize = '16px';
-            guideMessage2.style.color = '#666';
 
             guideContainer2.appendChild(guideMessage2);
             question2Section.parentNode.insertBefore(guideContainer2, question2Section);
@@ -758,10 +733,6 @@
             const guideMessage3 = document.createElement('p');
             guideMessage3.className = 'form-selection-guide';
             guideMessage3.textContent = '의뢰하실 서비스를 먼저 골라주세요.';
-            guideMessage3.style.textAlign = 'center';
-            guideMessage3.style.padding = '40px 0';
-            guideMessage3.style.fontSize = '16px';
-            guideMessage3.style.color = '#666';
 
             guideContainer3.appendChild(guideMessage3);
             question3Section.parentNode.insertBefore(guideContainer3, question3Section);

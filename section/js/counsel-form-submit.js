@@ -128,9 +128,9 @@ function collectAndSubmitData() {
   const marketingAgreed = document.querySelector('.marketing-agree input').checked ? 
     "마케팅 정보 수신 동의" : "";
   
-  // 파일 관련 정보 (파일 업로드는 별도 처리 필요)
-  const hasFiles = document.querySelector('.file-info').children.length > 0 ? 
-    "있음" : "없음";
+  // 인테리어 서비스 선택한 경우에만 파일 정보 사용
+  const hasFiles = serviceType.includes('인테리어') || serviceType.includes('컨빌 패키지') ? 
+    (document.querySelector('.file-info').children.length > 0 ? "있음" : "없음") : "";
   
   // 콘솔에 수집된 데이터 로깅 (디버깅 용도)
   console.log('수집된 데이터:', {
@@ -268,8 +268,22 @@ function validateForm() {
 
   // 브랜딩 관련 검사 (브랜딩 또는 컨빌 패키지 선택 시)
   if (isBrandingVisible) {
-    // 브랜딩 옵션들은 선택사항이므로 유효성 검사는 필요 없음
-    // 필요하다면 여기에 브랜딩 관련 유효성 검사 추가
+    // 브랜딩 옵션 선택 여부 확인
+    const identityOptions = document.querySelectorAll('.form-question2-element5-value.active');
+    const offlineAdOptions = document.querySelectorAll('.form-question2-element6-value.active');
+    const onlineAdOptions = document.querySelectorAll('.form-question2-element7-value.active');
+    const websiteOptions = document.querySelectorAll('.form-question2-element8-value.active');
+    
+    // 모든 브랜딩 옵션에서 하나도 선택되지 않았는지 확인
+    if (
+      identityOptions.length === 0 && 
+      offlineAdOptions.length === 0 && 
+      onlineAdOptions.length === 0 && 
+      websiteOptions.length === 0
+    ) {
+      showError('.form-question2-category-branding', '브랜딩 옵션을 최소 1개 이상 선택해주세요.');
+      isValid = false;
+    }
   }
 
   // 공통 검사 항목들 (이름, 연락처, 이메일 등)
