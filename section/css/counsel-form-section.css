@@ -91,7 +91,7 @@ body { background: #f7f7f7; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 17px; margin-bottom: 6px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > p { font-size: 14px; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li { font-size: 12px; margin-bottom: 2px; }
-    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > img { width: 100%; }
+    #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > img { height: 100%; }
     #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > ul > li > span { font-size: 8px; margin-top: 4px; }
 }
 @media all and (max-width: 768px) {
