@@ -201,6 +201,40 @@
             .form-question2 button.active .check-icon-button {
                 display: inline-block;
             }
+
+            .loading-spinner {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.7);
+                z-index: 9999;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .spinner {
+                width: 50px;
+                height: 50px;
+                border: 5px solid #f3f3f3;
+                border-top: 5px solid #0057ff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            .loading-text {
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: 500;
+                color: #333;
+            }
         `;
 
         document.head.appendChild(styleElement);
@@ -217,6 +251,20 @@
         setupEtcField();
         setupFormButtons();
         setupFormSectionsVisibility();
+        function addLoadingSpinner() {
+            if (!document.querySelector('.loading-spinner')) {
+                const spinner = document.createElement('div');
+                spinner.className = 'loading-spinner';
+                spinner.innerHTML = `
+                    <div class="spinner-container">
+                        <div class="spinner"></div>
+                        <div class="loading-text">제출 중입니다. 잠시만 기다려주세요...</div>
+                    </div>
+                `;
+                document.body.appendChild(spinner);
+            }
+        }
+        addLoadingSpinner();
     }
 
     // 단위 텍스트 인풋 필드 설정
@@ -280,7 +328,7 @@
 
         const MAX_FILE_SIZE = 10 * 1024 * 1024;
         const MAX_TOTAL_SIZE = 50 * 1024 * 1024;
-        let selectedFiles = [];
+        window.selectedFiles = []; // 전역 변수로 선언
 
         function formatFileSize(bytes) {
             if (bytes < 1024) return bytes + ' B';
@@ -350,7 +398,7 @@
                 fileError.classList.add('show');
             } else {
                 fileError.classList.remove('show');
-                selectedFiles = [...selectedFiles, ...files];
+                window.selectedFiles = [...window.selectedFiles, ...files];
                 renderFileList();
                 updateTotalSize();
             }

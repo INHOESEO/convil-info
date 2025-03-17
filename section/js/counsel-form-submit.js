@@ -1,7 +1,7 @@
 // 폼 데이터 수집 및 제출 코드
 
 // Google Apps Script 웹 앱 URL 설정
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwiL9LfvmQt7ElMCIUy9WsaCqY6TjSqrbMy0tsDoRXPQCw6orqh3GTFn4T8Pv1Mg2HZ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP2_Bmm2EIXI05b5T0MGvNr7Y-g-r9qXQCi5wLl3OB5SQnEQRuIIiXeJQu5DxtBBB_/exec";
 
 // 즉시 실행 함수로 래핑하여 바로 실행
 (function() {
@@ -128,16 +128,22 @@ function collectAndSubmitData() {
   const marketingAgreed = document.querySelector('.marketing-agree input').checked ? 
     "마케팅 정보 수신 동의" : "";
   
-  // 인테리어 서비스 선택한 경우에만 파일 정보 사용
-  const hasFiles = serviceType.includes('인테리어') || serviceType.includes('컨빌 패키지') ? 
-    (document.querySelector('.file-info').children.length > 0 ? "있음" : "없음") : "";
+  // FormData 객체 생성
+  const formDataToSend = new FormData();
   
+  // 파일 정보 확인 및 추가
+  const fileInput = document.querySelector('.form-question2-element4-value.in-custom-upload');
+  const globalSelectedFiles = window.selectedFiles || [];
+  const fileCount = globalSelectedFiles.length;
+  const fileInfoText = fileCount > 0 ? `${fileCount}개 파일 첨부됨` : "파일 없음";
+
   // 콘솔에 수집된 데이터 로깅 (디버깅 용도)
   console.log('수집된 데이터:', {
     serviceType,
     interiorOptions,
     hasPlan,
     sqft,
+    files: fileInfoText,
     name,
     phone: `${phoneBox1}-${phoneBox2}-${phoneBox3}`,
     email: `${emailBox1}@${emailBox2}`,
@@ -147,78 +153,166 @@ function collectAndSubmitData() {
     sourceChannel
   });
   
-  // 데이터 객체 생성
-  const formData = {
-    serviceType,
-    interiorOptions,
-    hasPlan,
-    sqft,
-    placeImg: hasFiles,
-    identityOptions,
-    offlineAdOptions,
-    onlineAdOptions,
-    websiteOptions,
-    name,
-    numberbox1: phoneBox1,
-    numberbox2: phoneBox2,
-    numberbox3: phoneBox3,
-    emailbox1: emailBox1,
-    emailbox2: emailBox2,
-    serviceArea: serviceAreaSelect ? serviceAreaSelect.value : "",
-    servicebox: serviceBusinessType,
-    deadline,
-    sourceChannel: channelSelect ? channelSelect.value : "",
-    etcDetail: channelSelect && channelSelect.value === '기타' ? sourceChannel : "",
-    privacyAgreed,
-    marketingAgreed
-  };
+  // 텍스트 데이터 추가
+  formDataToSend.append('serviceType', serviceType);
+  formDataToSend.append('interiorOptions', interiorOptions);
+  formDataToSend.append('hasPlan', hasPlan);
+  formDataToSend.append('sqft', sqft);
+  formDataToSend.append('identityOptions', identityOptions);
+  formDataToSend.append('offlineAdOptions', offlineAdOptions);
+  formDataToSend.append('onlineAdOptions', onlineAdOptions);
+  formDataToSend.append('websiteOptions', websiteOptions);
+  formDataToSend.append('name', name);
+  formDataToSend.append('numberbox1', phoneBox1);
+  formDataToSend.append('numberbox2', phoneBox2);
+  formDataToSend.append('numberbox3', phoneBox3);
+  formDataToSend.append('emailbox1', emailBox1);
+  formDataToSend.append('emailbox2', emailBox2);
+  formDataToSend.append('serviceArea', serviceAreaSelect ? serviceAreaSelect.value : "");
+  formDataToSend.append('servicebox', serviceBusinessType);
+  formDataToSend.append('deadline', deadline);
+  formDataToSend.append('sourceChannel', channelSelect ? channelSelect.value : "");
+  formDataToSend.append('etcDetail', channelSelect && channelSelect.value === '기타' ? sourceChannel : "");
+  formDataToSend.append('privacyAgreed', privacyAgreed);
+  formDataToSend.append('marketingAgreed', marketingAgreed);
   
-  // 로딩 표시 추가
+  // 파일 처리를 위한 준비
   const submitBtn = document.querySelector('.counsel-form-submit');
   const originalBtnText = submitBtn.value;
   submitBtn.value = "제출 중...";
   submitBtn.disabled = true;
   
+  // 파일 처리 및 폼 제출 로직
+  if (globalSelectedFiles && globalSelectedFiles.length > 0) {
+    console.log("저장된 파일 업로드 시도:", globalSelectedFiles.length + "개 파일");
+    
+    // 총 파일 개수 전송
+    formDataToSend.append('fileCount', globalSelectedFiles.length);
+    
+    // 파일 읽기를 위한 프로미스 배열
+    const fileReadPromises = [];
+    
+    for (let i = 0; i < globalSelectedFiles.length; i++) {
+      const file = globalSelectedFiles[i];
+      console.log(`파일 ${i+1}: ${file.name}, 타입: ${file.type}, 크기: ${file.size} 바이트`);
+      
+      // 파일 메타데이터 먼저 추가
+      formDataToSend.append(`fileName${i}`, file.name);
+      formDataToSend.append(`fileType${i}`, file.type);
+      
+      // 파일 읽기 프로미스 생성
+      const promise = new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const base64 = e.target.result.split(',')[1]; // Base64 데이터 부분만 추출
+          formDataToSend.append(`fileData${i}`, base64);
+          resolve();
+        };
+        
+        reader.onerror = function(e) {
+          console.error(`파일 ${file.name} 읽기 오류:`, e);
+          reject(e);
+        };
+        
+        reader.readAsDataURL(file);
+      });
+      
+      fileReadPromises.push(promise);
+    }
+    
+    // 모든 파일이 읽어지면 폼 제출 진행
+    Promise.all(fileReadPromises)
+      .then(() => {
+        sendFormData(formDataToSend, submitBtn, originalBtnText);
+      })
+      .catch(error => {
+        // 로딩 스피너 숨김
+        const loadingSpinner = document.querySelector('.loading-spinner');
+        if (loadingSpinner) {
+          loadingSpinner.style.display = 'none';
+        }
+        
+        console.error('파일 처리 중 오류 발생:', error);
+        alert('파일 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+        
+        // 버튼 상태 복원
+        submitBtn.value = originalBtnText;
+        submitBtn.disabled = false;
+      });
+  } else {
+    // 파일이 없는 경우 바로 제출
+    sendFormData(formDataToSend, submitBtn, originalBtnText);
+  }
+}
+
+// 폼 데이터 제출 함수
+function sendFormData(formData, submitBtn, originalBtnText) {
+  // 로딩 스피너 표시
+  const loadingSpinner = document.querySelector('.loading-spinner');
+  if (loadingSpinner) {
+    loadingSpinner.style.display = 'flex';
+  }
+  
   // Google Apps Script 웹 앱으로 데이터 전송
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams(formData).toString()
-  })
-  .then(response => {
-    console.log('폼 제출 완료');
-    alert('문의가 성공적으로 접수되었습니다. 감사합니다.');
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', GOOGLE_SCRIPT_URL, true);
+  
+  xhr.onload = function() {
+    // 로딩 스피너 숨김
+    if (loadingSpinner) {
+      loadingSpinner.style.display = 'none';
+    }
     
-    // 폼 초기화
-    document.querySelector('.counsel-form').reset();
-    document.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+    if (xhr.status === 200) {
+      console.log('폼 제출 완료');
+      alert('문의가 성공적으로 접수되었습니다. 감사합니다.');
+      
+      // 폼 초기화
+      document.querySelector('.counsel-form').reset();
+      document.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+      
+      // 파일 정보 초기화
+      const fileInfo = document.querySelector('.file-info');
+      if (fileInfo) fileInfo.innerHTML = '';
+      
+      const totalSize = document.querySelector('.total-size');
+      if (totalSize) totalSize.textContent = '';
+      
+      // 전역 선택 파일 초기화
+      window.selectedFiles = [];
+      
+      // 버튼 상태 복원
+      submitBtn.value = originalBtnText;
+      submitBtn.disabled = false;
+      
+      // 페이지 상단으로 스크롤
+      window.scrollTo(0, 0);
+    } else {
+      console.error('폼 제출 오류:', xhr.responseText);
+      alert('문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      
+      // 버튼 상태 복원
+      submitBtn.value = originalBtnText;
+      submitBtn.disabled = false;
+    }
+  };
+  
+  xhr.onerror = function() {
+    // 로딩 스피너 숨김
+    if (loadingSpinner) {
+      loadingSpinner.style.display = 'none';
+    }
     
-    // 파일 정보 초기화 (파일 정보가 있는 경우)
-    const fileInfo = document.querySelector('.file-info');
-    if (fileInfo) fileInfo.innerHTML = '';
-    
-    const totalSize = document.querySelector('.total-size');
-    if (totalSize) totalSize.textContent = '';
+    console.error('네트워크 오류');
+    alert('네트워크 연결 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도해주세요.');
     
     // 버튼 상태 복원
     submitBtn.value = originalBtnText;
     submitBtn.disabled = false;
-    
-    // 페이지 상단으로 스크롤
-    window.scrollTo(0, 0);
-  })
-  .catch(error => {
-    console.error('폼 제출 오류:', error);
-    alert('문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
-    
-    // 버튼 상태 복원
-    submitBtn.value = originalBtnText;
-    submitBtn.disabled = false;
-  });
+  };
+  
+  xhr.send(formData);
 }
 
 // 유효성 검사 함수 수정
@@ -368,6 +462,7 @@ function validateForm() {
 
   return isValid;
 }
+
 // 오류 메시지 표시 함수
 function showError(selector, message) {
   const container = document.querySelector(selector);
