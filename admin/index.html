@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>컨빌디자인 - 빠른 견적 상담 어드민</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="preload" href='../js/import.js' as="script">
+    <script src='../js/import.js' defer></script>
+    <script src='../admin/js/admin-main.js' defer></script>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='../admin/css/admin-main.css'>
+</head>
+
+<body>
+    <div id="container">
+        <!-- 헤더 섹션 -->
+        <div id="adminHeader">
+            <h1>컨빌디자인 견적 상담 관리자</h1>
+            <div class="admin-search">
+                <input type="text" id="adminSearch" placeholder="이름, 전화번호, 이메일 등으로 검색">
+                <button id="adminSearchButton" class="admin-button">
+                    <i class="fas fa-search"></i> 검색
+                </button>
+                <button id="adminRefreshButton" class="admin-button" style="margin-left: 10px;">
+                    <i class="fas fa-sync-alt"></i> 리스트 새로고침
+                </button>
+            </div>
+        </div>
+
+        <!-- 대시보드 섹션 -->
+        <div id="adminDashboard" class="grid-row">
+            <!-- 대시보드 항목들은 JS에서 동적으로 생성됩니다 -->
+        </div>
+
+        <!-- 상담 데이터 테이블 -->
+        <div id="adminCounselTable">
+            <table>
+                <tr>
+                    <th>No.</th>
+                    <th>상담 제출 시간</th>
+                    <th>의뢰하실 서비스</th>
+                    <th>인테리어 옵션1<br>기본</th>
+                    <th>인테리어 옵션2<br>도면 보유 여부</th>
+                    <th>인테리어 옵션3<br>공간 평수 (평)</th>
+                    <th>인테리어 옵션4<br>첨부파일 링크</th>
+                    <th>브랜딩 옵션1<br>아이덴티티</th>
+                    <th>브랜딩 옵션2<br>오프라인 광고디자인</th>
+                    <th>브랜딩 옵션3<br>온라인 광고디자인</th>
+                    <th>브랜딩 옵션4<br>홈페이지</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>서비스 지역</th>
+                    <th>서비스 업종</th>
+                    <th>희망 마감기한</th>
+                    <th>유입 경로</th>
+                    <th>개인정보 처리방침 동의 여부</th>
+                    <th>마케팅 정보 수신 동의 여부</th>
+                    <th>처리 상태</th>
+                </tr>
+                <!-- 데이터 행은 JS에서 동적으로 생성됩니다 -->
+            </table>
+        </div>
+    </div>
+</body>
+
+<!-- lastRow + 1, // A열: No.
+formattedTime, // B열: Submit Time
+serviceType, // C열: 의뢰하실 서비스
+interiorOptions, // D열: 원하시는 서비스 (인테리어 > 기본)
+hasPlan, // E열: 원하시는 서비스 (인테리어 > 도면 보유 여부)
+spaceSize, // F열: 원하시는 서비스 (인테리어 > 공간 평수)
+fileAttachmentInfo, // G열: 원하시는 서비스 (인테리어 > 현장 사진 첨부)
+identityOptions, // H열: 원하시는 서비스 (브랜딩 > 아이덴티티)
+offlineAdOptions, // I열: 원하시는 서비스 (브랜딩 > 오프라인 광고디자인)
+onlineAdOptions, // J열: 원하시는 서비스 (브랜딩 > 온라인 광고디자인)
+websiteOptions, // K열: 원하시는 서비스 (브랜딩 > 홈페이지)
+name, // L열: 문의자 정보 (이름)
+phone, // M열: 문의자 정보 (연락처 > 전화번호)
+email, // N열: 문의자 정보 (연락처 > 이메일)
+serviceArea, // O열: 문의자 정보 (서비스 정보 > 서비스 지역)
+serviceField, // P열: 문의자 정보 (서비스 정보 > 서비스 업종)
+deadline, // Q열: 문의자 정보 (희망 마감기한)
+sourceChannel, // R열: 문의자 정보 (유입경로)
+privacyAgreed, // S열: 개인정보 처리방침 동의 여부
+marketingAgreed  // T열: 마케팅 정보 수신 동의 여부 -->

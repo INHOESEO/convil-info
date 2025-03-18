@@ -1,7 +1,7 @@
 // 폼 데이터 수집 및 제출 코드
 
 // Google Apps Script 웹 앱 URL 설정
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznEVmZnXkm24qN0HISHIVmiq9UwL87APHk0aqUFnwsD8s6f4pMTeOq_FkBbz5Rrkwx/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUs0kT6UKVFy8yBPhFQEpgDTalSYyPsvgi_FZ-USuw5pUCZ-fZoAhwmWZU2VkuwUcJ/exec";
 
 // 즉시 실행 함수로 래핑하여 바로 실행
 (function() {

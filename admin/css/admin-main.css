@@ -1,0 +1,21 @@
+#adminHeader { padding: 10px 0; }
+#adminHeader h1 { font-size: 30px; font-weight: 800; padding: 10px 0; }
+#adminHeader .admin-search { padding: 20px 0; text-align: right; }
+#adminHeader .admin-search #adminSearch { width: 30%; border: 1px solid #dddddd; padding: 10px 5px; }
+#adminHeader .admin-search #adminSearchButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+#adminHeader .admin-search #adminRefreshButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+
+#adminDashboard .grid20 { display: flex; flex-direction: column; align-items: center; padding: 20px; }
+#adminDashboard .grid20 .dashboard-item > h3 { font-size: 15px; font-weight: 400; }
+#adminDashboard .grid20 .dashboard-item > p { font-size: 30px; font-weight: 800; color: #0057ff; text-align: center; margin-top: 10px; }
+
+#adminCounselTable { width: 100%; overflow-x: auto; white-space: nowrap; padding-top: 30px; }
+#adminCounselTable table { width: max-content; border-collapse: collapse; }
+#adminCounselTable table th { font-size: 11px; font-weight: 800; width: 120px; text-align: center; padding: 7px 5px; border: 1px solid #ddd; line-height: 1.6; }
+#adminCounselTable table td { font-size: 11px; font-weight: 400; width: 120px; text-align: center; padding: 7px 5px; border: 1px solid #ddd; }
+#adminCounselTable::-webkit-scrollbar { height: 8px; }
+#adminCounselTable::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
+#adminCounselTable::-webkit-scrollbar-track { background: #f1f1f1; }
+
+#adminCounselTable table th:first-child { width: 50px; }
+#adminCounselTable table td:first-child { width: 50px; }
