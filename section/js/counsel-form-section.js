@@ -235,6 +235,11 @@
                 font-weight: 500;
                 color: #333;
             }
+            .spinner-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         `;
 
         document.head.appendChild(styleElement);

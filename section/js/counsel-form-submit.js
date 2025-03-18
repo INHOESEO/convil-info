@@ -1,7 +1,7 @@
 // 폼 데이터 수집 및 제출 코드
 
 // Google Apps Script 웹 앱 URL 설정
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP2_Bmm2EIXI05b5T0MGvNr7Y-g-r9qXQCi5wLl3OB5SQnEQRuIIiXeJQu5DxtBBB_/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznEVmZnXkm24qN0HISHIVmiq9UwL87APHk0aqUFnwsD8s6f4pMTeOq_FkBbz5Rrkwx/exec";
 
 // 즉시 실행 함수로 래핑하여 바로 실행
 (function() {
@@ -182,7 +182,7 @@ function collectAndSubmitData() {
   submitBtn.value = "제출 중...";
   submitBtn.disabled = true;
   
-  // 파일 처리 및 폼 제출 로직
+  // 파일 처리 및 폼 제출 로직 수정
   if (globalSelectedFiles && globalSelectedFiles.length > 0) {
     console.log("저장된 파일 업로드 시도:", globalSelectedFiles.length + "개 파일");
     
@@ -205,9 +205,15 @@ function collectAndSubmitData() {
         const reader = new FileReader();
         
         reader.onload = function(e) {
-          const base64 = e.target.result.split(',')[1]; // Base64 데이터 부분만 추출
-          formDataToSend.append(`fileData${i}`, base64);
-          resolve();
+          try {
+            const base64 = e.target.result.split(',')[1]; // Base64 데이터 부분만 추출
+            formDataToSend.append(`fileData${i}`, base64);
+            console.log(`파일 ${i+1} 데이터 추가 완료`);
+            resolve();
+          } catch (error) {
+            console.error(`파일 ${file.name} 데이터 처리 오류:`, error);
+            reject(error);
+          }
         };
         
         reader.onerror = function(e) {
@@ -224,6 +230,7 @@ function collectAndSubmitData() {
     // 모든 파일이 읽어지면 폼 제출 진행
     Promise.all(fileReadPromises)
       .then(() => {
+        console.log("모든 파일 처리 완료, 폼 제출 시작");
         sendFormData(formDataToSend, submitBtn, originalBtnText);
       })
       .catch(error => {
@@ -242,17 +249,20 @@ function collectAndSubmitData() {
       });
   } else {
     // 파일이 없는 경우 바로 제출
+    console.log("첨부된 파일 없음, 폼 제출 시작");
     sendFormData(formDataToSend, submitBtn, originalBtnText);
   }
 }
 
-// 폼 데이터 제출 함수
+// 폼 데이터 제출 함수 수정
 function sendFormData(formData, submitBtn, originalBtnText) {
   // 로딩 스피너 표시
   const loadingSpinner = document.querySelector('.loading-spinner');
   if (loadingSpinner) {
     loadingSpinner.style.display = 'flex';
   }
+  
+  console.log("서버로 데이터 전송 시작");
   
   // Google Apps Script 웹 앱으로 데이터 전송
   const xhr = new XMLHttpRequest();
@@ -265,31 +275,53 @@ function sendFormData(formData, submitBtn, originalBtnText) {
     }
     
     if (xhr.status === 200) {
-      console.log('폼 제출 완료');
-      alert('문의가 성공적으로 접수되었습니다. 감사합니다.');
+      console.log('폼 제출 완료, 서버 응답:', xhr.responseText);
       
-      // 폼 초기화
-      document.querySelector('.counsel-form').reset();
-      document.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
-      
-      // 파일 정보 초기화
-      const fileInfo = document.querySelector('.file-info');
-      if (fileInfo) fileInfo.innerHTML = '';
-      
-      const totalSize = document.querySelector('.total-size');
-      if (totalSize) totalSize.textContent = '';
-      
-      // 전역 선택 파일 초기화
-      window.selectedFiles = [];
-      
-      // 버튼 상태 복원
-      submitBtn.value = originalBtnText;
-      submitBtn.disabled = false;
-      
-      // 페이지 상단으로 스크롤
-      window.scrollTo(0, 0);
+      try {
+        // 서버 응답 파싱
+        const response = JSON.parse(xhr.responseText);
+        
+        if (response.result === 'success') {
+          alert('문의가 성공적으로 접수되었습니다. 감사합니다.');
+          
+          // 폼 초기화
+          document.querySelector('.counsel-form').reset();
+          document.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+          
+          // 파일 정보 초기화
+          const fileInfo = document.querySelector('.file-info');
+          if (fileInfo) fileInfo.innerHTML = '';
+          
+          const totalSize = document.querySelector('.total-size');
+          if (totalSize) totalSize.textContent = '';
+          
+          // 전역 선택 파일 초기화
+          window.selectedFiles = [];
+          
+          // 버튼 상태 복원
+          submitBtn.value = originalBtnText;
+          submitBtn.disabled = false;
+          
+          // 페이지 상단으로 스크롤
+          window.scrollTo(0, 0);
+        } else {
+          console.error('폼 제출 오류:', response.message);
+          alert('문의 접수 중 오류가 발생했습니다: ' + response.message);
+          
+          // 버튼 상태 복원
+          submitBtn.value = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      } catch (e) {
+        console.error('서버 응답 파싱 오류:', e);
+        alert('서버 응답을 처리하는 중 오류가 발생했습니다. 다시 시도해주세요.');
+        
+        // 버튼 상태 복원
+        submitBtn.value = originalBtnText;
+        submitBtn.disabled = false;
+      }
     } else {
-      console.error('폼 제출 오류:', xhr.responseText);
+      console.error('폼 제출 HTTP 오류:', xhr.status, xhr.responseText);
       alert('문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
       
       // 버튼 상태 복원
@@ -298,13 +330,13 @@ function sendFormData(formData, submitBtn, originalBtnText) {
     }
   };
   
-  xhr.onerror = function() {
+  xhr.onerror = function(e) {
     // 로딩 스피너 숨김
     if (loadingSpinner) {
       loadingSpinner.style.display = 'none';
     }
     
-    console.error('네트워크 오류');
+    console.error('네트워크 오류:', e);
     alert('네트워크 연결 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도해주세요.');
     
     // 버튼 상태 복원
@@ -312,7 +344,11 @@ function sendFormData(formData, submitBtn, originalBtnText) {
     submitBtn.disabled = false;
   };
   
+  // 추가 디버깅 - 요청 전 폼 데이터 로깅
+  console.log("전송할 파일 개수:", formData.get('fileCount'));
+  
   xhr.send(formData);
+  console.log("폼 데이터 전송 완료");
 }
 
 // 유효성 검사 함수 수정
