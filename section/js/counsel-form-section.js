@@ -811,7 +811,7 @@
             } else if (serviceType === '브랜딩') {
                 interiorCategory.style.display = 'none';
                 brandingCategory.style.display = 'block';
-            } else if (serviceType === '컨빌 패키지') {
+            } else if (serviceType === '인테리어+브랜딩') {
                 interiorCategory.style.display = 'block';
                 brandingCategory.style.display = 'block';
             }
@@ -846,7 +846,7 @@
                 } else if (serviceType === '브랜딩') {
                     interiorCategory.style.display = 'none';
                     brandingCategory.style.display = 'block';
-                } else if (serviceType === '컨빌 패키지') {
+                } else if (serviceType === '인테리어+브랜딩') {
                     interiorCategory.style.display = 'block';
                     brandingCategory.style.display = 'block';
                 }
