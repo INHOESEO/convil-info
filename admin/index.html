@@ -15,20 +15,21 @@
 </head>
 
 <body>
-    <div id="container">
-        <!-- 헤더 섹션 -->
-        <div id="adminHeader">
+
+    <!-- 헤더 섹션 -->
+    <div id="adminHeader">
+        <div id="adminHeaderInner">
             <h1>컨빌디자인 견적 상담 관리자</h1>
             <div class="admin-search">
                 <input type="text" id="adminSearch" placeholder="이름, 전화번호, 이메일 등으로 검색">
-                <button id="adminSearchButton" class="admin-button">
-                    <i class="fas fa-search"></i> 검색
-                </button>
-                <button id="adminRefreshButton" class="admin-button" style="margin-left: 10px;">
-                    <i class="fas fa-sync-alt"></i> 리스트 새로고침
-                </button>
+                <button id="adminSearchButton" class="admin-button">검색</button>
+                <button id="adminRefreshButton" class="admin-button">리스트 새로고침</button>
             </div>
         </div>
+    </div>
+
+    <div id="container">
+
 
         <!-- 대시보드 섹션 -->
         <div id="adminDashboard" class="grid-row">
@@ -39,6 +40,7 @@
         <div id="adminCounselTable">
             <table>
                 <tr>
+                    <th>처리 상태</th>
                     <th>No.</th>
                     <th>상담 제출 시간</th>
                     <th>의뢰하실 서비스</th>
@@ -59,7 +61,6 @@
                     <th>유입 경로</th>
                     <th>개인정보 처리방침 동의 여부</th>
                     <th>마케팅 정보 수신 동의 여부</th>
-                    <th>처리 상태</th>
                 </tr>
                 <!-- 데이터 행은 JS에서 동적으로 생성됩니다 -->
             </table>

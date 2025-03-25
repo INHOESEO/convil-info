@@ -1,13 +1,42 @@
-#adminHeader { padding: 10px 0; }
-#adminHeader h1 { font-size: 30px; font-weight: 800; padding: 10px 0; }
-#adminHeader .admin-search { padding: 20px 0; text-align: right; }
-#adminHeader .admin-search #adminSearch { width: 30%; border: 1px solid #dddddd; padding: 10px 5px; }
-#adminHeader .admin-search #adminSearchButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
-#adminHeader .admin-search #adminRefreshButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+#adminHeader { position: fixed; top: 0; width: 100%; background: #fff; border-bottom: 1px solid #ddd; z-index: 10; }
 
+#adminHeader #adminHeaderInner { max-width: 1400px; margin: 0 auto; padding: 10px; }
+#adminHeader #adminHeaderInner h1 { font-size: 25px; font-weight: 600; padding: 10px 0; }
+#adminHeader #adminHeaderInner .admin-search { padding: 10px 0px; text-align: right; }
+#adminHeader #adminHeaderInner .admin-search #adminSearch { width: 30%; border: 1px solid #dddddd; padding: 10px 5px; }
+#adminHeader #adminHeaderInner .admin-search #adminSearchButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+#adminHeader #adminHeaderInner .admin-search #adminRefreshButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+#adminHeader #adminHeaderInner #adminLogoutButton { background: #fff; border: 1px solid #dddddd; padding: 10px; float: right;}
+#adminHeader #adminHeaderInner #batchCancelButton { background: #fff; border: 1px solid #dddddd; padding: 10px; }
+@media all and (max-width: 1400px) {
+    #adminHeader #adminHeaderInner { max-width: 1010px; }
+}
+@media all and (max-width: 1024px) {
+    #adminHeader #adminHeaderInner { max-width: 749px; }
+    #adminHeader #adminHeaderInner h1 { font-size: 20px; }
+    #adminHeader #adminHeaderInner .admin-search #adminSearch { width: 35%; }
+}
+@media all and (max-width: 768px) {
+    #adminHeader #adminHeaderInner { max-width: 614px; }
+}
+@media (max-width: 450px) {
+    #adminHeader #adminHeaderInner { max-width: 362px; }
+}
+#adminDashboard { padding-top: 200px; }
 #adminDashboard .grid20 { display: flex; flex-direction: column; align-items: center; padding: 20px; }
 #adminDashboard .grid20 .dashboard-item > h3 { font-size: 15px; font-weight: 400; }
 #adminDashboard .grid20 .dashboard-item > p { font-size: 30px; font-weight: 800; color: #0057ff; text-align: center; margin-top: 10px; }
+/* #adminDashboard .grid20 .dashboard-item #newCounsels { color: #0057ff; }
+#adminDashboard .grid20 .dashboard-item #inCoordinationCounsels { color: rgb(47, 164, 57); }
+#adminDashboard .grid20 .dashboard-item #inProgressCounsels { color: rgb(235, 146, 44); }
+#adminDashboard .grid20 .dashboard-item #inRevisionCounsels { color: rgb(237, 233, 41); }
+#adminDashboard .grid20 .dashboard-item #completedCounsels { color: rgb(157, 48, 212); }
+#adminDashboard .grid20 .dashboard-item #canceledCounsels { color: rgb(228, 81, 32); } */
+
+@media all and (max-width: 1024px) {
+    #adminDashboard { flex-wrap: wrap; gap: 5px; }
+    #adminDashboard .grid20 .dashboard-item > h3 { font-size: 10px; }
+}
 
 #adminCounselTable { width: 100%; overflow-x: auto; white-space: nowrap; padding-top: 30px; }
 #adminCounselTable table { width: max-content; border-collapse: collapse; }
@@ -19,3 +48,22 @@
 
 #adminCounselTable table th:first-child { width: 50px; }
 #adminCounselTable table td:first-child { width: 50px; }
+
+#adminCounselTable table tr .counsel-status p { font-weight: 800; }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="처리접수중"] { color: #0057ff; }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="상담조율중"] { color: rgb(47, 164, 57); }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="용역수행중"] { color: rgb(235, 146, 44); }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="수정보완중"] { color: rgb(237, 233, 41); }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="용역완료"] { color: rgb(157, 48, 212); }
+#adminCounselTable table tr .counsel-status .counsel-status-value[data-status="취소완료"] { color: rgb(228, 81, 32); }
+#adminCounselTable table tr .counsel-status .status-buttons button { margin-top: 10px; background: #fff; border: 1px solid #ddd; padding: 5px; font-size: 8px; }
+#adminCounselTable table tr .counsel-status .status-buttons .status-canceled-message { margin-top: 10px; color: #888; font-size: 8px; font-weight: 400; }
+
+@media all and (max-width: 1024px) {
+    #adminCounselTable table th { width: 50px; }
+    #adminCounselTable table td { width: 50px; }
+    #adminCounselTable table th:first-child { width: 30px; }
+    #adminCounselTable table td:first-child { width: 30px; }
+}
+
+#adminLoader .loader-overlay .loader-content p { text-align: center; margin-top: 30px; }

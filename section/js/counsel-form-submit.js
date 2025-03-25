@@ -1,7 +1,7 @@
 // 폼 데이터 수집 및 제출 코드
 
 // Google Apps Script 웹 앱 URL 설정
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUs0kT6UKVFy8yBPhFQEpgDTalSYyPsvgi_FZ-USuw5pUCZ-fZoAhwmWZU2VkuwUcJ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzthfv3hP8P6GG0Ji9VR7mqHlmf80TcrFXYALVbtzW_065Ct8ofqTERq7oul3ACAfxm/exec";
 
 // 즉시 실행 함수로 래핑하여 바로 실행
 (function() {
@@ -128,6 +128,9 @@ function collectAndSubmitData() {
   const marketingAgreed = document.querySelector('.marketing-agree input').checked ? 
     "마케팅 정보 수신 동의" : "";
   
+  // 처리 상태 (U열) - 기본값 "처리접수중"
+  const processingStatus = "처리접수중";
+  
   // FormData 객체 생성
   const formDataToSend = new FormData();
   
@@ -150,7 +153,8 @@ function collectAndSubmitData() {
     serviceArea,
     serviceBusinessType,
     deadline,
-    sourceChannel
+    sourceChannel,
+    processingStatus  // 추가된 처리 상태
   });
   
   // 텍스트 데이터 추가
@@ -175,6 +179,7 @@ function collectAndSubmitData() {
   formDataToSend.append('etcDetail', channelSelect && channelSelect.value === '기타' ? sourceChannel : "");
   formDataToSend.append('privacyAgreed', privacyAgreed);
   formDataToSend.append('marketingAgreed', marketingAgreed);
+  formDataToSend.append('processingStatus', processingStatus); 
   
   // 파일 처리를 위한 준비
   const submitBtn = document.querySelector('.counsel-form-submit');
