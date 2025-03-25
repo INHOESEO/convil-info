@@ -759,7 +759,6 @@
         const brandingCategory = document.querySelector('.form-question2-category-branding');
 
         if (!serviceButtons.length || !question2Section || !question3Section || !question4Section || !interiorCategory || !brandingCategory) {
-            console.log('필요한 폼 섹션 요소를 찾을 수 없습니다');
             return;
         }
 
