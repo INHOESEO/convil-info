@@ -1,17 +1,18 @@
+#bannerContainer { max-width: 1400px; margin: 0 auto; }
 @media all and (max-width: 1400px) {
-    #container.main-container { max-width: 1010px; }
+    #bannerContainer { max-width: 1010px; }
 }
 @media all and (max-width: 1024px) {
-    #container.main-container { max-width: 749px; }
+    #bannerContainer { max-width: 749px; }
 }
 @media all and (max-width: 768px) {
-    #container.main-container { max-width: 614px; }
+    #bannerContainer { max-width: 614px; }
 }
 @media all and (max-width: 450px) {
-    #container.main-container { max-width: 362px; }
+    #bannerContainer { max-width: 362px; }
 }
 @media all and (max-width: 340px) {
-    #container.main-container { max-width: 280px; }
+    #bannerContainer { max-width: 280px; }
 }
 
-#mainWhyusSection { position: absolute; left: 0; right: 0; width: 100%; height: 1100px; background: #1b1a1e; } 
+#mainWhyusSection { width: 100%; height: 1100px; background: #1b1a1e; } 
