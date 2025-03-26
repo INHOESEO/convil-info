@@ -14,7 +14,7 @@
 
 #mainWhyusSectionInner .whyus-section-container .whyus-section-right { width: 35.38%; overflow: hidden; position: relative; height: 100%; margin: 0; padding: 0; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-right::before,
-#mainWhyusSectionInner .whyus-section-container .whyus-section-right::after { content: ''; position: absolute;  left: 0; right: 0; height: 100px; pointer-events: none; z-index: 10; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-right::after { content: ''; position: absolute;  left: 0; right: 0; height: 100px; pointer-events: none; z-index: 1; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-right::before { top: 0; background: linear-gradient(to bottom, rgba(27, 26, 30, 1) 0%, rgba(27, 26, 30, 0) 100%); }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-right::after { bottom: 0; background: linear-gradient(to top, rgba(27, 26, 30, 1) 0%, rgba(27, 26, 30, 0) 100%); }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-right > ul { display: flex; flex-direction: column; gap: 21px; }

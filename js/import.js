@@ -20,6 +20,10 @@ const resourceMap = {
         html: '../section/main/main-whyus-section.html',
         css: ['../section/css/main-whyus-section.css']
     },
+    'mainServiceSection': { 
+        html: '../section/main/main-service-section.html',
+        css: ['../section/css/main-service-section.css']
+    },
     'mainThreedSection': { 
         html: '../section/main/main-threed-section.html',
         css: ['../section/css/main-threed-section.css']
@@ -223,6 +227,7 @@ async function initLayout() {
         const sectionPromises = [
             'mainBannerSection',
             'mainWhyusSection',
+            'mainServiceSection',
             'mainThreedSection',
             'counselFormSection'
         ]

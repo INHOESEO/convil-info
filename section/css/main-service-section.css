@@ -1,0 +1,46 @@
+#mainServiceSectionInner .service-section-header > p { font-size: 30px; font-weight: 700; letter-spacing: -0.9px; margin-bottom: 22px; }
+#mainServiceSectionInner .service-section-header > div { display: flex; justify-content: space-between; align-items: center; }
+#mainServiceSectionInner .service-section-header > div > h3 { font-size: 50px; font-weight: 600; letter-spacing: -1.5px; line-height: 1.54; }
+#mainServiceSectionInner .service-section-header > div .service-type-change { display: flex; align-items: center; width: 49.78%; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch { position: relative; width: 100%; border-radius: 30px; background-color: #E3E3E3; overflow: hidden; cursor: pointer; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-input { display: none; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { display: flex; width: 100%; height: 100%; position: relative; cursor: pointer; font-size: 31px; font-weight: 700; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-interior, 
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-branding { padding: 12px 0 13px; flex: 1; display: flex; align-items: center; justify-content: center; z-index: 1; transition: color 0.3s ease; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-slider { position: absolute; top: 0; left: 0; width: 50%; height: 100%; border-radius: 30px; background-color: #000; transition: transform 0.3s ease; }
+/* 기본 상태 (인테리어) */
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-interior { color: #fff; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-branding { color: #737373; }
+/* 체크된 상태 (브랜딩) */
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-input:checked + .toggle-label .toggle-slider { transform: translateX(calc(100% + 3px)); }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-input:checked + .toggle-label .toggle-interior { color: #737373; }
+#mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-input:checked + .toggle-label .toggle-branding { color: #fff; }
+
+#mainServiceSectionInner .service-section-content .interior-service-content,
+#mainServiceSectionInner .service-section-content .branding-service-content { display: flex; justify-content: space-between; padding-top: 66px; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { background-image:url('../../source/svg/service-list-background.svg'); background-repeat:no-repeat; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info { width: 50%; }
+
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { display: flex; flex-direction: column; justify-content: space-between; padding: 69px 56px; gap: 27px; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li { padding: 14px 0 14px 29px; border-radius: 80px; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li.active,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li.active { background: #fff; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 41px; font-weight: 700; letter-spacing: -1.23px; color: #fff; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li.active > p,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li.active > p { color: #000; }
+
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li { display: flex; flex-direction: column; align-items: flex-end; position: relative; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .interior-service-element,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .branding-service-element { position: relative; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { position: absolute; top: 43px; right: 43px; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { position: absolute; bottom: 31px; right: 27px; background: #CCF500; padding: 21px 25px; font-size: 25px; font-weight: 600; line-height: 1.52; letter-spacing: -0.75px; border-radius: 32px; display: inline-block; }
