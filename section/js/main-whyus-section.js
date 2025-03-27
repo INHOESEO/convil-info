@@ -117,7 +117,7 @@ function initVerticalLoop() {
     console.log(`Found ${totalItems} loop items with total height ${totalHeight}px`);
     
     // 애니메이션 속도 (밀리초) - 높이에 비례하여 설정
-    const animationDuration = totalHeight * 30; // 픽셀당 30ms (속도 조절 가능)
+    const animationDuration = totalHeight * 10; // 픽셀당 30ms (속도 조절 가능)
     
     let isRunning = true;
     let currentPosition = 0;
