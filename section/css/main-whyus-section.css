@@ -87,7 +87,7 @@
     /* 소형 모바일 디바이스 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 22px; }
     
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 350px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 300px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li {  gap: 10px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 40px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 16px; }
