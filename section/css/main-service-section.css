@@ -19,22 +19,26 @@
 #mainServiceSectionInner .service-section-content .interior-service-content,
 #mainServiceSectionInner .service-section-content .branding-service-content { display: flex; justify-content: space-between; padding-top: 66px; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { position: relative; background-size: 100%; background-image:url('../../source/svg/service-list-background.svg'); background-repeat:no-repeat; }
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { position: relative; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info { width: 50%; }
 
-#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { display: flex; flex-direction: column; justify-content: space-between; padding: 69px 56px; gap: 27px; }
-#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li { padding: 14px 0 14px 29px; border-radius: 80px; }
-#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li.active,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li.active { background: #fff; }
-#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 41px; font-weight: 700; letter-spacing: -1.23px; color: #fff; }
-#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li.active > p,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li.active > p { color: #000; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list .service-list-bg,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list .service-list-bg { width: 100%; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div { position: absolute; top: 50%; left: 7%; transform: translate(0 ,-50%); }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul { display: flex; flex-direction: column; justify-content: space-between; gap: 33px;}
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 14px 0 14px 29px; border-radius: 80px; width: 100%; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li.active,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li.active { background: #fff; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 41px; font-weight: 700; letter-spacing: -1.23px; color: #fff; }
+#mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li.active > p,
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li.active > p { color: #000; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > button,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > button  { position: absolute; bottom: 3px; right: 3px; padding: 10px; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > button:hover,
@@ -65,18 +69,25 @@
     #mainServiceSectionInner .service-section-header > p { font-size: 28px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 45px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 28px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 38px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 23px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 38px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 23px; }
 }
 
-@media screen and (max-width: 1366px) {
+@media screen and (max-width: 1400px) {
     #mainServiceSectionInner .service-section-header > p { font-size: 26px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 40px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 25px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { padding: 60px 45px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 34px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { width: 85%; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 21px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul { gap: 25px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 34px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { width: 77%; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 21px; }
+
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 30px; }
 }
 
@@ -84,23 +95,43 @@
     #mainServiceSectionInner .service-section-header > div { flex-direction: column; align-items: flex-start; gap: 20px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change { width: 100%; }
     #mainServiceSectionInner .service-section-content .interior-service-content, #mainServiceSectionInner .service-section-content .branding-service-content { flex-direction: column; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info { width: 100%; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { margin-bottom: 40px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .interior-service-element, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .branding-service-element { width: 100%; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { width: 90%; right: 5%; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info,
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info { width: 100%; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > button, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > button { display: none; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > button, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > button { display: none; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { margin-bottom: 40px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .interior-service-element, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .branding-service-element { width: 100%; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { right: 5%; }
+    
 }
 
 @media screen and (max-width: 768px) {
     #mainServiceSectionInner .service-section-header > p { font-size: 24px; margin-bottom: 15px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 36px; line-height: 1.4; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 22px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content, #mainServiceSectionInner .service-section-content .branding-service-content { padding-top: 40px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { padding: 50px 35px; gap: 20px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li { padding: 10px 0 10px 20px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 30px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 30px; right: 30px; width: 50px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 15px 20px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 19px; }
+    #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-interior, 
+    #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-branding { padding: 7px 0; }
+    #mainServiceSectionInner .service-section-content .interior-service-content, 
+    #mainServiceSectionInner .service-section-content .branding-service-content { padding-top: 40px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { margin-bottom: 20px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li,
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 10px 0 10px 20px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 27px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 30px; right: 30px; width: 50px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 15px 20px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 19px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 20px; }
 }
 
@@ -108,22 +139,32 @@
     #mainServiceSectionInner .service-section-header > p { font-size: 22px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 30px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 18px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { padding: 40px 25px; gap: 15px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li { padding: 8px 0 8px 15px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 24px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 20px; right: 20px; width: 40px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 12px 15px; width: 95%; right: 2.5%; bottom: 15px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 16px; line-height: 1.4; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul { gap: 17px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 8px 0 8px 15px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p,
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 20px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 20px; right: 20px; width: 40px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p,
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 6px 20px; right: 2.5%; bottom: 15px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 16px; line-height: 1.4; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 10px; flex-wrap: wrap; justify-content: center; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > button, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > button, #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > button, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > button { transform: scale(0.85); }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > button, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > button, 
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > button, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > button { transform: scale(0.85); }
 }
 
 @media screen and (max-width: 360px) {
     #mainServiceSectionInner .service-section-header > p { font-size: 20px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 26px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 16px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul { padding: 30px 20px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > ul > li > p { font-size: 20px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 15px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 20px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 15px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 8px; }
 }

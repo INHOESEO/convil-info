@@ -43,6 +43,13 @@ img {
     margin: 0 auto;
 }
 
+@media all and (max-width: 1400px) {
+    #container { max-width: 95%; }
+}
+@media all and (max-width: 1024px) {
+    #container { max-width: 90%; }
+}
+
 /* 섹션 */
 .section-header { 
     width: 100%;
@@ -113,4 +120,11 @@ img {
 
 .grid100 {
     width: 100%;
+}
+
+.web-br { display: block; }
+.mob-br { display: none; }
+@media all and (max-width: 1024px) {
+    .mob-br { display: block; }
+    .web-br { display: none; }
 }
