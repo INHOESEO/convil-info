@@ -17,7 +17,7 @@
 #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-input:checked + .toggle-label .toggle-branding { color: #fff; }
 
 #mainServiceSectionInner .service-section-content .interior-service-content,
-#mainServiceSectionInner .service-section-content .branding-service-content { display: flex; justify-content: space-between; padding-top: 66px; }
+#mainServiceSectionInner .service-section-content .branding-service-content { display: flex; justify-content: space-between; padding: 60px 0;}
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { position: relative; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list,
@@ -96,7 +96,8 @@
 @media screen and (max-width: 1024px) {
     #mainServiceSectionInner .service-section-header > div { flex-direction: column; align-items: flex-start; gap: 20px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change { width: 100%; }
-    #mainServiceSectionInner .service-section-content .interior-service-content, #mainServiceSectionInner .service-section-content .branding-service-content { flex-direction: column; }
+    #mainServiceSectionInner .service-section-content .interior-service-content, 
+    #mainServiceSectionInner .service-section-content .branding-service-content { flex-direction: column; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info,
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list, 
