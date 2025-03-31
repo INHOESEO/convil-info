@@ -3,7 +3,7 @@
  * 인테리어/브랜딩 서비스 토글 및 슬라이드 기능
  */
 
-// 전역 인터벌 관리 변수 추가
+// 전역 인터벌 관리 변수
 let interiorSlideInterval = null;
 let brandingSlideInterval = null;
 
@@ -22,52 +22,29 @@ function initServiceToggle() {
     // 초기 상태 설정 (인테리어 활성화)
     interiorContent.style.display = 'flex';
     interiorContent.style.opacity = '1';
-    interiorContent.style.transform = 'translateY(0)';
     brandingContent.style.display = 'none';
     brandingContent.style.opacity = '0';
-    brandingContent.style.transform = 'translateY(10px)';
     
     // 전환 애니메이션 적용
-    interiorContent.style.transition = 'opacity 0.5s ease-in-out, transform 0.4s ease-in-out';
-    brandingContent.style.transition = 'opacity 0.5s ease-in-out, transform 0.4s ease-in-out';
-    
-    // 서비스 상태 초기화 함수
-    function clearServiceState() {
-        // 인테리어 리스트 항목 초기화
-        document.querySelectorAll('.interior-service-list ul > li').forEach(item => {
-            item.classList.remove('active');
-        });
-        
-        // 브랜딩 리스트 항목 초기화
-        document.querySelectorAll('.branding-service-list ul > li').forEach(item => {
-            item.classList.remove('active');
-        });
-        
-        // 인테리어 정보 항목 초기화
-        document.querySelectorAll('.interior-service-info > ul > li').forEach(item => {
-            item.style.opacity = '0';
-            item.style.display = 'none';
-        });
-        
-        // 브랜딩 정보 항목 초기화
-        document.querySelectorAll('.branding-service-info > ul > li').forEach(item => {
-            item.style.opacity = '0';
-            item.style.display = 'none';
-        });
-    }
+    interiorContent.style.transition = 'opacity 0.5s ease';
+    brandingContent.style.transition = 'opacity 0.5s ease';
     
     // 전환 이벤트 처리
     toggleInput.addEventListener('change', function() {
-        // 먼저 모든 상태 초기화
-        clearServiceState();
-
-        // 모든 자동 슬라이드 중지
-        clearAllAutoSlides();
-        
         if (this.checked) {
             // 브랜딩으로 전환 (페이드 효과 적용)
             interiorContent.style.opacity = '0';
-            interiorContent.style.transform = 'translateY(10px)';
+            
+            // 모든 인테리어 항목 비활성화
+            document.querySelectorAll('.interior-service-list ul > li').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 이전 슬라이드 중지
+            if (interiorSlideInterval) {
+                clearInterval(interiorSlideInterval);
+                interiorSlideInterval = null;
+            }
             
             setTimeout(() => {
                 interiorContent.style.display = 'none';
@@ -77,15 +54,24 @@ function initServiceToggle() {
                 void brandingContent.offsetWidth;
                 
                 brandingContent.style.opacity = '1';
-                brandingContent.style.transform = 'translateY(0)';
                 
-                // 브랜딩 첫 번째 항목 활성화 (기존 상태 리셋 후)
-                initServiceListItems('.branding-service-list', '.branding-service-info');
-            }, 400); // 페이드 아웃 시간과 일치
+                // 브랜딩 첫 번째 항목 활성화
+                initServiceListItems('.branding-service-list', '.branding-service-info', true);
+            }, 300);
         } else {
             // 인테리어로 전환 (페이드 효과 적용)
             brandingContent.style.opacity = '0';
-            brandingContent.style.transform = 'translateY(10px)';
+            
+            // 모든 브랜딩 항목 비활성화
+            document.querySelectorAll('.branding-service-list ul > li').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 이전 슬라이드 중지
+            if (brandingSlideInterval) {
+                clearInterval(brandingSlideInterval);
+                brandingSlideInterval = null;
+            }
             
             setTimeout(() => {
                 brandingContent.style.display = 'none';
@@ -95,37 +81,21 @@ function initServiceToggle() {
                 void interiorContent.offsetWidth;
                 
                 interiorContent.style.opacity = '1';
-                interiorContent.style.transform = 'translateY(0)';
                 
-                // 인테리어 첫 번째 항목 활성화 (기존 상태 리셋 후)
-                initServiceListItems('.interior-service-list', '.interior-service-info');
-            }, 400); // 페이드 아웃 시간과 일치
+                // 인테리어 첫 번째 항목 활성화
+                initServiceListItems('.interior-service-list', '.interior-service-info', true);
+            }, 300);
         }
-        
     });
     
     // 인테리어 서비스 초기화 (기본값)
-    initServiceListItems('.interior-service-list', '.interior-service-info', 'interior');
+    initServiceListItems('.interior-service-list', '.interior-service-info', true);
     
-    // 브랜딩 서비스 초기화 (토글로 전환될 때를 대비)
-    initServiceListItems('.branding-service-list', '.branding-service-info', 'branding', false);
-}
-
-// 모든 자동 슬라이드 중지 함수
-function clearAllAutoSlides() {
-    if (interiorSlideInterval) {
-        clearInterval(interiorSlideInterval);
-        interiorSlideInterval = null;
-    }
-    
-    if (brandingSlideInterval) {
-        clearInterval(brandingSlideInterval);
-        brandingSlideInterval = null;
-    }
+    // 브랜딩 서비스 초기화 (토글로 전환될 때 자동 활성화)
 }
 
 // 서비스 리스트 아이템 초기화 및 이벤트 설정
-function initServiceListItems(listSelector, infoSelector, serviceType, activateFirst = true) {
+function initServiceListItems(listSelector, infoSelector, activateFirst = true) {
     const listItems = document.querySelectorAll(`${listSelector} ul > li`);
     const infoItems = document.querySelectorAll(`${infoSelector} > ul > li`);
     const prevButton = document.querySelector(`${listSelector} .service-list-prev`);
@@ -133,9 +103,6 @@ function initServiceListItems(listSelector, infoSelector, serviceType, activateF
     
     // 현재 활성화된 인덱스 추적
     let currentIndex = activateFirst ? 0 : -1;
-    
-    // 자동 슬라이드를 위한 인터벌 ID
-    let autoSlideInterval = null;
     
     // 요소가 존재하는지 확인
     if (!listItems.length || !infoItems.length) {
@@ -145,21 +112,16 @@ function initServiceListItems(listSelector, infoSelector, serviceType, activateF
     
     // 각 info 항목에 트랜지션 추가
     infoItems.forEach(item => {
-        item.style.transition = 'opacity 1s ease-in-out, transform 1s ease-in-out';
+        item.style.transition = 'opacity 0.3s ease';
         item.style.opacity = '0';
         item.style.display = 'none';
-        item.style.transform = 'translateY(10px)';
     });
     
     // 모든 활성 클래스 및 표시 상태 초기화
     function resetItems() {
-        // 모든 리스트 항목의 active 클래스 제거
         listItems.forEach(item => item.classList.remove('active'));
-        
-        // 모든 info 항목을 숨김 처리
         infoItems.forEach(item => {
             item.style.opacity = '0';
-            item.style.transform = 'translateY(10px)';
             item.style.display = 'none';
         });
     }
@@ -183,7 +145,6 @@ function initServiceListItems(listSelector, infoSelector, serviceType, activateF
         void newItem.offsetWidth;
         
         newItem.style.opacity = '1';
-        newItem.style.transform = 'translateY(0)';
         
         // 현재 인덱스 업데이트
         currentIndex = index;
@@ -209,103 +170,87 @@ function initServiceListItems(listSelector, infoSelector, serviceType, activateF
     
     // 자동 슬라이드 시작
     function startAutoSlide() {
-        stopAutoSlide(); // 기존 인터벌 제거
+        // 기존 인터벌 제거
+        stopAutoSlide();
         
-        const slideInterval = setInterval(nextSlide, 3000); // 3초마다 자동 전환
-        
-        // 서비스 유형에 따라 적절한 전역 변수에 인터벌 할당
-        if (serviceType === 'interior') {
-            interiorSlideInterval = slideInterval;
-        } else if (serviceType === 'branding') {
-            brandingSlideInterval = slideInterval;
+        // 새 인터벌 설정
+        if (listSelector.includes('interior')) {
+            interiorSlideInterval = setInterval(nextSlide, 3000);
+        } else {
+            brandingSlideInterval = setInterval(nextSlide, 3000);
         }
     }
     
     // 자동 슬라이드 정지
     function stopAutoSlide() {
-        if (serviceType === 'interior' && interiorSlideInterval) {
-            clearInterval(interiorSlideInterval);
-            interiorSlideInterval = null;
-        } else if (serviceType === 'branding' && brandingSlideInterval) {
-            clearInterval(brandingSlideInterval);
-            brandingSlideInterval = null;
+        if (listSelector.includes('interior')) {
+            if (interiorSlideInterval) {
+                clearInterval(interiorSlideInterval);
+                interiorSlideInterval = null;
+            }
+        } else {
+            if (brandingSlideInterval) {
+                clearInterval(brandingSlideInterval);
+                brandingSlideInterval = null;
+            }
         }
     }
     
     // 첫 번째 항목 활성화 (필요한 경우)
     if (activateFirst && listItems[0] && infoItems[0]) {
         // 첫 활성화에는 즉시 보여주기
-        resetItems(); // 먼저 모든 항목 초기화
-        
         listItems[0].classList.add('active');
         infoItems[0].style.display = 'flex';
-        
-        // 강제 리플로우 트리거
-        void infoItems[0].offsetWidth;
-        
         infoItems[0].style.opacity = '1';
-        infoItems[0].style.transform = 'translateY(0)';
         currentIndex = 0;
         
         // 자동 슬라이드 시작
         startAutoSlide();
     }
     
+    // 이벤트 리스너 제거 및 추가를 위한 함수
+    function removeAllListeners(element) {
+        const clone = element.cloneNode(true);
+        element.parentNode.replaceChild(clone, element);
+        return clone;
+    }
+    
     // 각 리스트 아이템에 클릭 이벤트 추가
     listItems.forEach((item, index) => {
+        // 기존 이벤트 리스너를 제거하기 위한 더 안전한 방법
+        item.onclick = null;
+        
         item.addEventListener('click', function() {
             if (index !== currentIndex) {
                 activateItem(index);
                 // 클릭 시 자동 슬라이드 재시작
+                stopAutoSlide();
                 startAutoSlide();
             }
         });
-        
-        // 마우스 호버 시 자동 슬라이드 중지
-        item.addEventListener('mouseenter', stopAutoSlide);
-        item.addEventListener('mouseleave', startAutoSlide);
     });
     
     // 이전 버튼 이벤트 처리
     if (prevButton) {
+        prevButton.onclick = null;
         prevButton.addEventListener('click', function() {
             prevSlide();
             // 클릭 시 자동 슬라이드 재시작
+            stopAutoSlide();
             startAutoSlide();
         });
-        
-        // 마우스 호버 시 자동 슬라이드 중지
-        prevButton.addEventListener('mouseenter', stopAutoSlide);
-        prevButton.addEventListener('mouseleave', startAutoSlide);
     }
     
     // 다음 버튼 이벤트 처리
     if (nextButton) {
+        nextButton.onclick = null;
         nextButton.addEventListener('click', function() {
             nextSlide();
             // 클릭 시 자동 슬라이드 재시작
+            stopAutoSlide();
             startAutoSlide();
         });
-        
-        // 마우스 호버 시 자동 슬라이드 중지
-        nextButton.addEventListener('mouseenter', stopAutoSlide);
-        nextButton.addEventListener('mouseleave', startAutoSlide);
     }
-    
-    // 인포 항목에도 마우스 호버 이벤트 추가
-    infoItems.forEach(item => {
-        item.addEventListener('mouseenter', stopAutoSlide);
-        item.addEventListener('mouseleave', startAutoSlide);
-    });
-    
-    // 페이지 가시성 변경 시 자동 슬라이드 제어
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            stopAutoSlide(); // 페이지가 보이지 않을 때 중지
-        } else {
-            startAutoSlide(); // 페이지가 다시 보일 때 재시작
-        }
-    });
 }
 
 // 브랜딩 서비스 정보 텍스트 좌우 무한 루프 기능
@@ -319,6 +264,11 @@ function initTextScroller() {
     }
     
     brandingTextContainers.forEach(container => {
+        // 이미 처리된 경우 스킵
+        if (container.querySelector('.text-scroll-wrapper')) {
+            return;
+        }
+        
         // 스크롤을 위한 래퍼 생성
         const scrollWrapper = document.createElement('div');
         scrollWrapper.className = 'text-scroll-wrapper';
@@ -371,19 +321,23 @@ function initTextScroller() {
         });
     });
     
-    // CSS 애니메이션 추가
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = `
-        @keyframes scrollText {
-            0% {
-                transform: translateX(0%);
+    // CSS 애니메이션이 이미 추가되었는지 확인
+    if (!document.getElementById('text-scroller-style')) {
+        // CSS 애니메이션 추가
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'text-scroller-style';
+        styleSheet.textContent = `
+            @keyframes scrollText {
+                0% {
+                    transform: translateX(0%);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
             }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-    `;
-    document.head.appendChild(styleSheet);
+        `;
+        document.head.appendChild(styleSheet);
+    }
 }
 
 // 레이아웃 로드 시 초기화
