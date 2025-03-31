@@ -1,3 +1,9 @@
-this is layer for basic web creation.
+this is for convil landing web page.
 
-ver2. this is for convil landing test.
+[tech list]
+- admin + dashboard
+- 3d
+- counsel form
+- slide banner
+- vertical loop
+... etc
