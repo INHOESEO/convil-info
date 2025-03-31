@@ -3,6 +3,10 @@
  * 인테리어/브랜딩 서비스 토글 및 슬라이드 기능
  */
 
+// 전역 인터벌 관리 변수 추가
+let interiorSlideInterval = null;
+let brandingSlideInterval = null;
+
 // 서비스 유형 전환 기능
 function initServiceToggle() {
     const toggleInput = document.getElementById('service-toggle');
@@ -56,6 +60,9 @@ function initServiceToggle() {
     toggleInput.addEventListener('change', function() {
         // 먼저 모든 상태 초기화
         clearServiceState();
+
+        // 모든 자동 슬라이드 중지
+        clearAllAutoSlides();
         
         if (this.checked) {
             // 브랜딩으로 전환 (페이드 효과 적용)
@@ -94,17 +101,31 @@ function initServiceToggle() {
                 initServiceListItems('.interior-service-list', '.interior-service-info');
             }, 400); // 페이드 아웃 시간과 일치
         }
+        
     });
     
     // 인테리어 서비스 초기화 (기본값)
-    initServiceListItems('.interior-service-list', '.interior-service-info');
+    initServiceListItems('.interior-service-list', '.interior-service-info', 'interior');
     
     // 브랜딩 서비스 초기화 (토글로 전환될 때를 대비)
-    initServiceListItems('.branding-service-list', '.branding-service-info', false);
+    initServiceListItems('.branding-service-list', '.branding-service-info', 'branding', false);
+}
+
+// 모든 자동 슬라이드 중지 함수
+function clearAllAutoSlides() {
+    if (interiorSlideInterval) {
+        clearInterval(interiorSlideInterval);
+        interiorSlideInterval = null;
+    }
+    
+    if (brandingSlideInterval) {
+        clearInterval(brandingSlideInterval);
+        brandingSlideInterval = null;
+    }
 }
 
 // 서비스 리스트 아이템 초기화 및 이벤트 설정
-function initServiceListItems(listSelector, infoSelector, activateFirst = true) {
+function initServiceListItems(listSelector, infoSelector, serviceType, activateFirst = true) {
     const listItems = document.querySelectorAll(`${listSelector} ul > li`);
     const infoItems = document.querySelectorAll(`${infoSelector} > ul > li`);
     const prevButton = document.querySelector(`${listSelector} .service-list-prev`);
@@ -189,14 +210,25 @@ function initServiceListItems(listSelector, infoSelector, activateFirst = true) 
     // 자동 슬라이드 시작
     function startAutoSlide() {
         stopAutoSlide(); // 기존 인터벌 제거
-        autoSlideInterval = setInterval(nextSlide, 3000); // 3초마다 자동 전환
+        
+        const slideInterval = setInterval(nextSlide, 3000); // 3초마다 자동 전환
+        
+        // 서비스 유형에 따라 적절한 전역 변수에 인터벌 할당
+        if (serviceType === 'interior') {
+            interiorSlideInterval = slideInterval;
+        } else if (serviceType === 'branding') {
+            brandingSlideInterval = slideInterval;
+        }
     }
     
     // 자동 슬라이드 정지
     function stopAutoSlide() {
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = null;
+        if (serviceType === 'interior' && interiorSlideInterval) {
+            clearInterval(interiorSlideInterval);
+            interiorSlideInterval = null;
+        } else if (serviceType === 'branding' && brandingSlideInterval) {
+            clearInterval(brandingSlideInterval);
+            brandingSlideInterval = null;
         }
     }
     
@@ -356,8 +388,6 @@ function initTextScroller() {
 
 // 레이아웃 로드 시 초기화
 document.addEventListener('layoutLoaded', function() {
-    console.log('서비스 섹션 초기화 중...');
-    
     setTimeout(() => {
         // 서비스 토글 및 텍스트 스크롤러 초기화
         initServiceToggle();
