@@ -355,10 +355,11 @@
     #udf-slider .fast-contact-btn { font-size: 17.776px; padding: 14.5px; }
 }
 @media (max-width: 672px) {
-    #mainBannerSectionInner { max-width: 450px; margin: 0 auto; }
+    #mainBannerSectionInner { max-width: 450px; margin: 0 auto; padding-top: 20px;}
 
     #udf-slider {
-        height: 401px; 
+        height: 415px; 
+        margin-bottom: 40px;
     }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text { gap: 10px; margin-bottom: 18px; }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text .use-title { font-size: 26px; letter-spacing: -0.8px; }   
@@ -372,7 +373,8 @@
 }
 @media all and (max-width: 450px) {
     #udf-slider { 
-        height: 401px; 
+        height: 420px; 
+        margin-bottom: 35px;
     }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text { gap: 5px; margin-bottom: 13px; }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text .use-title { font-size: 20px; letter-spacing: -0.6px; }   
@@ -395,7 +397,8 @@
     #mainBannerSectionInner { max-width: 90%; margin: 0 auto; }
 
     #udf-slider {
-        height: 278px; 
+        height: 370px; 
+        margin-bottom: 30px;
     }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text { gap: 4px; margin-bottom: 12px; }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-top-text .use-title { font-size: 18px; letter-spacing: -0.6px; }   
@@ -405,7 +408,7 @@
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-bottom-text .use-info { font-size: 10.638px; }
     #udf-slider .udf-slide-wrapper .udf-slide-element .slide-bottom-text .use-info span { height: 8.704px; }
 
-    #udf-slider .fast-contact-btn { font-size: 12px; padding: 8px 10px; }
+    #udf-slider .fast-contact-btn { font-size: 9px; padding: 7px; }
 }
 @media all and (max-width: 340px) {
     #udf-slider { 

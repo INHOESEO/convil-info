@@ -55,6 +55,7 @@
 }
   
 @media screen and (max-width: 768px) {
+    #mainWhyusSectionInner .whyus-section-container { margin-top: 30px !important; }
     /* 태블릿 세로 및 대형 모바일 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 40px 0; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 24px;}
