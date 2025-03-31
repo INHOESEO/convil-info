@@ -69,6 +69,8 @@
     #mainServiceSectionInner .service-section-header > p { font-size: 28px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 45px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 28px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content, 
+    #mainServiceSectionInner .service-section-content .branding-service-content { gap: 20px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 38px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
@@ -103,8 +105,6 @@
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > button { display: none; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > button, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > button { display: none; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { margin-bottom: 40px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .interior-service-element, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .branding-service-element { width: 100%; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
@@ -120,8 +120,6 @@
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label .toggle-branding { padding: 7px 0; }
     #mainServiceSectionInner .service-section-content .interior-service-content, 
     #mainServiceSectionInner .service-section-content .branding-service-content { padding-top: 40px; }
-    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list { margin-bottom: 20px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li,
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 10px 0 10px 20px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
@@ -129,15 +127,15 @@
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 30px; right: 30px; width: 50px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 15px 20px; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 15px 20px; bottom: 20px; right: 3%;}
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 19px; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 16px; line-height: 1.4; border-radius: 15px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 20px; }
 }
 
 @media screen and (max-width: 480px) {
     #mainServiceSectionInner .service-section-header > p { font-size: 22px; }
-    #mainServiceSectionInner .service-section-header > div > h3 { font-size: 30px; }
+    #mainServiceSectionInner .service-section-header > div > h3 { font-size: 26px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 18px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul { gap: 17px; }
@@ -150,7 +148,7 @@
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p,
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 6px 20px; right: 2.5%; bottom: 15px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 16px; line-height: 1.4; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 12px; line-height: 1.4; border-radius: 10px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 10px; flex-wrap: wrap; justify-content: center; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > button, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > button, 
@@ -163,8 +161,10 @@
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 26px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 16px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 20px; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li > p { font-size: 17px; }
+    #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p,
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 6px 12px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 15px; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 11px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 8px; }
 }

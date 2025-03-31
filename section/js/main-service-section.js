@@ -124,7 +124,7 @@ function initServiceListItems(listSelector, infoSelector, activateFirst = true) 
     
     // 각 info 항목에 트랜지션 추가
     infoItems.forEach(item => {
-        item.style.transition = 'opacity 0.4s ease-in-out, transform 0.4s ease-in-out';
+        item.style.transition = 'opacity 1s ease-in-out, transform 1s ease-in-out';
         item.style.opacity = '0';
         item.style.display = 'none';
         item.style.transform = 'translateY(10px)';

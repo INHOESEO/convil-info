@@ -181,7 +181,7 @@
 }
 @media (max-width: 450px) {
     #header {
-        height: 115px;
+        height: 102px;
         align-items: inherit;
     }
     #headerInner { 

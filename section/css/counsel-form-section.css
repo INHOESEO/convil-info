@@ -62,7 +62,7 @@
 
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 { color: #000; }
-#counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { display: flex; flex-direction: column; justify-content: space-between; position: relative; width: 33.33%; height: inherit; border-radius: 20px; border: 1px solid #D9D9D9; background: #FFF; }
+#counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value { display: flex; flex-direction: column; justify-content: space-between; position: relative; width: 33.33%; height: 499px; border-radius: 20px; border: 1px solid #D9D9D9; background: #FFF; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value:hover { transform: scale(1.05); z-index: 1; transition: transform .3s;  }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div { display: flex; flex-direction: column; justify-content: space-between; padding: 36px 0 19px 28px; text-align: left; height: 100%; }
 #counselFormSectionInner .counsel-form > ul > li > .form-question1 .form-question1-value > div > div > h3 { font-size: 30px; font-weight: 700; letter-spacing: -0.9px; margin-bottom: 11px; }
