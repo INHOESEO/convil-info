@@ -17,7 +17,12 @@
         const elements = document.querySelectorAll(`
             #counselFormSectionInner .section-header h2, 
             #counselFormSectionInner .section-header p,
-            #counselFormSectionInner .counsel-form > ul > li > h3
+            #counselFormSectionInner .counsel-form > ul > li > h3,
+            #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p,
+            #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div,
+            #mainServiceSectionInner .service-section-header > p,
+            #mainServiceSectionInner .service-section-header > div > h3,
+            #mainServiceSectionInner .service-section-header > div > .service-type-change
         `);
         
         if (elements.length > 0) {

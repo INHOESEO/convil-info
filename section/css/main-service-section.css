@@ -32,7 +32,7 @@
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul { display: flex; flex-direction: column; justify-content: space-between; gap: 33px;}
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li,
-#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 14px 0 14px 29px; border-radius: 80px; width: 100%; }
+#mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li { padding: 14px 0 14px 29px; border-radius: 80px; width: 100%; cursor: pointer; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li.active,
 #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-list > div > ul > li.active { background: #fff; }
 #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-list > div > ul > li > p,
@@ -169,3 +169,12 @@
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 11px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 8px; }
 }
+
+
+#mainServiceSectionInner .service-section-header > p { opacity: 0; transform: translateY(30px); transition: all 0.5s ease-out 0.2s; }
+#mainServiceSectionInner .service-section-header > div > h3 { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out 0.4s; }
+#mainServiceSectionInner .service-section-header > div > .service-type-change { opacity: 0; transform: translateX(30px); transition: all 0.7s ease-out 0.4s; }
+
+#mainServiceSectionInner .service-section-header > p.visible,
+#mainServiceSectionInner .service-section-header > div > h3.visible { opacity: 1; transform: translateY(0); }
+#mainServiceSectionInner .service-section-header > div > .service-type-change.visible { opacity: 1; transform: translateX(0); }
