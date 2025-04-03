@@ -8,6 +8,10 @@ const resourceMap = {
         html: '../basic/header.html',
         css: ['../basic/css/header.css']
     },
+    'floating': { 
+        html: '../basic/floating.html',
+        css: ['../basic/css/floating.css']
+    },
     'footer': { 
         html: '../basic/footer.html',
         css: ['../basic/css/footer.css']
@@ -219,6 +223,7 @@ async function initLayout() {
         // 기본 요소 로드 (헤더, 푸터)
         await Promise.all([
             loadHTML('header', resourceMap['header'].html),
+            loadHTML('floating', resourceMap['floating'].html),
             loadHTML('footer', resourceMap['footer'].html)
         ]);
         
