@@ -5,6 +5,7 @@
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { color: #fff; font-size: 30px; font-weight: 700; letter-spacing: -0.9px; margin-bottom: 22px; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { color: #fff; font-size: 50px; font-weight: 600; letter-spacing: -1.5px; line-height: 1.54; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > strong { color: #2871FF; font-weight: 800; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 37px; font-weight: 500; color: #fff; letter-spacing: -1.1px; line-height: 2.08; margin-top: 9px; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom { margin-right: 90px; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { display: flex; justify-content: space-between; align-items: center; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li { display: flex; align-items: center; gap: 17px; width: 33.33%; }
@@ -31,6 +32,7 @@
     /* 대형 화면 (노트북, 소형 데스크탑) */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 180px 0; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 45px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 32px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 30px; }
 }
   
@@ -51,6 +53,7 @@
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 100px 0 60px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 500px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 36px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 36px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom { margin-right: 0; margin-top: 50px; }
 }
   
@@ -60,6 +63,7 @@
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 40px 0; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 24px;}
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div {font-size: 32px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 32px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 400px; }
     /* 클라이언트 정보 레이아웃 조정 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { flex-direction: column; gap: 30px; }
@@ -74,6 +78,8 @@
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 60px 0 30px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 22px; margin-bottom: 15px; } 
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 26px; line-height: 1.4; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 26px; }
+
     
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 400px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 18px; }
@@ -87,6 +93,8 @@
 @media screen and (max-width: 360px) {
     /* 소형 모바일 디바이스 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 22px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 22px; }
+
     
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 300px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li {  gap: 10px; }
