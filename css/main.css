@@ -16,6 +16,6 @@
 }
 
 #mainWhyusSection { width: 100%; height: 1100px; background: #1b1a1e; } 
-@media all and (max-width: 450px) {
-    #mainWhyusSection { height: 1000px; }
+@media all and (max-width: 1024px) {
+    #mainWhyusSection { height: auto; }
 }

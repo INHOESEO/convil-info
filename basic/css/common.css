@@ -53,6 +53,10 @@ img {
 @media all and (max-width: 1024px) {
     #container { max-width: 90%; }
 }
+@media all and (max-width: 768px) {
+    #container { max-width: 82.35%; }
+}
+
 
 /* 섹션 */
 .section-header { 

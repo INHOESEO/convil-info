@@ -713,8 +713,7 @@
 }
 @media (max-width: 362px) {
   #mainBannerSectionInner {
-    max-width: 90%;
-    margin: 0 auto;
+    width: 100%;
   }
 
   #udf-slider {

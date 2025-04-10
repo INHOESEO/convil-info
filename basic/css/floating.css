@@ -1,9 +1,12 @@
 #floating { position: fixed; right: 30px; bottom: 70px; z-index: 10; }
 #floatingInner {  }
 #floatingInner .floating-wrapper > ul { display: flex; flex-direction: column; gap: 10px; }
-#floatingInner .floating-wrapper > ul > li { display: flex; justify-content: center; align-items: center; padding: 12px; border-radius: 30px; cursor: pointer; }
+#floatingInner .floating-wrapper > ul > li { display: flex; justify-content: center; align-items: center; padding: 12px; border-radius: 30px; cursor: pointer; width: 35px; }
 #floatingInner .floating-wrapper > ul > li:hover { transform: scale(1.2); transition: transform 0.3s ease-in-out; }
 #floatingInner .floating-wrapper > ul > li > a { display: flex; justify-content: center; align-items: center; }
 #floatingInner .floating-wrapper > ul > li:first-child { background: #FEE500; }
 #floatingInner .floating-wrapper > ul > li:last-child { background: #0057ff; }
+#floatingInner .floating-wrapper > ul > li:last-child > a { flex-direction: column; }
+#floatingInner .floating-wrapper > ul > li:last-child > a > img { width: 24px; }
+#floatingInner .floating-wrapper > ul > li:last-child > a > p { color: #fff; font-size: 9px; }
 

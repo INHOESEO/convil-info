@@ -3,9 +3,10 @@
 
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left { width: 64.62%; display: flex; flex-direction: column; justify-content: space-between; padding: 220px 0; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { color: #fff; font-size: 30px; font-weight: 700; letter-spacing: -0.9px; margin-bottom: 22px; }
-#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { color: #fff; font-size: 50px; font-weight: 600; letter-spacing: -1.5px; line-height: 1.54; }
-#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > strong { color: #2871FF; font-weight: 800; }
-#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 37px; font-weight: 500; color: #fff; letter-spacing: -1.1px; line-height: 2.08; margin-top: 9px; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { display: flex; flex-direction: column; gap: 15px; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { color: #fff; font-size: 50px; font-weight: 600; letter-spacing: -1.5px; line-height: 1.54; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p > strong { color: #2871FF; font-weight: 800; }
+#mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 37px; font-weight: 500; color: #fff; letter-spacing: -1.1px; margin-top: 9px; line-height: normal;  }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom { margin-right: 90px; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { display: flex; justify-content: space-between; align-items: center; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li { display: flex; align-items: center; gap: 17px; width: 33.33%; }
@@ -30,69 +31,77 @@
 /* 반응형 스타일 */
 @media screen and (max-width: 1600px) {
     /* 대형 화면 (노트북, 소형 데스크탑) */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 180px 0; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 45px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div> p { font-size: 45px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 32px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 30px; }
 }
   
 @media screen and (max-width: 1366px) {
     /* 일반 노트북 화면 */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 150px 0; } 
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 26px; } 
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 40px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { font-size: 40px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 50%; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 20px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 28px; }
 }
   
 @media screen and (max-width: 1024px) {
     /* 태블릿 및 소형 노트북 */
-    #mainWhyusSectionInner .whyus-section-container { flex-direction: column; height: auto; }
+    #mainWhyusSectionInner { padding: 60px 0 65px; }
+
+    #mainWhyusSectionInner .whyus-section-container { flex-direction: column; height: auto; gap: 45px; margin-top: 0 !important; padding-bottom: 0 !important; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left,
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right { width: 100%; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 100px 0 60px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 500px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 36px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 36px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom { margin-right: 0; margin-top: 50px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 0; gap: 45px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 392px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 18px; margin-bottom: 25px; } 
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { font-size: 25px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 18px;}
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom { margin-right: 0; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 70px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 20px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 25px; }
+    
 }
   
 @media screen and (max-width: 768px) {
-    #mainWhyusSectionInner .whyus-section-container { margin-top: 30px !important; }
     /* 태블릿 세로 및 대형 모바일 */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 40px 0; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 24px;}
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div {font-size: 32px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 26px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 430px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 14px; margin-bottom: 20px; } 
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { font-size: 20px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 15px;}
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 269px; }
     /* 클라이언트 정보 레이아웃 조정 */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { flex-direction: column; gap: 30px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { gap: 30px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li { gap: 6px !important; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li,
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li:first-child,
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li:nth-child(2),
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li:last-child { width: 100%; justify-content: flex-start; margin-left: 0; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 30px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 11px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 15px; }
+
 }
   
 @media screen and (max-width: 480px) {
     /* 모바일 디바이스 */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 60px 0 30px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 22px; margin-bottom: 15px; } 
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 24px; line-height: 1.4; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 20px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 11px; margin-bottom: 12px; } 
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { font-size: 17px; line-height: 1.5; letter-spacing: -0.5px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 12px;}
 
     
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 450px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 18px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 24px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 160px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 24px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 9px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 13px; }
     
     /* 블러 효과 크기 조정 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right::before,
     #mainWhyusSectionInner .whyus-section-container .whyus-section-right::after { height: 60px; }
 }
   
-@media screen and (max-width: 360px) {
-    /* 소형 모바일 디바이스 */
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 22px; }
+/* @media screen and (max-width: 360px) {
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > p { font-size: 22px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 22px; }
 
     
@@ -101,7 +110,7 @@
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > img { width: 40px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 16px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 22px; }
-}
+} */
 
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { opacity: 0; transform: translateY(30px); transition: all 0.5s ease-out 0.2s; }
 #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out 0.4s; }
