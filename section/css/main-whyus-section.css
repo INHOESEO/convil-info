@@ -63,8 +63,8 @@
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 40px 0; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 24px;}
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div {font-size: 32px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 32px; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 400px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 26px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 430px; }
     /* 클라이언트 정보 레이아웃 조정 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul { flex-direction: column; gap: 30px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li,
@@ -77,11 +77,11 @@
     /* 모바일 디바이스 */
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left { padding: 60px 0 30px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > p { font-size: 22px; margin-bottom: 15px; } 
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 26px; line-height: 1.4; }
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 26px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div { font-size: 24px; line-height: 1.4; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-top > div > span { font-size: 20px; }
 
     
-    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 400px; }
+    #mainWhyusSectionInner .whyus-section-container .whyus-section-right { height: 450px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > .client-type { font-size: 18px; }
     #mainWhyusSectionInner .whyus-section-container .whyus-section-left .whyus-section-left-bottom > ul > li > div > p:nth-child(2) { font-size: 24px; }
     
