@@ -98,8 +98,12 @@ function initServiceToggle() {
 function initServiceListItems(listSelector, infoSelector, activateFirst = true) {
     const listItems = document.querySelectorAll(`${listSelector} ul > li`);
     const infoItems = document.querySelectorAll(`${infoSelector} > ul > li`);
-    const prevButton = document.querySelector(`${listSelector} .service-list-prev`);
+    const prevButton = document.querySelector(`${listSelector} .service-list-prev:not(.slp-mob)`);
     const nextButton = document.querySelector(`${infoSelector} .service-list-next`);
+    
+    // 모바일 버튼 추가
+    const prevButtonMobile = document.querySelector(`${listSelector} .slp-mob`);
+    const nextButtonMobile = document.querySelector(`${listSelector} .sln-mob`);
     
     // 현재 활성화된 인덱스 추적
     let currentIndex = activateFirst ? 0 : -1;
@@ -175,7 +179,7 @@ function initServiceListItems(listSelector, infoSelector, activateFirst = true) 
         
         // 새 인터벌 설정
         if (listSelector.includes('interior')) {
-            interiorSlideInterval = setInterval(nextSlide, 3000);
+            interiorSlideInterval = setInterval(nextSlide, 939);
         } else {
             brandingSlideInterval = setInterval(nextSlide, 3000);
         }
@@ -245,6 +249,28 @@ function initServiceListItems(listSelector, infoSelector, activateFirst = true) 
     if (nextButton) {
         nextButton.onclick = null;
         nextButton.addEventListener('click', function() {
+            nextSlide();
+            // 클릭 시 자동 슬라이드 재시작
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+    
+    // 모바일 이전 버튼 이벤트 처리
+    if (prevButtonMobile) {
+        prevButtonMobile.onclick = null;
+        prevButtonMobile.addEventListener('click', function() {
+            prevSlide();
+            // 클릭 시 자동 슬라이드 재시작
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+    
+    // 모바일 다음 버튼 이벤트 처리
+    if (nextButtonMobile) {
+        nextButtonMobile.onclick = null;
+        nextButtonMobile.addEventListener('click', function() {
             nextSlide();
             // 클릭 시 자동 슬라이드 재시작
             stopAutoSlide();
