@@ -80,7 +80,7 @@
 }
 
 @media screen and (max-width: 1400px) {
-    #mainServiceSectionInner .service-section-header > p { font-size: 26px; }
+    #mainServiceSectionInner .service-section-header > p { font-size: 30px; }
     #mainServiceSectionInner .service-section-header > div > h3 { font-size: 40px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 25px; }
 
@@ -98,7 +98,7 @@
 
 @media screen and (max-width: 1024px) {
     #mainServiceSectionInner { padding: 0 0 65px; }
-
+    #mainServiceSectionInner .service-section-header > p { font-size: 26px; margin-bottom: 20px; }
     #mainServiceSectionInner .service-section-header > div { flex-direction: column; align-items: flex-start; gap: 22px; }
     #mainServiceSectionInner .service-section-header > div .service-type-change { width: 100%; }
     #mainServiceSectionInner .service-section-header > div .service-type-change .toggle-switch .toggle-label { font-size: 18px; }
@@ -168,7 +168,7 @@
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > .convil-rotate-logo, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > .convil-rotate-logo { top: 20px; right: 20px; width: 40px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p,
-    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 6px 20px; right: 2.5%; bottom: 15px; }
+    #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { padding: 6px 15px; right: 2.5%; bottom: 15px; }
     #mainServiceSectionInner .service-section-content .interior-service-content .interior-service-info > ul > li > p, 
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p span { font-size: 12px; line-height: 1.4; border-radius: 10px; }
     #mainServiceSectionInner .service-section-content .branding-service-content .branding-service-info > ul > li > p { gap: 10px; flex-wrap: wrap; justify-content: center; }
