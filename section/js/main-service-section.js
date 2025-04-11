@@ -179,7 +179,7 @@ function initServiceListItems(listSelector, infoSelector, activateFirst = true) 
         
         // 새 인터벌 설정
         if (listSelector.includes('interior')) {
-            interiorSlideInterval = setInterval(nextSlide, 939);
+            interiorSlideInterval = setInterval(nextSlide, 3000);
         } else {
             brandingSlideInterval = setInterval(nextSlide, 3000);
         }
