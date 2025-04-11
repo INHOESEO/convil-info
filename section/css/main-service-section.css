@@ -66,10 +66,6 @@
 
 #mainServiceSectionInner .service-section-content .interior-service-info > ul > li,
 #mainServiceSectionInner .service-section-content .branding-service-info > ul > li { display: none; opacity: 0; transition: opacity 0.5s ease; }
-/* 브랜딩 서비스 콘텐츠 초기 상태 */
-#mainServiceSectionInner .service-section-content .branding-service-content { display: none; opacity: 0; }
-/* 인테리어 서비스 콘텐츠 초기 상태 */
-#mainServiceSectionInner .service-section-content .interior-service-content { opacity: 0; transition: opacity 0.5s ease; }
 
 /* 서비스 섹션 반응형 스타일 */
 @media screen and (max-width: 1600px) {
