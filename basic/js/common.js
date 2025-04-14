@@ -1,5 +1,4 @@
 function setHeaderMargin() {
-    console.log('function 내부');
 
     const header = document.getElementById('header');
     const footer = document.getElementById('footer');
@@ -8,19 +7,16 @@ function setHeaderMargin() {
 
     // 각 요소가 존재할 때만 해당 스타일 적용
     if (header && container) {
-        console.log('header와 container 스타일 적용');
         const headerHeight = header.offsetHeight;
         container.style.marginTop = headerHeight + 'px';
     }
     
     if (footer && container) {
-        console.log('footer와 container 스타일 적용');
         const footerHeight = footer.offsetHeight;
         container.style.paddingBottom = footerHeight + 'px';
     }
     
     if (header && banner) {
-        console.log('header와 banner 스타일 적용');
         const headerHeight = header.offsetHeight;
         banner.style.marginTop = headerHeight + 'px';
     }

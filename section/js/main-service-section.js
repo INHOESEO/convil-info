@@ -15,7 +15,6 @@ function initServiceToggle() {
     
     // 요소가 존재하는지 확인
     if (!toggleInput || !interiorContent || !brandingContent) {
-        console.error('서비스 토글에 필요한 요소를 찾을 수 없습니다.');
         return; // 필요한 요소가 없으면 함수 종료
     }
     
@@ -285,7 +284,6 @@ function initTextScroller() {
     const brandingTextContainers = document.querySelectorAll('.branding-service-info > ul > li > p');
     
     if (!brandingTextContainers.length) {
-        console.error('브랜딩 서비스 정보 텍스트 컨테이너를 찾을 수 없습니다.');
         return;
     }
     

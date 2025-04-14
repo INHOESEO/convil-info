@@ -1,0 +1,26 @@
+#portfolioListSectionInner > div > ul { display: flex; }
+#portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element { display: flex; flex-direction: column; gap: 15px; }
+#portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element > img { max-width: 100%; margin-bottom: 10px; }
+#portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-title { font-size: 25px; font-style: normal; font-weight: 600; line-height: normal; }
+#portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { display: flex; gap: 25px; }
+#portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { color: #797979; font-size: 20px; font-weight: 400; line-height: normal; }
+/* 요소 모달 */
+#portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { display: none; max-width: 1400px; margin: 0 auto; padding: 10px 75px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 11; }
+#portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { display: none; max-width: 732px; margin: 0 auto; padding: 10px 75px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 11; }
+#portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header { padding: 15px 0; text-align: center; position: relative; border-bottom: 1px solid #d9d9d9; }
+#portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 25px; font-style: normal; font-weight: 600; line-height: normal; }
+#portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > img { position: absolute; top: 50%; right: 0; transform: translateY(-50%);  }
+@media all and (max-width: 1400px) {
+    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 95%; }
+    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 60%; }
+}
+
+@media all and (max-width: 1024px) {
+    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 90%; }
+    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 70%; }
+}
+
+@media all and (max-width: 768px) {
+    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 82.35%; }
+    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 80%; }
+}

@@ -270,36 +270,27 @@ img {
 /* 그리드 공통 스타일 */
 .grid-row {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 90px 25px;
 }
 
-.grid20,
 .grid33,
-.grid50,
+.grid66,
 .grid100 {
-    background: #fff;
-    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-    padding: 10px;
-    border-radius: 10px;
     border: 0;
 }
 
-.grid20 {
-    width: 20%;
-}
-
 .grid33 {
-    width: 33.333%;
+    grid-column: auto;
 }
 
-.grid50 {
-    width: 50%;
+.grid66 {
+    grid-column: span 2;
 }
 
 .grid100 {
-    width: 100%;
+    grid-column: 1 / 4;
 }
 
 .web-br {
@@ -308,6 +299,12 @@ img {
 
 .mob-br {
     display: none;
+}
+
+@media all and (max-width: 1024px) {
+    .grid-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media all and (max-width: 1024px) {
