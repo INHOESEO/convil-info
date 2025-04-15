@@ -1,3 +1,4 @@
+/* CSS 재정의를 위한 인라인 스타일 */
 #portfolioListSectionInner > div > ul { display: flex; }
 #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element { display: flex; flex-direction: column; gap: 15px; }
 #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element > img { max-width: 100%; margin-bottom: 10px; }
@@ -5,22 +6,64 @@
 #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { display: flex; gap: 25px; }
 #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { color: #797979; font-size: 20px; font-weight: 400; line-height: normal; }
 /* 요소 모달 */
-#portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { display: none; max-width: 1400px; margin: 0 auto; padding: 10px 75px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 11; }
-#portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { display: none; max-width: 732px; margin: 0 auto; padding: 10px 75px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 11; }
+#portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { display: none; max-width: 1400px; margin: 0 auto; padding: 10px 75px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 20; background-color: white; }
+#portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { display: none; max-width: 732px; margin: 0 auto; padding: 10px 75px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; z-index: 20; background-color: white; }
 #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header { padding: 15px 0; text-align: center; position: relative; border-bottom: 1px solid #d9d9d9; }
 #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 25px; font-style: normal; font-weight: 600; line-height: normal; }
-#portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > img { position: absolute; top: 50%; right: 0; transform: translateY(-50%);  }
+#portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > img { position: absolute; top: 50%; right: 0; transform: translateY(-50%); cursor: pointer; }
+
+/* 모달 배경 스타일 */
+.modal-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 15; }
+
 @media all and (max-width: 1400px) {
-    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 95%; }
-    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 60%; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element { gap: 10px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element > img { margin-bottom: 5px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-title { font-size: 22px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { gap: 20px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { font-size: 16px; }
+
+    #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 22px;}
 }
 
 @media all and (max-width: 1024px) {
-    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 90%; }
-    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 70%; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-title { font-size: 16px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { gap: 16px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { font-size: 12px; }
+
+    #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 16px;}
 }
 
 @media all and (max-width: 768px) {
-    #portfolioListSectionInner > div > .video-portfolio-grid .grid33 .modal { max-width: 82.35%; }
-    #portfolioListSectionInner > div > .image-portfolio-grid .grid33 .modal { max-width: 80%; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element { gap: 5px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element > img { margin-bottom: 2px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-title { font-size: 13px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { gap: 12px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { font-size: 9px; }
+
+    #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 13px;}
+}
+
+@media all and (max-width: 480px) {
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-title { font-size: 9px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag { gap: 10px; }
+    #portfolioListSectionInner > div > .grid-row .grid33 .portfolio-element .portfolio-element-hashtag > li { font-size: 7px; }
+
+    #portfolioListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 9px;}
+}
+
+/* 페이지네이션 스타일 */
+#portfolioListSectionInner > div > .portfolio-pagination { display: flex; justify-content: center; margin: 40px 0; gap: 10px; }
+
+#portfolioListSectionInner > div > .portfolio-pagination .pagination-btn { padding: 8px 15px; border: 1px solid #ddd; background-color: #f8f8f8; cursor: pointer; border-radius: 4px; font-size: 14px; transition: all 0.2s ease; }
+#portfolioListSectionInner > div > .portfolio-pagination .pagination-btn:hover { background-color: #e9e9e9; }
+#portfolioListSectionInner > div > .portfolio-pagination .pagination-btn.active { background-color: #007bff; color: white; border-color: #007bff; }
+#portfolioListSectionInner > div > .portfolio-pagination .prev-btn,
+#portfolioListSectionInner > div > .portfolio-pagination .next-btn { font-weight: bold; }
+#portfolioListSectionInner > div > .portfolio-pagination .prev-btn:disabled, 
+#portfolioListSectionInner > div > .portfolio-pagination .next-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* 모바일 반응형 */
+@media all and (max-width: 768px) {
+    #portfolioListSectionInner > div > .portfolio-pagination { flex-wrap: wrap; }
+    #portfolioListSectionInner > div > .portfolio-pagination .pagination-btn { padding: 6px 12px; font-size: 13px; }
 }

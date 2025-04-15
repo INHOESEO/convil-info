@@ -304,6 +304,7 @@ img {
 @media all and (max-width: 1024px) {
     .grid-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 15px 10px;
     }
 }
 
