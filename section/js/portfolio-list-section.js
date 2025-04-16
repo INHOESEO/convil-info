@@ -1,4 +1,4 @@
-// 페이지 로드 시 실행되는 즉시 실행 함수
+// 포트폴리오 기능 통합 스크립트
 (function() {
     // DOM이 완전히 로드되었는지 확인하고 약간의 지연 추가
     if (document.readyState === 'loading') {
@@ -10,6 +10,57 @@
         // 이미 DOM이 로드되었다면 약간의 지연 후 실행
         setTimeout(initializePortfolio, 100);
     }
+    
+    // 전역으로 활성화된 필터를 추적하는 객체
+    const activeFilters = {
+        filters: new Set(['all']), // 기본적으로 'all' 필터 활성화
+        
+        // 필터 추가
+        add(filter) {
+            // 'all' 필터가 추가되면 모든 다른 필터를 제거
+            if (filter === 'all') {
+                this.filters.clear();
+            } else {
+                // 다른 필터가 추가되면 'all' 필터를 제거
+                this.filters.delete('all');
+            }
+            this.filters.add(filter);
+        },
+        
+        // 필터 제거
+        remove(filter) {
+            this.filters.delete(filter);
+            // 필터가 없으면 'all' 필터를 다시 추가
+            if (this.filters.size === 0) {
+                this.filters.add('all');
+            }
+        },
+        
+        // 필터 토글(있으면 제거, 없으면 추가)
+        toggle(filter) {
+            if (this.filters.has(filter)) {
+                this.remove(filter);
+            } else {
+                this.add(filter);
+            }
+        },
+        
+        // 필터가 활성화되어 있는지 확인
+        has(filter) {
+            return this.filters.has(filter);
+        },
+        
+        // 현재 활성화된 모든 필터 가져오기
+        getAll() {
+            return Array.from(this.filters);
+        },
+        
+        // 모든 필터 초기화(전체 필터로 설정)
+        reset() {
+            this.filters.clear();
+            this.filters.add('all');
+        }
+    };
     
     function initializePortfolio() {
         // 엄격한 선택자로 요소 찾기 시도
@@ -30,19 +81,307 @@
             return;
         }
         
-        // 레퍼런스 저장 및 페이지네이션 초기화
+        // 필터 버튼 요소들
+        const allFilter = document.querySelector('.all-filter');
+        const dinningFilter = document.querySelector('.dinning-filter');
+        const beautyFilter = document.querySelector('.beauty-filter');
+        const officeFilter = document.querySelector('.office-filter');
+        const accommodationFilter = document.querySelector('.accommodation-filter');
+        const houseFilter = document.querySelector('.house-filter');
+        const etcFilter = document.querySelector('.etc-filter');
+        const resetFilter = document.querySelector('.reset-filter');
+        
+        // 모든 필터 버튼을 배열로 모음
+        const filterButtons = [
+            { element: allFilter, key: 'all', tag: null },
+            { element: dinningFilter, key: 'dinning', tag: '#식당/카페' },
+            { element: beautyFilter, key: 'beauty', tag: '#뷰티/패션' },
+            { element: officeFilter, key: 'office', tag: '#사무실' },
+            { element: accommodationFilter, key: 'accommodation', tag: '#숙박업' },
+            { element: houseFilter, key: 'house', tag: '#주거' },
+            { element: etcFilter, key: 'etc', tag: '#기타' }
+        ];
+        
+        // 포트폴리오 상태 및 페이지네이션 초기화
         const portfolioState = {
             videoGrid: videoGrid,
             currentPage: 1,
             itemsPerPage: 12,
-            totalItems: videoPortfolioData.length
+            totalItems: videoPortfolioData.length,
+            filteredData: [...videoPortfolioData] // 처음에는 모든 데이터 포함
         };
         
-        // 페이지네이션 요소 생성
+        // 초기 필터 UI 상태 설정
+        updateFilterUI();
+        
+        // 필터 버튼 클릭 이벤트 설정
+        filterButtons.forEach(button => {
+            if (button.element) {
+                button.element.addEventListener('click', function() {
+                    // 'all' 필터 처리
+                    if (button.key === 'all') {
+                        activeFilters.reset();
+                    } else {
+                        activeFilters.toggle(button.key);
+                    }
+                    
+                    // 필터 UI 업데이트
+                    updateFilterUI();
+                    
+                    // 필터링된 데이터로 업데이트
+                    applyFilter(portfolioState);
+                    
+                    // 첫 페이지로 이동
+                    portfolioState.currentPage = 1;
+                    
+                    // 페이지네이션 다시 생성
+                    createPaginationControls(portfolioState);
+                    
+                    // 포트폴리오 다시 렌더링
+                    renderVideoPortfolio(portfolioState);
+                });
+            }
+        });
+        
+        // 필터 초기화 버튼 이벤트
+        if (resetFilter) {
+            resetFilter.addEventListener('click', function() {
+                activeFilters.reset();
+                updateFilterUI();
+                applyFilter(portfolioState);
+                portfolioState.currentPage = 1;
+                createPaginationControls(portfolioState);
+                renderVideoPortfolio(portfolioState);
+            });
+        }
+        
+        // 필터 UI 업데이트 함수
+        function updateFilterUI() {
+            // 모든 필터 버튼 비활성화
+            filterButtons.forEach(button => {
+                if (button.element) {
+                    button.element.classList.remove('active');
+                }
+            });
+            
+            // 활성화된 필터에 클래스 추가
+            filterButtons.forEach(button => {
+                if (button.element && activeFilters.has(button.key)) {
+                    button.element.classList.add('active');
+                }
+            });
+        }
+        
+        // 필터 적용 함수
+        function applyFilter(state) {
+            // 활성화된 필터에 따라 데이터 필터링
+            if (activeFilters.has('all')) {
+                // 전체 필터가 활성화되면 모든 데이터 표시
+                state.filteredData = [...videoPortfolioData];
+            } else {
+                // 선택된 필터들에 맞는 태그를 가진 항목만 필터링
+                const filterTags = filterButtons
+                    .filter(button => activeFilters.has(button.key))
+                    .map(button => button.tag)
+                    .filter(tag => tag !== null);
+                
+                state.filteredData = videoPortfolioData.filter(item => {
+                    // 항목의 해시태그 중 하나라도 활성화된 필터와 일치하면 포함
+                    return item.hashtags.some(tag => filterTags.includes(tag));
+                });
+            }
+            
+            // 필터링된 데이터의 총 개수 업데이트
+            state.totalItems = state.filteredData.length;
+        }
+        
+        // 초기 필터 적용
+        applyFilter(portfolioState);
+        
+        // 페이지네이션 컨트롤 생성
         createPaginationControls(portfolioState);
         
         // 포트폴리오 렌더링
         renderVideoPortfolio(portfolioState);
+    }
+    
+    // 페이지네이션 컨트롤 생성 함수
+    function createPaginationControls(state) {
+        const totalPages = Math.ceil(state.totalItems / state.itemsPerPage);
+        
+        // 페이지네이션 컨테이너 생성 또는 가져오기
+        let paginationContainer = document.querySelector('.portfolio-pagination');
+        
+        if (!paginationContainer) {
+            paginationContainer = document.createElement('div');
+            paginationContainer.className = 'portfolio-pagination';
+            
+            // 비디오 그리드 후에 삽입
+            state.videoGrid.parentNode.insertBefore(paginationContainer, state.videoGrid.nextSibling);
+        } else {
+            // 기존 페이지네이션이 있으면 내용 비우기
+            paginationContainer.innerHTML = '';
+        }
+        
+        // 아이템이 없거나 한 페이지 이하면 페이지네이션 표시 안함
+        if (state.totalItems === 0 || totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+            return;
+        } else {
+            paginationContainer.style.display = 'flex';
+        }
+        
+        // 이전 페이지 버튼
+        const prevButton = document.createElement('button');
+        prevButton.textContent = '이전';
+        prevButton.className = 'pagination-btn prev-btn';
+        prevButton.disabled = state.currentPage === 1;
+        
+        prevButton.addEventListener('click', function() {
+            if (state.currentPage > 1) {
+                state.currentPage--;
+                renderVideoPortfolio(state);
+                updatePaginationActive(state);
+            }
+        });
+        
+        paginationContainer.appendChild(prevButton);
+        
+        // 페이지 번호 버튼들
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i;
+            pageButton.className = `pagination-btn page-btn ${i === state.currentPage ? 'active' : ''}`;
+            pageButton.dataset.page = i;
+            
+            pageButton.addEventListener('click', function() {
+                state.currentPage = parseInt(this.dataset.page);
+                renderVideoPortfolio(state);
+                updatePaginationActive(state);
+            });
+            
+            paginationContainer.appendChild(pageButton);
+        }
+        
+        // 다음 페이지 버튼
+        const nextButton = document.createElement('button');
+        nextButton.textContent = '다음';
+        nextButton.className = 'pagination-btn next-btn';
+        nextButton.disabled = state.currentPage === totalPages;
+        
+        nextButton.addEventListener('click', function() {
+            if (state.currentPage < totalPages) {
+                state.currentPage++;
+                renderVideoPortfolio(state);
+                updatePaginationActive(state);
+            }
+        });
+        
+        paginationContainer.appendChild(nextButton);
+    }
+    
+    // 페이지네이션 활성화 상태 업데이트
+    function updatePaginationActive(state) {
+        const prevButton = document.querySelector('.prev-btn');
+        const nextButton = document.querySelector('.next-btn');
+        const pageButtons = document.querySelectorAll('.pagination-btn.page-btn');
+        const totalPages = Math.ceil(state.totalItems / state.itemsPerPage);
+        
+        // 이전/다음 버튼 상태 업데이트
+        if (prevButton) prevButton.disabled = state.currentPage === 1;
+        if (nextButton) nextButton.disabled = state.currentPage === totalPages;
+        
+        // 페이지 버튼 상태 업데이트
+        pageButtons.forEach(button => {
+            const page = parseInt(button.dataset.page);
+            if (page === state.currentPage) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+    }
+    
+    // 비디오 포트폴리오 그리드 렌더링 함수 - 필터링 지원 추가
+    function renderVideoPortfolio(state) {
+        try {
+            // 상태 객체에서 그리드 요소 참조 가져오기
+            const videoGrid = state.videoGrid;
+            
+            if (!videoGrid) {
+                console.error('렌더링 함수에서 비디오 그리드를 찾을 수 없습니다!');
+                return;
+            }
+            
+            // 기존 내용 비우기
+            videoGrid.innerHTML = '';
+            
+            // 필터링된 데이터가 없으면 메시지 표시
+            if (state.filteredData.length === 0) {
+                const noResultsElement = document.createElement('div');
+                noResultsElement.className = 'no-results-message';
+                noResultsElement.style.width = '100%';
+                noResultsElement.style.padding = '50px 20px';
+                noResultsElement.style.textAlign = 'center';
+                noResultsElement.style.fontSize = '18px';
+                noResultsElement.style.color = '#666';
+                noResultsElement.textContent = '해당 필터에 맞는 포트폴리오 항목이 없습니다.';
+                
+                videoGrid.appendChild(noResultsElement);
+                return;
+            }
+            
+            // 현재 페이지에 표시할 항목 계산
+            const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+            const endIndex = Math.min(startIndex + state.itemsPerPage, state.totalItems);
+            
+            // 현재 페이지의 항목만 렌더링
+            for (let i = startIndex; i < endIndex; i++) {
+                // 필터링된 데이터 배열의 범위를 벗어나지 않도록 확인
+                if (i >= state.filteredData.length) break;
+                
+                const item = state.filteredData[i];
+                
+                const portfolioElement = document.createElement('div');
+                portfolioElement.className = 'grid33';
+                
+                // 해시태그 HTML 생성
+                const hashtagsHtml = item.hashtags.map(tag => `<li>${tag}</li>`).join('');
+                
+                // YouTube URL이 Shorts인지 확인하고 조정
+                const videoUrl = processYouTubeUrl(item.videoUrl);
+                
+                // 포트폴리오 요소 HTML 구조 생성
+                portfolioElement.innerHTML = `
+                    <div class="portfolio-element">
+                        <img class="portfolio-element-thumb" src="${item.thumbnail}" alt="${item.title}">
+                        <h3 class="portfolio-element-title">${item.title}</h3>
+                        <ul class="portfolio-element-hashtag">
+                            ${hashtagsHtml}
+                        </ul>
+                    </div>
+                    <div class="modal portfolio-element-modal">
+                        <div class="modal-header">
+                            <p>${item.title}</p>
+                            <img src="../source/svg/portfolio-list-modal-close.svg" alt="닫기">
+                        </div>
+                        <div class="modal-body">
+                            <iframe width="100%" height="500" src="${videoUrl}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+                
+                videoGrid.appendChild(portfolioElement);
+            }
+            
+            // 모달 기능 초기화
+            initializeModals();
+            
+            // 페이지네이션 상태 업데이트
+            updatePaginationActive(state);
+        } catch (error) {
+            console.error('렌더링 함수에서 오류 발생:', error);
+        }
     }
 })();
 
@@ -173,179 +512,110 @@ const videoPortfolioData = [
         title: "실내 캠핑장 컨설팅 전/후",
         hashtags: ["#식당/카페"],
         videoUrl: "https://www.youtube.com/embed/MFd8xs_2RNU"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "수직농장 카페",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/p-DP8srXtOc"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "30평 아파트",
+        hashtags: ["#주거"],
+        videoUrl: "https://www.youtube.com/embed/NyIKWMN4Vrw"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "독서실",
+        hashtags: ["#기타"],
+        videoUrl: "https://www.youtube.com/embed/QBKbKCB35qk"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "주택 및 아파트 인테리어",
+        hashtags: ["#주거"],
+        videoUrl: "https://www.youtube.com/embed/r_TRkAgXy54"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "플래그십 스토어",
+        hashtags: ["#기타"],
+        videoUrl: "https://www.youtube.com/embed/JtywnxPNJfA"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "사무실 모음",
+        hashtags: ["#사무실"],
+        videoUrl: "https://www.youtube.com/embed/43UQeqa1i-Q"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "창원 단감테마파크",
+        hashtags: ["#기타"],
+        videoUrl: "https://www.youtube.com/embed/mul0rU5WDtg"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "경주 펜션",
+        hashtags: ["#숙박업"],
+        videoUrl: "https://www.youtube.com/embed/HsEU12kb0w4"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "아파트 마감재 소개",
+        hashtags: ["#주거", "#기타"],
+        videoUrl: "https://www.youtube.com/embed/3lh6fC21wNc"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "로고부터 브랜딩 인테리어까지",
+        hashtags: ["#식당/카페", "#기타"],
+        videoUrl: "https://www.youtube.com/embed/nhITotEarak"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "뷰티샵",
+        hashtags: ["#뷰티/패션"],
+        videoUrl: "https://www.youtube.com/embed/goMFbib3eHY"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "고급 아파트",
+        hashtags: ["#주거"],
+        videoUrl: "https://www.youtube.com/embed/77bgOMYxkNc"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "피자 프랜차이즈",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/p-Gtlb_MI0w"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "감성술집",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/-rxHpcjyiYI"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "고깃집 브랜딩",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/hz92J2wCHRA"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "산후조리원",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/TZv_UHG7iTg"
+    },
+    {
+        thumbnail: "../source/img/portfolio/portfolio-element-thumb-test.png",
+        title: "횟집 프랜차이즈",
+        hashtags: ["#식당/카페"],
+        videoUrl: "https://www.youtube.com/embed/kGzhUH9mOKA"
     }
 ];
-
-// 페이지네이션 컨트롤 생성 함수
-function createPaginationControls(state) {
-    const totalPages = Math.ceil(state.totalItems / state.itemsPerPage);
-    if (totalPages <= 1) return; // 페이지가 하나면 페이지네이션 필요 없음
-    
-    // 페이지네이션 컨테이너 생성
-    let paginationContainer = document.querySelector('.portfolio-pagination');
-    
-    if (!paginationContainer) {
-        paginationContainer = document.createElement('div');
-        paginationContainer.className = 'portfolio-pagination';
-        
-        // 스타일 추가
-        paginationContainer.style.display = 'flex';
-        paginationContainer.style.justifyContent = 'center';
-        paginationContainer.style.margin = '30px 0';
-        paginationContainer.style.gap = '10px';
-        
-        // 비디오 그리드 후에 삽입
-        state.videoGrid.parentNode.insertBefore(paginationContainer, state.videoGrid.nextSibling);
-    } else {
-        // 기존 페이지네이션이 있으면 내용 비우기
-        paginationContainer.innerHTML = '';
-    }
-    
-    // 이전 페이지 버튼
-    const prevButton = document.createElement('button');
-    prevButton.textContent = '이전';
-    prevButton.className = 'pagination-btn prev-btn';
-    prevButton.style.padding = '8px 15px';
-    prevButton.style.border = '1px solid #ddd';
-    prevButton.style.backgroundColor = '#f8f8f8';
-    prevButton.style.cursor = 'pointer';
-    prevButton.style.borderRadius = '4px';
-    
-    prevButton.addEventListener('click', function() {
-        if (state.currentPage > 1) {
-            state.currentPage--;
-            renderVideoPortfolio(state);
-            updatePaginationActive(state);
-        }
-    });
-    
-    paginationContainer.appendChild(prevButton);
-    
-    // 페이지 번호 버튼들
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        pageButton.className = `pagination-btn page-btn ${i === state.currentPage ? 'active' : ''}`;
-        pageButton.dataset.page = i;
-        
-        // 스타일 설정
-        pageButton.style.padding = '8px 15px';
-        pageButton.style.border = '1px solid #ddd';
-        pageButton.style.backgroundColor = i === state.currentPage ? '#007bff' : '#f8f8f8';
-        pageButton.style.color = i === state.currentPage ? 'white' : 'black';
-        pageButton.style.cursor = 'pointer';
-        pageButton.style.borderRadius = '4px';
-        
-        pageButton.addEventListener('click', function() {
-            state.currentPage = parseInt(this.dataset.page);
-            renderVideoPortfolio(state);
-            updatePaginationActive(state);
-        });
-        
-        paginationContainer.appendChild(pageButton);
-    }
-    
-    // 다음 페이지 버튼
-    const nextButton = document.createElement('button');
-    nextButton.textContent = '다음';
-    nextButton.className = 'pagination-btn next-btn';
-    nextButton.style.padding = '8px 15px';
-    nextButton.style.border = '1px solid #ddd';
-    nextButton.style.backgroundColor = '#f8f8f8';
-    nextButton.style.cursor = 'pointer';
-    nextButton.style.borderRadius = '4px';
-    
-    nextButton.addEventListener('click', function() {
-        if (state.currentPage < totalPages) {
-            state.currentPage++;
-            renderVideoPortfolio(state);
-            updatePaginationActive(state);
-        }
-    });
-    
-    paginationContainer.appendChild(nextButton);
-}
-
-// 페이지네이션 활성화 상태 업데이트
-function updatePaginationActive(state) {
-    const pageButtons = document.querySelectorAll('.pagination-btn.page-btn');
-    pageButtons.forEach(button => {
-        const page = parseInt(button.dataset.page);
-        if (page === state.currentPage) {
-            button.classList.add('active');
-            button.style.backgroundColor = '#007bff';
-            button.style.color = 'white';
-        } else {
-            button.classList.remove('active');
-            button.style.backgroundColor = '#f8f8f8';
-            button.style.color = 'black';
-        }
-    });
-}
-
-// 비디오 포트폴리오 그리드 렌더링 함수 - 페이지네이션 지원 추가
-function renderVideoPortfolio(state) {
-    try {
-        // 상태 객체에서 그리드 요소 참조 가져오기
-        const videoGrid = state.videoGrid;
-        
-        if (!videoGrid) {
-            console.error('렌더링 함수에서 비디오 그리드를 찾을 수 없습니다!');
-            return;
-        }
-        
-        // 기존 내용 비우기
-        videoGrid.innerHTML = '';
-        
-        // 현재 페이지에 표시할 항목 계산
-        const startIndex = (state.currentPage - 1) * state.itemsPerPage;
-        const endIndex = Math.min(startIndex + state.itemsPerPage, state.totalItems);
-        
-        // 현재 페이지의 항목만 렌더링
-        for (let i = startIndex; i < endIndex; i++) {
-            const item = videoPortfolioData[i];
-            
-            const portfolioElement = document.createElement('div');
-            portfolioElement.className = 'grid33';
-            
-            // 해시태그 HTML 생성
-            const hashtagsHtml = item.hashtags.map(tag => `<li>${tag}</li>`).join('');
-            
-            // YouTube URL이 Shorts인지 확인하고 조정
-            const videoUrl = processYouTubeUrl(item.videoUrl);
-            
-            // 포트폴리오 요소 HTML 구조 생성
-            portfolioElement.innerHTML = `
-                <div class="portfolio-element">
-                    <img class="portfolio-element-thumb" src="${item.thumbnail}" alt="${item.title}">
-                    <h3 class="portfolio-element-title">${item.title}</h3>
-                    <ul class="portfolio-element-hashtag">
-                        ${hashtagsHtml}
-                    </ul>
-                </div>
-                <div class="modal portfolio-element-modal">
-                    <div class="modal-header">
-                        <p>${item.title}</p>
-                        <img src="../source/svg/portfolio-list-modal-close.svg" alt="닫기">
-                    </div>
-                    <div class="modal-body">
-                        <iframe width="100%" height="500" src="${videoUrl}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-            `;
-            
-            videoGrid.appendChild(portfolioElement);
-        }
-        
-        // 모달 기능 초기화
-        initializeModals();
-        
-        // 페이지네이션 상태 업데이트
-        updatePaginationActive(state);
-    } catch (error) {
-        console.error('렌더링 함수에서 오류 발생:', error);
-    }
-}
 
 // YouTube URL 처리 함수
 function processYouTubeUrl(url) {
