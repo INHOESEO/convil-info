@@ -47,6 +47,18 @@ const resourceMap = {
     'portfolioListSection': { 
         html: '../section/portfolio/portfolio-list-section.html',
         css: ['../section/css/portfolio-list-section.css']
+    },
+    'interiorBannerSection': { 
+        html: '../section/interior/interior-banner-section.html',
+        css: ['../section/css/interior-banner-section.css']
+    },
+    'interiorNavSection': { 
+        html: '../section/interior/interior-nav-section.html',
+        css: ['../section/css/interior-nav-section.css']
+    },
+    'interiorListSection': { 
+        html: '../section/interior/interior-list-section.html',
+        css: ['../section/css/interior-list-section.css']
     }
 };
 
@@ -249,7 +261,10 @@ async function initLayout() {
             'counselFormSection',
             'portfolioBannerSection',
             'portfolioNavSection',
-            'portfolioListSection'
+            'portfolioListSection',
+            'interiorBannerSection',
+            'interiorNavSection',
+            'interiorListSection'
         ]
         .filter(id => document.getElementById(id) !== null) // 페이지에 존재하는 섹션만 로드
         .map(id => loadHTML(id, resourceMap[id].html));

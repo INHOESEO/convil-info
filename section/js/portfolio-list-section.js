@@ -77,7 +77,6 @@
         }
         
         if (!videoGrid) {
-            console.error('비디오 포트폴리오 그리드를 찾을 수 없습니다!');
             return;
         }
         
@@ -309,7 +308,6 @@
             const videoGrid = state.videoGrid;
             
             if (!videoGrid) {
-                console.error('렌더링 함수에서 비디오 그리드를 찾을 수 없습니다!');
                 return;
             }
             
@@ -363,7 +361,7 @@
                     <div class="modal portfolio-element-modal">
                         <div class="modal-header">
                             <p>${item.title}</p>
-                            <img src="../source/svg/portfolio-list-modal-close.svg" alt="닫기">
+                            <img src="../source/svg/modal-close.svg" alt="닫기">
                         </div>
                         <div class="modal-body">
                             <iframe width="100%" height="500" src="${videoUrl}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -379,9 +377,7 @@
             
             // 페이지네이션 상태 업데이트
             updatePaginationActive(state);
-        } catch (error) {
-            console.error('렌더링 함수에서 오류 발생:', error);
-        }
+        } catch (error) { }
     }
 })();
 
@@ -657,7 +653,6 @@ function processYouTubeUrl(url) {
         // 추출 실패 시 원래 URL 반환
         return url;
     } catch (error) {
-        console.error('YouTube URL 처리 중 오류:', error);
         return url; // 오류 발생 시 원래 URL 반환
     }
 }
@@ -701,9 +696,7 @@ function initializeModals() {
                 }
             });
         });
-    } catch (error) {
-        console.error('모달 초기화 중 오류 발생:', error);
-    }
+    } catch (error) { }
 }
 
 // 모달 배경 추가 함수

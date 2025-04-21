@@ -1,0 +1,48 @@
+#interiorListSectionInner > div > .grid-row .grid33 .interior-element { display: flex; flex-direction: column; gap: 15px; }
+#interiorListSectionInner > div > .grid-row .grid33 .interior-element > img { max-width: 100%; margin-bottom: 10px; }
+#interiorListSectionInner > div > .grid-row .grid33 .interior-element .interior-element-title { font-size: 25px; font-style: normal; font-weight: 600; line-height: normal; }
+
+@media all and (max-width: 1400px) {
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element { gap: 10px; }
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element > img { margin-bottom: 5px; }
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element .interior-element-title { font-size: 22px; }
+
+    #interiorListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 22px;}
+}
+
+@media all and (max-width: 1024px) {
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element .interior-element-title { font-size: 16px; }
+
+    #interiorListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 16px;}
+}
+
+@media all and (max-width: 768px) {
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element { gap: 5px; }
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element > img { margin-bottom: 2px; }
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element .interior-element-title { font-size: 13px; }
+
+    #interiorListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 13px;}
+}
+
+@media all and (max-width: 480px) {
+    #interiorListSectionInner > div > .grid-row .grid33 .interior-element .interior-element-title { font-size: 9px; }
+
+    #interiorListSectionInner > div > .grid-row .grid33 .modal .modal-header > p { font-size: 9px;}
+}
+
+/* 페이지네이션 스타일 */
+#interiorListSectionInner > div > .interior-pagination { display: flex; justify-content: center; margin: 40px 0; gap: 10px; }
+
+#interiorListSectionInner > div > .interior-pagination .pagination-btn { padding: 7px 12px; border: 0; background-color: transparent; cursor: pointer; font-size: 16px; transition: all 0.2s ease; }
+#interiorListSectionInner > div > .interior-pagination .pagination-btn:hover { background-color: #e9e9e9; }
+#interiorListSectionInner > div > .interior-pagination .pagination-btn.active { background-color: #353535; color: white; border-color: #007bff; }
+#interiorListSectionInner > div > .interior-pagination .prev-btn,
+#interiorListSectionInner > div > .interior-pagination .next-btn { font-weight: bold; }
+#interiorListSectionInner > div > .interior-pagination .prev-btn:disabled, 
+#interiorListSectionInner > div > .interior-pagination .next-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* 모바일 반응형 */
+@media all and (max-width: 768px) {
+    #interiorListSectionInner > div > .interior-pagination { flex-wrap: wrap; }
+    #interiorListSectionInner > div > .interior-pagination .pagination-btn { padding: 6px 12px; font-size: 13px; }
+}
