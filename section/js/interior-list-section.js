@@ -391,3 +391,100 @@ function removeModalBackground() {
         document.body.removeChild(background);
     }
 }
+
+// 인테리어 탭 전환 및 초기화 기능
+(function() {
+    // 여러 이벤트에서 초기화 시도
+    window.addEventListener('load', initializeInteriorPage);
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initializeInteriorPage, 200);
+    });
+    
+    // 백업으로 약간의 지연 후 한 번 더 실행
+    setTimeout(initializeInteriorPage, 500);
+    setTimeout(initializeInteriorPage, 1000);
+    
+    // 이미 초기화했는지 추적
+    let initialized = false;
+    
+    function initializeInteriorPage() {
+        // 이미 초기화되었으면 중복 실행 방지
+        if (initialized) return;
+        
+        console.log('인테리어 페이지 초기화 시도...');
+        
+        // 탭 버튼 및 콘텐츠 요소 선택
+        const videoTab = document.querySelector('#interiorNavSectionInner .interior-nav-content .video-interior-nav');
+        const videoContent = document.querySelector('#interiorListSectionInner .video-interior-list');
+        
+        // 필요한 요소가 모두 존재하는지 확인
+        if (!videoTab || !videoContent) {
+            console.log('인테리어 페이지 요소를 찾을 수 없음. 나중에 다시 시도합니다.');
+            return;
+        }
+        
+        console.log('인테리어 페이지 요소 발견. 초기화 진행 중...');
+        
+        // 초기 상태 설정 (비디오 탭 활성화)
+        videoTab.classList.add('active');
+        videoContent.style.display = 'block';
+        
+        // 비디오 탭 클릭 이벤트
+        videoTab.addEventListener('click', function() {
+            console.log('비디오 탭 클릭됨');
+            if (videoTab.classList.contains('active')) return;
+            
+            videoTab.classList.add('active');
+            videoContent.style.display = 'block';
+            
+            console.log('비디오 인테리어 탭 활성화됨');
+        });
+        
+        // 이전 모달 이벤트 리스너 재설정 (중복 방지용)
+        resetModalListeners();
+        
+        // 초기화 완료 표시
+        initialized = true;
+        console.log('인테리어 페이지 초기화 완료!');
+    }
+    
+    // 모달 이벤트 리스너 재설정 (중복 방지)
+    function resetModalListeners() {
+        const interiorElements = document.querySelectorAll('.interior-element');
+        
+        interiorElements.forEach(element => {
+            // 기존 이벤트 제거 (실제로는 복제해서 교체)
+            const newElement = element.cloneNode(true);
+            element.parentNode.replaceChild(newElement, element);
+            
+            // 새 이벤트 추가
+            newElement.addEventListener('click', function() {
+                const modal = this.parentElement.querySelector('.interior-element-modal');
+                if (modal) {
+                    modal.style.display = 'block';
+                    addModalBackground();
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // 모달 닫기 버튼도 재설정
+        const closeButtons = document.querySelectorAll('.modal-header img');
+        closeButtons.forEach(button => {
+            // 기존 이벤트 제거 (실제로는 복제해서 교체)
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+            
+            // 새 이벤트 추가
+            newButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const modal = this.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    removeModalBackground();
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+})();
