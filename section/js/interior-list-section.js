@@ -220,57 +220,57 @@
 const videoInteriorData = [
     {
         thumbnail: "../source/img/interior/interior-element-thumb-01.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "1. 창업 준비해? 안보면 손해",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-02.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "2. 실내 캠핑장 감성까지 잡기 / 현장 컨설팅",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-03.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "3. 반셀프 인테리어로 30% 이상 공사비 절감!",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-04.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "4. 반셀프 인테리어 인터뷰",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-05.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "5. 전원주택 인테리어 팁",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-06.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "6. 매출상승 고깃집 창업 팁",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-07.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "7. 창업 비용 절약 (인테리어 꿀팁)",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-08.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "8. 한식당 프랜차이즈 비용 절약하기",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-09.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "9. 아파트 반셀프 인테리어 꿀팁",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-10.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "10. 상가 인테리어 도면 전문업체",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
     {
         thumbnail: "../source/img/interior/interior-element-thumb-11.png",
-        title: "01. 창업 준비해? 안보면 손해",
+        title: "11. 인테리어 하기 전 꼭 보면 좋은 영상!",
         videoUrl: "https://www.youtube.com/embed/XmxkLfo5j2s"
     },
 ];

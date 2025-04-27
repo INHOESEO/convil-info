@@ -729,3 +729,46 @@ function removeModalBackground() {
         document.body.removeChild(background);
     }
 }
+
+// 기존 IIFE 코드 끝에 추가
+// 페이지 로드 후 직접 검사하는 코드
+
+// 즉시 실행 함수로 감싸서 전역 충돌 방지
+(function() {
+    // 페이지 로드 후 실행
+    window.addEventListener('load', function() {
+        // 약간의 지연 후 모달 초기화 (DOM이 완전히 렌더링된 후)
+        setTimeout(initializePortfolioModals, 500);
+    });
+    
+    function initializePortfolioModals() {
+        const portfolioElements = document.querySelectorAll('.portfolio-element');
+        
+        portfolioElements.forEach(element => {
+            element.addEventListener('click', function(e) {
+                const modal = this.parentElement.querySelector('.portfolio-element-modal') || 
+                              this.parentElement.querySelector('.modal');
+                
+                if (modal) {
+                    modal.style.display = 'block';
+                    addModalBackground();
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // 모달 닫기 버튼에 이벤트 추가
+        const closeButtons = document.querySelectorAll('.modal-header img');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const modal = this.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    removeModalBackground();
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+})();

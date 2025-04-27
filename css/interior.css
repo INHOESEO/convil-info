@@ -1,0 +1,8 @@
+#container { margin-top: 85px !important; }
+
+@media (max-width: 768px) {
+    #container {
+        margin-top: 30px !important;
+        max-width: 95% !important;
+    }
+}
